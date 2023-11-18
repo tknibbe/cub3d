@@ -44,7 +44,7 @@ else
 	$(error OS: $(OS) is not supported!)
 endif
 
-SUBMODULES := $(shell find MLX42 libft -maxdepth 2 -empty)
+SUBMODULES := $(shell find MLX42 libft -maxdepth 1 -empty)
 ifdef SUBMODULES
 	SUBMODULES = foo
 endif
@@ -57,7 +57,6 @@ $(NAME): $(SUBMODULES) $(MLX42_LIB) $(LIBFT) $(OBJ_FILES)
 	@echo "${GREEN}Done!${END}"
 
 $(SUBMODULES):
-	echo $(SUBMODULES)
 	@git submodule init
 	@git submodule update
 
