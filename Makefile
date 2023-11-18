@@ -8,13 +8,12 @@ END=\033[0m
 
 NAME = cub3D
 HEADERS  = includes/Cub3d.h
-
 SRC_FILES = main.c
-
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR = obj
 
 # MLX variables
+
 MLX42_SOURCE_DIR = MLX42/
 MLX42_BUILD_DIR = MLX42/build/
 MLX42_LIB = MLX42/build/libmlx42.a
@@ -24,11 +23,10 @@ LIBFT = libft/libft.a
 LIBFT_DIR = libft
 
 # compilation variables
+
 CC = cc
 INCLUDES = -I includes -I libft/includes -I MLX42/include/MLX42
 CFLAGS = -Wall -Werror -Wextra
-
-
 ifdef DEBUG
 CFLAGS += -g -fsanitize=address
 endif
@@ -44,10 +42,15 @@ else
 	$(error OS: $(OS) is not supported!)
 endif
 
+# setting variable if submodules haven't been downloaded yet
+# checks for empty directories and then sets variable so commands are run on first time typing make
+
 SUBMODULES := $(shell find MLX42 libft -maxdepth 1 -empty)
 ifdef SUBMODULES
 	SUBMODULES = foo
 endif
+
+
 
 all: $(NAME)
 
