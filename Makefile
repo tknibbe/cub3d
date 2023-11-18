@@ -44,12 +44,22 @@ else
 	$(error OS: $(OS) is not supported!)
 endif
 
+SUBMODULES := $(shell find MLX42 libft -maxdepth 2 -empty)
+ifdef SUBMODULES
+	SUBMODULES = foo
+endif
+
 all: $(NAME)
 
-$(NAME): $(MLX42_LIB) $(LIBFT) $(OBJ_FILES)
+$(NAME): $(SUBMODULES) $(MLX42_LIB) $(LIBFT) $(OBJ_FILES)
 	@echo "${MAGENTA}Creating $@${END}"
 	@$(CC) $(INCLUDES) $(MLX_FLAGS) $(CFLAGS) -o $@ $(OBJ_FILES) $(LIBFT) $(MLX42_LIB)
 	@echo "${GREEN}Done!${END}"
+
+$(SUBMODULES):
+	echo $(SUBMODULES)
+	@git submodule init
+	@git submodule update
 
 $(MLX42_LIB):
 	@cmake -S $(MLX42_SOURCE_DIR) -B $(MLX42_BUILD_DIR)
