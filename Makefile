@@ -37,7 +37,8 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
 	MLX_FLAGS = -Iinclude -ldl -lglfw -pthread -lm
 else ifeq ($(UNAME_S), Darwin)
-	MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit -lglfw3
+	GLFW = $(shell brew --prefix glfw)
+	MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L $(GLFW)/lib
 else
 	$(error OS: $(OS) is not supported!)
 endif
