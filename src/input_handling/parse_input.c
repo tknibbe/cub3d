@@ -6,8 +6,14 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:16:59 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/01 15:17:37 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:05:37 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parsing.h>
+#include "parsing.h"
+#include "cub3d.h"
+
+void	get_input(t_game *game)
+{
+	
+}

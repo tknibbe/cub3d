@@ -7,7 +7,7 @@ CYAN=\033[1;36m
 END=\033[0m
 
 NAME = cub3D
-HEADERS  = includes/Cub3d.h
+HEADERS  = includes/cub3d.h
 SRC_FILES = main.c
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR = obj
