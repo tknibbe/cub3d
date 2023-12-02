@@ -101,8 +101,13 @@ extra zooi
 
 
 
+-- set icon for our program (mlx_set_icon)
 
-
-
-
-
+what can go wrong in adding the textures?
+	file nonexistent
+	same direction twice
+	one not given
+	non-existing direction given
+	file not a png
+	rgb values out of bounds
+	--fix file extension texture files

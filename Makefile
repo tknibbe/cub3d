@@ -8,7 +8,11 @@ END=\033[0m
 
 NAME = cub3D
 HEADERS  = includes/cub3d.h
-SRC_FILES = main.c
+SRC_FILES =	main.c \
+			input_handling/parse_input.c \
+			input_handling/get_textures.c \
+			input_handling/get_map.c
+
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR = obj
 
@@ -77,6 +81,7 @@ obj/%.o: src/%.c $(HEADERS) | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
+	@mkdir $(OBJ_DIR)/input_handling
 
 clean:
 	@echo "${RED}Removing objs cub3d${END}"
