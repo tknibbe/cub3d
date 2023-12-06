@@ -1,4 +1,4 @@
-NO         ./textures/roodmuurtje.png
+ 	NO       		  ./textures/roodmuurtje.png	 	 	  	 	   		
 
 
 
@@ -31,13 +31,13 @@ EA ./textures/geelmuurtje.png
 
 
 
-WE ./textures/blauwmuurtje.png
+WE 	./textures/blauwmuurtje.png
 
 
 
 
 
-SO ./textures/groenmuurtje.png
+	SO ./textures/groenmuurtje.png
 
 
 
@@ -46,8 +46,8 @@ F 222,3,246
 
 
 
+C 0,0,0,
 
-C 225,30,0
 
 
 

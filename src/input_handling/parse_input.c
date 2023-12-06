@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:16:59 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/02 17:19:05 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/03 15:09:47 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 #include <unistd.h>
 #include <errno.h>
 
-int	protected_open(char *file)
+int	protected_open(char *file) // moet ik hier nog meer protecten?
 {
 	int	fd;
 
 	fd = open(file, O_RDONLY);
-	if (fd == -1) // luie fix
+	if (fd == -1)
 	{
 		write(STDERR_FILENO, "jammer\n", 8);
 		write(STDERR_FILENO, "gaat mis bij openen van: ", 26);
@@ -58,7 +58,7 @@ int	get_input(t_game *game, char *filename)
 	if (valid_file_name(filename, ".cub"))
 		exit(27); //fix
 	fd = protected_open(filename);
-	get_textures(&game->textures, fd);
+	get_textures(&game->textures, fd); // this leaves get_next_line directly after the last texture found. should work in get_map to immediately get the map data
 	// get_map(game, fd); //moet nog ff geschreven worden
 	close(fd);
 	return (EXIT_SUCCESS);

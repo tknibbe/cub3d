@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/02 14:34:22 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/03 14:47:44 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ typedef struct	s_game
 	t_player	player;
 }	t_game;
 
+
+void	key_hook(void *param);
 
 #endif

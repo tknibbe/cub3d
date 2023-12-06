@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:56:28 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/02 17:54:30 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/06 14:11:40 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	draw_floor_and_ceiling(t_textures text, mlx_image_t *bg)
 	{
 		while (y < HEIGHT)
 		{
-		// printf ("x = %d y = %d\n", x, y);
 			if (y < HEIGHT / 2)
 				mlx_put_pixel(bg, x, y, text.ceiling);
 			else 
@@ -62,5 +61,8 @@ int	main(int argc, char **argv)
 	mlx_image_to_window(mlx, imgeast,  WIDTH - 200, (HEIGHT -200) / 2);
 	mlx_image_to_window(mlx, imgsouth, (WIDTH-200) / 2, HEIGHT - 200);
 	mlx_image_to_window(mlx, imgwest, 0, (HEIGHT-200)/2);
+	mlx_loop_hook(mlx, key_hook, mlx); //only handling escape because i wanted to be able to exit easily
 	mlx_loop(mlx);
+	//free_shit here
 }
+
