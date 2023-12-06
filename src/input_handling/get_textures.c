@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:33:50 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/06 14:29:39 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/06 14:51:38 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	more_function_here(char **nums)
 	i = 0;
 	while (nums[i])
 	{
+		nums[i] = ft_strdel(nums[i], " ");
 		num = ft_atoi(nums[i]);
 		if (num > 255 && nums < 0)
 			break ;
@@ -57,6 +58,7 @@ static int	get_rgb(char *line)
 	int		ret;
 
 	i = 0;
+	printf("%s\n", line);
 	while (!ft_isdigit(line[i]))
 		i++;
 	nums = ft_split(&line[i], ',');
@@ -157,7 +159,6 @@ int	get_textures(t_textures *textures, int fd)
 	int		textures_found;
 	char	*line;
 
-	ft_memset(textures, '\0', sizeof(textures)); //maybe set all to null and ints to -1 and check at the end whether it was valid input
 	textures_found = 0;
 	while (textures_found < 6)
 	{
@@ -168,6 +169,7 @@ int	get_textures(t_textures *textures, int fd)
 				\nif this error message shows it means you reached the EOF before finding all 6 \
 				\ntextures. throw error here\n");
 			// free acquired textures here
+			//LEAK
 			return (EXIT_FAILURE);
 		}
 		line = ft_strdel(line, "\t\n\v\r");
@@ -179,11 +181,11 @@ int	get_textures(t_textures *textures, int fd)
 	}
 	printf("%d textures found\n", textures_found);
 	//check if ALL textures exist in the struct
-	printf("north %p\n", textures->north);
-	printf("east %p\n", textures->east);
-	printf("south %p\n", textures->south);
-	printf("west %p\n", textures->west);
-	printf("floor %X\n", textures->floor);
+	printf("north	%p\n", textures->north);
+	printf("east	%p\n", textures->east);
+	printf("south	%p\n", textures->south);
+	printf("west 	%p\n", textures->west);
+	printf("floor 	%X\n", textures->floor);
 	printf("ceiling %X\n", textures->ceiling);
 	return (EXIT_SUCCESS);
 }

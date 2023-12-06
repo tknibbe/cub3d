@@ -6,14 +6,14 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:56:28 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/06 14:11:40 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/06 14:46:00 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parsing.h"
 
-void	draw_floor_and_ceiling(t_textures text, mlx_image_t *bg)
+void	draw_floor_and_ceiling(t_textures text, mlx_image_t *bg) //move to 
 {
 	int	x;
 	int	y;

@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:16:59 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/03 15:09:47 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/06 14:42:57 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ int	get_input(t_game *game, char *filename)
 {
 	int	fd;
 
+	ft_memset(game, 0, sizeof(game));
 	if (valid_file_name(filename, ".cub"))
 		exit(27); //fix
 	fd = protected_open(filename);
-	get_textures(&game->textures, fd); // this leaves get_next_line directly after the last texture found. should work in get_map to immediately get the map data
+	if (get_textures(&game->textures, fd)) // this leaves get_next_line directly after the last texture found. should work in get_map to immediately get the map data
+		return(EXIT_FAILURE);
 	// get_map(game, fd); //moet nog ff geschreven worden
 	close(fd);
 	return (EXIT_SUCCESS);
