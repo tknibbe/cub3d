@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:16:59 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/06 14:42:57 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/06 14:55:00 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	get_input(t_game *game, char *filename)
 	fd = protected_open(filename);
 	if (get_textures(&game->textures, fd)) // this leaves get_next_line directly after the last texture found. should work in get_map to immediately get the map data
 		return(EXIT_FAILURE);
-	// get_map(game, fd); //moet nog ff geschreven worden
+	get_map(game, fd); //moet nog ff geschreven worden
 	close(fd);
 	return (EXIT_SUCCESS);
 }

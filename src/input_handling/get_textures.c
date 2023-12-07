@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:33:50 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/06 14:51:38 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/07 16:12:39 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	more_function_here(char **nums)
 	{
 		nums[i] = ft_strdel(nums[i], " ");
 		num = ft_atoi(nums[i]);
-		if (num > 255 && nums < 0)
+		if (num > 255 || num < 0)
 			break ;
 		i++;
 	}
@@ -58,7 +58,6 @@ static int	get_rgb(char *line)
 	int		ret;
 
 	i = 0;
-	printf("%s\n", line);
 	while (!ft_isdigit(line[i]))
 		i++;
 	nums = ft_split(&line[i], ',');
@@ -180,12 +179,13 @@ int	get_textures(t_textures *textures, int fd)
 		free(line);
 	}
 	printf("%d textures found\n", textures_found);
-	//check if ALL textures exist in the struct
+	//TODO check if ALL textures exist in the struct
+	//there might be 2x WE and no ES for example
 	printf("north	%p\n", textures->north);
 	printf("east	%p\n", textures->east);
 	printf("south	%p\n", textures->south);
 	printf("west 	%p\n", textures->west);
 	printf("floor 	%X\n", textures->floor);
-	printf("ceiling %X\n", textures->ceiling);
+	printf("ceiling %X\n\n", textures->ceiling);
 	return (EXIT_SUCCESS);
 }

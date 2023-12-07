@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/03 14:47:44 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/07 16:56:44 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct	s_player
 typedef struct	s_game
 {
 	char		**map;
+	int			map_cols;
+	int			map_rows;
 	t_textures	textures;
 	t_player	player;
 }	t_game;
