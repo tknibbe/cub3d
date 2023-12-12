@@ -3,8 +3,8 @@ SO ./textures/groenmuurtje.png
 WE ./textures/blauwmuurtje.png
 EA ./textures/geelmuurtje.png
 
-F -1,0,0
-C 255,255,256
+F 0,0as,0
+C 255,255,255
 
 11111111111111111111
 10000000000000000001
