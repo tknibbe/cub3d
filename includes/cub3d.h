@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/07 16:56:44 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/13 16:52:45 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+
 typedef struct s_textures
 {
 	mlx_texture_t	*north;
@@ -32,8 +33,8 @@ typedef struct s_textures
 
 typedef struct	s_player
 {
-	int		x; //decide on what kind of varbiable this shoudl be
-	int		y;
+	float	x; //decide on what kind of varbiable this shoudl be
+	float	y;
 	float	orientation;
 	int		fov;
 }	t_player;
@@ -45,9 +46,13 @@ typedef struct	s_game
 	int			map_rows;
 	t_textures	textures;
 	t_player	player;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
 }	t_game;
 
 
 void	key_hook(void *param);
+void	fps_counter(void *mlxshit);
 
+void draw_player(t_game *game, mlx_image_t *img);
 #endif

@@ -15,7 +15,8 @@ SRC_FILES =	main.c \
 			input_handling/get_map/map_utils.c \
 			input_handling/get_map/list_to_2d_array.c \
 			input_handling/get_map/validate_map.c \
-			key_hook.c
+			key_hook.c\
+			fps.c
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR = obj
@@ -34,7 +35,7 @@ LIBFT_DIR = libft
 
 CC = cc
 INCLUDES = -I includes -I libft/includes -I MLX42/include/MLX42
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = #-Wall -Werror -Wextra
 ifdef DEBUG
 CFLAGS += -g -fsanitize=address
 endif

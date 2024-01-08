@@ -6,11 +6,12 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:00:02 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/01 16:00:46 by tknibbe          ###   ########.fr       */
+/*   Updated: 2023/12/13 16:53:37 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 
 void	fps_counter(void *mlxshit)
 {
