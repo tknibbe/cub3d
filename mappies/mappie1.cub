@@ -1,17 +1,12 @@
-NO ./textures/roodmuurtje.png
-SO ./textures/groenmuurtje.png
-WE ./textures/blauwmuurtje.png
-EA ./textures/geelmuurtje.png
+NO ./textures/jan.png
+SO ./textures/jan.png
+WE ./textures/jan.png
+EA ./textures/jan.png
 
 F 0,0,0
 C 255,255,255
 
 
-
-
-			lll
-	ffff
-	roodmuurtje
 
 11111111111111111111
 10000000000000000001

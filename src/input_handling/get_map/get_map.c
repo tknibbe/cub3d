@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:53:33 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/07 16:56:26 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/10 16:58:30 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 #include "parsing.h"
 #include "libft.h"
 
-static int	valid_chars(char *line)
+static void	check_invalid_chars(char *line)
 {
 	int	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '0' || line[i] == '1')
-			return (1);
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'\
+		 && line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
+		{
+			printf("INVALID LINE FOUND [%s]\n", line);
+		 	exit(1);
+		}
 		i++;
 	}
-	return (0);
 }
 
 t_map	*put_in_linked_list(int fd)
@@ -43,13 +46,15 @@ t_map	*put_in_linked_list(int fd)
 			break ;
 		}
 		line = ft_strdel(line, "\n");
-		if (!valid_chars(line))
+		printf("line = [%s]\n", line);
+		if (line[0])
 		{
-			free(line);
-			continue;
+			check_invalid_chars(line);
+			temp = ft_lstnew_map(line);
+			ft_mapadd_back(&map, temp);
 		}
-		temp = ft_lstnew_map(line);
-		ft_mapadd_back(&map, temp);
+		else
+			free(line);
 	}
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:48 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/13 14:27:39 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/10 17:02:41 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,25 @@ void	find_player(char **map)
 {
 	int	x;
 	int	y;
+	int	player;
 
 	x = 0;
 	y = 0;
+	player = 0;
 	while (map[x])
 	{
 		while (map[x][y])
 		{
 			if (map[x][y] == 'N' || map[x][y] == 'S' || \
 				map[x][y] == 'W' || map[x][y] == 'E')
-				return ;
+				player++;
 			y++;
 		}
 		y = 0;
 		x++;
 	}
+	if (player == 1)
+		return ;
 	printf("NO PLAYER FOUND BITCH (replace this error message :))\n");
 	exit(27);//fix
 }

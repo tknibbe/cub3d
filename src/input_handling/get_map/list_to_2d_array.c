@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:03:20 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/07 17:25:46 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/10 16:55:39 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	change_to_dp(t_map *temp_map, t_game *game)
 	while (i < size)
 	{
 		ret[i] = temp_map->line;
-		if (valid_chars(ret[i]))
-			exit(27);//fix
+		// if (valid_chars(ret[i]))
+		// 	exit(27);//fix
 		i++;
 		temp_map = temp_map->next;
 	}

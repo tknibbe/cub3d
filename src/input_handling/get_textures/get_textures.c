@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   get_textures.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: tknibbe <tknibbe@student.42.fr>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/02 14:33:50 by tknibbe       #+#    #+#                 */
-/*   Updated: 2023/12/12 15:09:09 by jmolenaa      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   get_textures.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 14:33:50 by tknibbe           #+#    #+#             */
+/*   Updated: 2024/01/10 16:47:58 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,7 @@
 #include "libft.h"
 #include "MLX42.h"
 
-# define NO 0
-# define EA 1
-# define SO 2
-# define WE 3
-# define F	4
-# define C	5
-# define TRANSPARANCY 255
-
-static int	more_function_here(char **nums)
+static unsigned int	more_function_here(char **nums)
 {
 	int	r;
 	int	g;
@@ -34,6 +26,7 @@ static int	more_function_here(char **nums)
 	i = 0;
 	while (nums[i])
 	{
+		valid_rgb_value(nums[i]);
 		nums[i] = ft_strdel(nums[i], " ");
 		num = ft_atoi(nums[i]);
 		if (num > 255 || num < 0)
@@ -42,23 +35,30 @@ static int	more_function_here(char **nums)
 	}
 	if (i != 3)
 	{
-			printf("Error, rgb value is fucked up g, fix this errormessage btw\n");
-			exit (27);//
+		printf("Error, rgb value is fucked up g, fix this errormessage btw\n");
+		exit (27);//
 	}
 	r = ft_atoi(nums[0]);
 	g = ft_atoi(nums[1]);
 	b = ft_atoi(nums[2]);
-	return  (((r << 16) | (g << 8) | b) << 8) + TRANSPARANCY;
+	return  ((r << 16) | (g << 8) | (b << 8) + TRANSPARANCY);
 }
 
-static int	get_rgb(char *line)
+static int	get_rgb(t_textures *text, char *line)
 {
 	int		i;
 	char	**nums;
 	int		ret;
 
 	i = 0;
-	while (!ft_isdigit(line[i]))
+	if ((line[i] == 'F' && text->floor != -1) || \
+		line[i] == 'C' && text->ceiling != -1)
+	{
+		printf("double F/C found, replace this message\n");
+		exit(1);
+	}
+	i++;
+	while (ft_isspace(line[i]))
 		i++;
 	nums = ft_split(&line[i], ',');
 	if (!nums)
@@ -74,10 +74,11 @@ static int	get_rgb(char *line)
 	return (ret); //
 }
 
-static void put_in_struct(t_textures *text, char *path, int cat) // this can easily paste a texture over the current textue thus losing the pointer and causing a leak. gotta check if they exist and throw an error
+static void put_in_struct(t_textures *text, char *path, int cat)
 {
 	mlx_texture_t *texture;
 
+	check_double_texture(text, cat);
 	texture = mlx_load_png(path);
 	if (!texture)
 		exit(27);//fix
@@ -145,21 +146,27 @@ static int	valid_and_add_line(t_textures *text, char *line)
 			return (EXIT_FAILURE);
 	}
 	else if (!ft_strncmp(&line[i], "F", 1))
-		text->floor = get_rgb(line);
+		text->floor = get_rgb(text, line);
 	else if (!ft_strncmp(&line[i], "C", 1))
-		text->ceiling = get_rgb(line);
-	else
-		return (EXIT_FAILURE);
+		text->ceiling = get_rgb(text, line);
+	else if (line[i])
+	{
+		printf("unknown texture delimiter found [%s]\n", &line[i]); // make error
+		exit(1);
+	}
 	return (EXIT_SUCCESS);
 }
 
-int	get_textures(t_textures *textures, int fd)
+void	get_textures(t_textures *textures, int fd)
 {
 	int		textures_found;
 	char	*line;
 
 	textures_found = 0;
-	while (textures_found < 6)
+	ft_memset(textures, 0, sizeof(t_textures));
+	textures->floor = -1;
+	textures->ceiling = -1;
+	while (textures_found <= 6)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -167,9 +174,7 @@ int	get_textures(t_textures *textures, int fd)
 			printf("ERROR RETRIEVING GNL, this error messsage needs to be replaced\
 				\nif this error message shows it means you reached the EOF before finding all 6 \
 				\ntextures. throw error here\n");
-			// free acquired textures here
-			//LEAK
-			return (EXIT_FAILURE);
+			exit(1);
 		}
 		line = ft_strdel(line, "\t\n\v\r");
 		if (!line)
@@ -178,14 +183,12 @@ int	get_textures(t_textures *textures, int fd)
 			textures_found++;
 		free(line);
 	}
-	printf("%d textures found\n", textures_found);
-	//TODO check if ALL textures exist in the struct
-	//there might be 2x WE and no ES for example
+	printf("%d textures found\n", textures_found- 1);
 	printf("north	%p\n", textures->north);
 	printf("east	%p\n", textures->east);
 	printf("south	%p\n", textures->south);
 	printf("west 	%p\n", textures->west);
-	printf("floor 	%X\n", textures->floor);
-	printf("ceiling %X\n\n", textures->ceiling);
-	return (EXIT_SUCCESS);
+	printf("floor 	0x%X\n", textures->floor);
+	printf("ceiling 0x%X\n\n", textures->ceiling);
+	not_all_textures_set(textures);
 }

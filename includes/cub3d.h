@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/13 16:52:45 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/10 16:37:30 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_textures
 	mlx_texture_t	*east;
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
-	int				floor;
-	int				ceiling;
+	unsigned int	floor;
+	unsigned int	ceiling;
 }	t_textures;
 
 typedef struct	s_player
