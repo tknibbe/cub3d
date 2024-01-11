@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:53:33 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/10 16:58:30 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/11 15:22:41 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_map	*put_in_linked_list(int fd)
 			break ;
 		}
 		line = ft_strdel(line, "\n");
-		printf("line = [%s]\n", line);
 		if (line[0])
 		{
 			check_invalid_chars(line);
