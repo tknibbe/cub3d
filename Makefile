@@ -18,7 +18,9 @@ SRC_FILES =	main.c \
 			input_handling/get_map/validate_map.c \
 			key_hook.c \
 			fps.c \
-			init.c
+			init.c \
+			error.c \
+			free.c
 
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)

@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 #include "parsing.h"
+#include "libft.h"
 
 void	draw_floor_and_ceiling(t_textures text, mlx_image_t *bg) //move to 
 {
@@ -106,9 +107,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
+	ft_memset(&game, 0, sizeof(game)); // weet nog niet of ik dit erin wil houden
 	if (get_input(&game, argv[1]))
 		return (EXIT_FAILURE);
-	game.mlx = mlx_init(WIDTH, HEIGHT, argv[1], true);
+	initialise_game(&game, argv[1]);
+//	game.mlx = mlx_init(WIDTH, HEIGHT, argv[1], true);
 	game.images.img  = test(&game, game.mlx);
 	// background = mlx_new_image(mlx, WIDTH, HEIGHT);
 	// draw_floor_and_ceiling(game.textures, background);
@@ -127,7 +130,11 @@ int	main(int argc, char **argv)
 	mlx_image_to_window(game.mlx, game.images.img, 0, 0);
 	mlx_loop_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, fps_counter, &game);
+	game.current_time = mlx_get_time(); // deze staat er even in om de start van het programma op de start van loop te zetten
 	mlx_loop(game.mlx);
+	mlx_terminate(game.mlx);
+	free_game_struct(&game);
+	return (0);
 	//free_shit here
 }
 

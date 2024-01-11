@@ -16,17 +16,11 @@
 void	fps_counter(void *mlxshit)
 {
 	static int		fps;
-	static double	current_time;
 	t_game			*mlx;
 	char 			*fps_string;
 
 	mlx = mlxshit;
-	if (!current_time)
-	{
-		current_time = mlx_get_time();
-		mlx->images.fps = mlx_put_string(mlx->mlx, "FPS 60", 20, 20);
-	}
-	if (mlx_get_time() < current_time + 1)
+	if (mlx_get_time() < mlx->current_time + 1)
 	{
 		fps++;
 	}
@@ -37,6 +31,6 @@ void	fps_counter(void *mlxshit)
 		mlx->images.fps = mlx_put_string(mlx->mlx, fps_string, 20, 20);
 		free(fps_string);
 		fps = 0;
-		current_time = mlx_get_time();
+		mlx->current_time = mlx_get_time();
 	}
 }
