@@ -16,8 +16,10 @@ SRC_FILES =	main.c \
 			input_handling/get_map/map_utils.c \
 			input_handling/get_map/list_to_2d_array.c \
 			input_handling/get_map/validate_map.c \
-			key_hook.c\
-			fps.c
+			key_hook.c \
+			fps.c \
+			init.c
+
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR = obj

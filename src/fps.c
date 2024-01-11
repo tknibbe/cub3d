@@ -15,30 +15,28 @@
 
 void	fps_counter(void *mlxshit)
 {
-	//calculate fps every second
 	static int		fps;
-	static double	starttime;
+	static double	current_time;
+	t_game			*mlx;
+	char 			*fps_string;
 
-	if (!starttime)
+	mlx = mlxshit;
+	if (!current_time)
 	{
-		starttime = mlx_get_time();
+		current_time = mlx_get_time();
+		mlx->images.fps = mlx_put_string(mlx->mlx, "FPS 60", 20, 20);
 	}
-	if (mlx_get_time() < starttime + 1)
+	if (mlx_get_time() < current_time + 1)
 	{
 		fps++;
 	}
 	else
 	{
-		printf("%d fps\n", fps);
-		mlx_put_string(mlxshit, ft_itoa(fps), rand() % 1000, rand() % 1000);
+		mlx_delete_image(mlx->mlx, mlx->images.fps);
+		fps_string = ft_itoa(fps);
+		mlx->images.fps = mlx_put_string(mlx->mlx, fps_string, 20, 20);
+		free(fps_string);
 		fps = 0;
-		starttime = mlx_get_time();
+		current_time = mlx_get_time();
 	}
-
-	//calculate fps for every frame
-	static double	test;
-	double leftover = mlx_get_time() - test;
-	// printf("%f frames\n", 1 / leftover);
-	test = mlx_get_time();
-	mlx_put_string(mlxshit, ft_itoa(1 / leftover), rand() % 1000, rand() % 1000);
 }

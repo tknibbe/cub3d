@@ -27,6 +27,6 @@ void	key_hook(void *param)
 		game->player.y -= 5;
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 		game->player.y += 5;
-	draw_player(game, game->img);
+	draw_player(game, game->images.img);
 	// mlx_image_to_window(game->mlx, game->img, 0, 0);
 }

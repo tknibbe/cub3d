@@ -18,19 +18,18 @@ void	draw_floor_and_ceiling(t_textures text, mlx_image_t *bg) //move to
 	int	x;
 	int	y;
 
-	y = 0;
 	x = 0;
 	while (x < WIDTH)
 	{
+		y = 0;
 		while (y < HEIGHT)
 		{
 			if (y < HEIGHT / 2)
 				mlx_put_pixel(bg, x, y, text.ceiling);
-			else 
+			else
 				mlx_put_pixel(bg, x, y, text.floor);
 			y++;
 		}
-		y = 0;
 		x++;
 	}
 }
@@ -109,8 +108,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (get_input(&game, argv[1]))
 		return (EXIT_FAILURE);
-	game.mlx = mlx_init(WIDTH, HEIGHT, "een goedendag", true);
-	game.img  = test(&game, game.mlx);
+	game.mlx = mlx_init(WIDTH, HEIGHT, argv[1], true);
+	game.images.img  = test(&game, game.mlx);
 	// background = mlx_new_image(mlx, WIDTH, HEIGHT);
 	// draw_floor_and_ceiling(game.textures, background);
 	// imgnorth = mlx_texture_to_image(mlx, game.textures.north);
@@ -124,9 +123,10 @@ int	main(int argc, char **argv)
 	// mlx_image_to_window(mlx, imgwest, 0, (HEIGHT-200)/2);
 	game.player.x = 500;
 	game.player.y = 500;
-	draw_player(&game, game.img);
-	mlx_image_to_window(game.mlx, game.img, 0, 0);
+	draw_player(&game, game.images.img);
+	mlx_image_to_window(game.mlx, game.images.img, 0, 0);
 	mlx_loop_hook(game.mlx, key_hook, &game);
+	mlx_loop_hook(game.mlx, fps_counter, &game);
 	mlx_loop(game.mlx);
 	//free_shit here
 }

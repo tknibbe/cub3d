@@ -39,6 +39,12 @@ typedef struct	s_player
 	int		fov;
 }	t_player;
 
+typedef struct	s_images
+{
+	mlx_image_t	*img;
+	mlx_image_t	*fps;
+}	t_images;
+
 typedef struct	s_game
 {
 	char		**map;
@@ -46,13 +52,12 @@ typedef struct	s_game
 	int			map_rows;
 	t_textures	textures;
 	t_player	player;
+	t_images	images;
 	mlx_t		*mlx;
-	mlx_image_t	*img;
 }	t_game;
-
 
 void	key_hook(void *param);
 void	fps_counter(void *mlxshit);
+void	draw_player(t_game *game, mlx_image_t *img);
 
-void draw_player(t_game *game, mlx_image_t *img);
 #endif
