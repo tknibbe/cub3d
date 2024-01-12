@@ -52,7 +52,7 @@ static int	get_rgb(t_textures *text, char *line)
 
 	i = 0;
 	if ((line[i] == 'F' && text->floor != -1) || \
-		line[i] == 'C' && text->ceiling != -1)
+		(line[i] == 'C' && text->ceiling != -1))
 	{
 		printf("double F/C found, replace this message\n");
 		exit(1);

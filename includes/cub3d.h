@@ -20,7 +20,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-
 typedef struct s_textures
 {
 	mlx_texture_t	*north;
@@ -39,6 +38,12 @@ typedef struct	s_player
 	int		fov;
 }	t_player;
 
+typedef struct	s_images
+{
+	mlx_image_t	*img;
+	mlx_image_t	*fps;
+}	t_images;
+
 typedef struct	s_game
 {
 	char		**map;
@@ -46,13 +51,16 @@ typedef struct	s_game
 	int			map_rows;
 	t_textures	textures;
 	t_player	player;
+	t_images	images;
 	mlx_t		*mlx;
-	mlx_image_t	*img;
 }	t_game;
-
 
 void	key_hook(void *param);
 void	fps_counter(void *mlxshit);
+void	draw_player(t_game *game, mlx_image_t *img);
+void	initialise_game(t_game *game, char *title);
+void	ft_mlx_error_and_exit(t_game *game);
+void	ft_error_and_exit(char *error_str);
+void	free_game_struct(t_game *game);
 
-void draw_player(t_game *game, mlx_image_t *img);
 #endif
