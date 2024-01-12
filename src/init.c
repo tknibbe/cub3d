@@ -20,6 +20,7 @@ void	initialise_images(t_game *game)
 	{
 		ft_mlx_error_and_exit(game);
 	}
+	draw_minimap(game);
 }
 
 void	initialise_game(t_game *game, char *title)

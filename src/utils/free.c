@@ -50,4 +50,3 @@ void	free_game_struct(t_game *game)
 	free_textures(game->textures);
 	ft_free_array(game->map);
 }
-

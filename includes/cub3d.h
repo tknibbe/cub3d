@@ -42,6 +42,7 @@ typedef struct	s_images
 {
 	mlx_image_t	*img;
 	mlx_image_t	*fps;
+	mlx_image_t	*player;
 }	t_images;
 
 typedef struct	s_game
@@ -62,5 +63,7 @@ void	initialise_game(t_game *game, char *title);
 void	ft_mlx_error_and_exit(t_game *game);
 void	ft_error_and_exit(char *error_str);
 void	free_game_struct(t_game *game);
+void	draw_minimap(t_game *game);
+void	draw_player(t_game *game, mlx_image_t *img);
 
 #endif

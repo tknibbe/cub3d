@@ -20,8 +20,8 @@ SRC_FILES =	main.c \
 			input_handling/get_map/validate_map.c \
 			key_hook.c \
 			fps.c \
-			init.c
-
+			init.c \
+			minimap.c
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR = obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures
