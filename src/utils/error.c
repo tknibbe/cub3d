@@ -49,11 +49,11 @@ void	ft_mlx_error_and_exit(t_game *game)
 
 	write(2, error_string, ft_strlen(error_string));
 	write(2, "\n", 1);
-	free_game_struct(game);
 	if (game->mlx)
 	{
 		mlx_close_window(game->mlx);
 //		mlx_terminate(game->mlx);
 	}
+	free_game_struct(game);
 	exit(EXIT_FAILURE);
 }
