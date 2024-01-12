@@ -1,0 +1,12 @@
+NO ./textures/roodmuurtje.png
+SO ./textures/groenmuurtje.png
+WE ./textures/blauwmuurtje.png
+EA ./textures/geelmuurtje.png
+
+C 255,255,255
+F 0,0,0
+
+1111
+1 N1
+1111
+

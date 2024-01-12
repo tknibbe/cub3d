@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/02 14:34:22 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/10 16:37:30 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,41 @@ typedef struct s_textures
 	mlx_texture_t	*east;
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
-	int				floor;
-	int				ceiling;
+	unsigned int	floor;
+	unsigned int	ceiling;
 }	t_textures;
 
 typedef struct	s_player
 {
-	int		x; //decide on what kind of varbiable this shoudl be
-	int		y;
+	float	x; //decide on what kind of varbiable this shoudl be
+	float	y;
 	float	orientation;
 	int		fov;
 }	t_player;
 
+typedef struct	s_images
+{
+	mlx_image_t	*img;
+	mlx_image_t	*fps;
+}	t_images;
+
 typedef struct	s_game
 {
 	char		**map;
+	int			map_cols;
+	int			map_rows;
 	t_textures	textures;
 	t_player	player;
+	t_images	images;
+	mlx_t		*mlx;
 }	t_game;
 
+void	key_hook(void *param);
+void	fps_counter(void *mlxshit);
+void	draw_player(t_game *game, mlx_image_t *img);
+void	initialise_game(t_game *game, char *title);
+void	ft_mlx_error_and_exit(t_game *game);
+void	ft_error_and_exit(char *error_str);
+void	free_game_struct(t_game *game);
 
 #endif
