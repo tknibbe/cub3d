@@ -13,24 +13,40 @@
 #include "cub3d.h"
 #include "libft.h"
 
-void	fps_counter(void *mlxshit)
+static void	replace_image(t_game *game, int fps)
+{
+	char	*fps_string;
+
+	mlx_delete_image(game->mlx, game->images.fps);
+	fps_string = ft_itoa(fps);
+	if (fps_string == NULL)
+	{
+		ft_error_and_exit("cub3d: Memory allocation failure\n");
+	}
+	fps_string = ft_strjoin_free_second("FPS: ", fps_string);
+	if (fps_string == NULL)
+	{
+		ft_error_and_exit("cub3d: Memory allocation failure\n");
+	}
+	game->images.fps = mlx_put_string(game->mlx, fps_string, 20, 20);
+	free(fps_string);
+}
+
+void	fps_counter(void *param)
 {
 	static int		fps;
-	t_game			*mlx;
-	char 			*fps_string;
+	static double	previous_time;
+	t_game			*game;
 
-	mlx = mlxshit;
-	if (mlx_get_time() < mlx->current_time + 1)
+	game = param;
+	if (mlx_get_time() < previous_time + 1)
 	{
 		fps++;
 	}
 	else
 	{
-		mlx_delete_image(mlx->mlx, mlx->images.fps);
-		fps_string = ft_itoa(fps);
-		mlx->images.fps = mlx_put_string(mlx->mlx, fps_string, 20, 20);
-		free(fps_string);
+		replace_image(game, fps);
 		fps = 0;
-		mlx->current_time = mlx_get_time();
+		previous_time = mlx_get_time();
 	}
 }

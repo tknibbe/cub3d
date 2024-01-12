@@ -18,7 +18,7 @@ void	initialise_images(t_game *game)
 	game->images.fps = mlx_put_string(game->mlx, "FPS 59", 20, 20);
 	if (game->images.fps == NULL)
 	{
-		ft_mlx_error_init(game);
+		ft_mlx_error_and_exit(game);
 	}
 }
 
@@ -27,8 +27,7 @@ void	initialise_game(t_game *game, char *title)
 	game->mlx = mlx_init(WIDTH, HEIGHT, title, true);
 	if (game->mlx == NULL)
 	{
-		ft_mlx_error_init(game);
+		ft_mlx_error_and_exit(game);
 	}
 	initialise_images(game);
-	game->current_time = mlx_get_time();
 }

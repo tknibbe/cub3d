@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 
 //these might not be neccesary
 
@@ -47,5 +48,6 @@ void	free_game_struct(t_game *game)
 {
 //	free_images(game, game->images);
 	free_textures(game->textures);
+	ft_free_array(game->map);
 }
 

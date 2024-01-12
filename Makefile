@@ -9,6 +9,8 @@ END=\033[0m
 NAME = cub3D
 HEADERS  = includes/cub3d.h
 SRC_FILES =	main.c \
+			utils/error.c \
+			utils/free.c \
 			input_handling/parse_input.c \
 			input_handling/get_textures/get_textures.c \
 			input_handling/get_textures/text_utils.c \
@@ -18,13 +20,11 @@ SRC_FILES =	main.c \
 			input_handling/get_map/validate_map.c \
 			key_hook.c \
 			fps.c \
-			init.c \
-			error.c \
-			free.c
+			init.c
 
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
-OBJ_DIR = obj
+OBJ_DIR = obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures
 
 # MLX variables
 
@@ -91,9 +91,6 @@ obj/%.o: src/%.c $(HEADERS) | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
-	@mkdir $(OBJ_DIR)/input_handling
-	@mkdir $(OBJ_DIR)/input_handling/get_map
-	@mkdir $(OBJ_DIR)/input_handling/get_textures
 
 clean:
 	@echo "${RED}Removing objs cub3d${END}"
@@ -104,7 +101,7 @@ fclean: clean
 	@echo "${RED}Removing ${NAME} and libft MLX42${END}"
 	@rm -rf $(LIBFT) $(NAME) $(MLX42_BUILD_DIR)
 
-debug: #fclean
+d: #fclean
 	@$(MAKE) DEBUG=1 all
 
 re: fclean all

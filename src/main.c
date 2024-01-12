@@ -13,6 +13,7 @@
 #include "cub3d.h"
 #include "parsing.h"
 #include "libft.h"
+#include <errno.h>
 
 void	draw_floor_and_ceiling(t_textures text, mlx_image_t *bg) //move to 
 {
@@ -98,12 +99,6 @@ mlx_image_t	*test(t_game *game, mlx_t *mlx)
 int	main(int argc, char **argv)
 {
 	t_game		game;
-	// mlx_image_t	*imgnorth;
-	// mlx_image_t	*imgeast;
-	// mlx_image_t	*imgsouth;
-	// mlx_image_t	*imgwest;
-	// mlx_image_t	*img;
-	// mlx_image_t	*background = NULL;
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
@@ -111,30 +106,16 @@ int	main(int argc, char **argv)
 	if (get_input(&game, argv[1]))
 		return (EXIT_FAILURE);
 	initialise_game(&game, argv[1]);
-//	game.mlx = mlx_init(WIDTH, HEIGHT, argv[1], true);
 	game.images.img  = test(&game, game.mlx);
-	// background = mlx_new_image(mlx, WIDTH, HEIGHT);
-	// draw_floor_and_ceiling(game.textures, background);
-	// imgnorth = mlx_texture_to_image(mlx, game.textures.north);
-	// imgeast = mlx_texture_to_image(mlx, game.textures.east);
-	// imgsouth = mlx_texture_to_image(mlx, game.textures.south);
-	// imgwest = mlx_texture_to_image(mlx, game.textures.west);
-	// mlx_image_to_window(mlx, background, 0, 0);
-	// mlx_image_to_window(mlx, imgnorth, (WIDTH-200) / 2, 0);
-	// mlx_image_to_window(mlx, imgeast,  WIDTH - 200, (HEIGHT -200) / 2);
-	// mlx_image_to_window(mlx, imgsouth, (WIDTH-200) / 2, HEIGHT - 200);
-	// mlx_image_to_window(mlx, imgwest, 0, (HEIGHT-200)/2);
 	game.player.x = 500;
 	game.player.y = 500;
 	draw_player(&game, game.images.img);
 	mlx_image_to_window(game.mlx, game.images.img, 0, 0);
 	mlx_loop_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, fps_counter, &game);
-	game.current_time = mlx_get_time(); // deze staat er even in om de start van het programma op de start van loop te zetten
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
 	free_game_struct(&game);
 	return (0);
-	//free_shit here
 }
 
