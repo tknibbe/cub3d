@@ -13,11 +13,10 @@
 #include "cub3d.h"
 #include "libft.h"
 
-static void	replace_image(t_game *game, int fps)
+static char	*create_fps_string(int fps)
 {
 	char	*fps_string;
 
-	mlx_delete_image(game->mlx, game->images.fps);
 	fps_string = ft_itoa(fps);
 	if (fps_string == NULL)
 	{
@@ -28,8 +27,21 @@ static void	replace_image(t_game *game, int fps)
 	{
 		ft_error_and_exit("cub3d: Memory allocation failure\n");
 	}
+	return(fps_string);
+}
+
+static void	replace_image(t_game *game, int fps)
+{
+	char	*fps_string;
+
+	fps_string = create_fps_string(fps);
+	mlx_delete_image(game->mlx, game->images.fps);
 	game->images.fps = mlx_put_string(game->mlx, fps_string, 20, 20);
 	free(fps_string);
+	if (game->images.fps == NULL)
+	{
+		ft_mlx_error_and_exit(game);
+	}
 }
 
 void	fps_counter(void *param)
