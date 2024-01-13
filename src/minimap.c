@@ -12,24 +12,24 @@
 
 #include "cub3d.h"
 
-void draw_player(t_game *game, mlx_image_t *img)
-{
-	game->images.player = mlx_new_image(game->mlx, 10, 10);
-	for (int x = 0; x < 10; x++)
-	{
-		for (int y = 0;y < 10; y++)
-		{
-			mlx_put_pixel(game->images.player, x, y, 0xFF0000FF);
-		}
-	}
-//	for (int x = -5; x < 5; x++)
+//void draw_player(t_game *game, mlx_image_t *img)
+//{
+//	game->images.player = mlx_new_image(game->mlx, 8, 8);
+//	for (int x = 0; x < 8; x++)
 //	{
-//		for (int y = -5;y < 5; y++)
+//		for (int y = 0;y < 8; y++)
 //		{
-//			mlx_put_pixel(img, game->player.x + x, game->player.y + y, 0xFF0000FF);
+//			mlx_put_pixel(game->images.player, x, y, 0xFF0000FF);
 //		}
 //	}
-}
+////	for (int x = -5; x < 5; x++)
+////	{
+////		for (int y = -5;y < 5; y++)
+////		{
+////			mlx_put_pixel(img, game->player.x + x, game->player.y + y, 0xFF0000FF);
+////		}
+////	}
+//}
 
 void	draw_tile(int x, int y, mlx_image_t *img, int colour, t_game *game)
 {
@@ -84,10 +84,5 @@ mlx_image_t	*test(t_game *game, mlx_t *mlx)
 void	draw_minimap(t_game *game)
 {
 	game->images.img  = test(game, game->mlx);
-	game->player.x = 500;
-	game->player.y = 500;
-	draw_player(game, game->images.img);
 	mlx_image_to_window(game->mlx, game->images.img, 0, 0);
-	mlx_image_to_window(game->mlx, game->images.player, 500, 500);
-
 }
