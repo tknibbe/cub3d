@@ -33,8 +33,8 @@
 
 void	draw_tile(int x, int y, mlx_image_t *img, int colour, t_game *game)
 {
-	int	xSize = HEIGHT / game->map_rows;
-	int	ySize = WIDTH / game->map_cols;
+	int	xSize = WIDTH / game->map_rows;
+	int	ySize = HEIGHT / game->map_cols;
 	int xPos = xSize * x;
 	int	yPos = ySize * y;
 
@@ -85,4 +85,5 @@ void	draw_minimap(t_game *game)
 {
 	game->images.img  = test(game, game->mlx);
 	mlx_image_to_window(game->mlx, game->images.img, 0, 0);
+//	game->images.img->instances[0].z = 1;
 }

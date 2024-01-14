@@ -13,7 +13,7 @@ SRC_FILES =	main.c \
 			utils/free.c \
 			minimap.c \
 			player.c \
-			rays.c \
+			raycaster/raycaster.c \
 			input_handling/parse_input.c \
 			input_handling/get_textures/get_textures.c \
 			input_handling/get_textures/text_utils.c \
@@ -24,9 +24,11 @@ SRC_FILES =	main.c \
 			key_hook.c \
 			fps.c \
 			init.c \
+			events/movement.c
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
-OBJ_DIR = obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures
+OBJ_DIR =	obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures \
+			obj/events obj/raycaster
 
 # MLX variables
 

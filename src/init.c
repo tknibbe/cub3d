@@ -20,8 +20,16 @@ void	initialise_images(t_game *game)
 	{
 		ft_mlx_error_and_exit(game);
 	}
-	draw_minimap(game);
+//	draw_minimap(game);
 	initialize_player(game);
+	game->images.maze = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	if (game->images.maze == NULL)
+	{
+		ft_mlx_error_and_exit(game);
+	}
+	ft_memset(game->images.maze->pixels, 255, WIDTH * HEIGHT * 4);
+	ray_caster(game);
+	mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
 }
 
 void	initialise_game(t_game *game, char *title)
@@ -32,4 +40,5 @@ void	initialise_game(t_game *game, char *title)
 		ft_mlx_error_and_exit(game);
 	}
 	initialise_images(game);
+//	ray_caster(game);
 }

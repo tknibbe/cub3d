@@ -12,14 +12,20 @@
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define WIDTH 1920
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define HEIGHT 1080
 # define PI 3.1415926
 
 # include "MLX42.h"
 # include <stdio.h>
 # include <stdlib.h>
+
+typedef struct	s_vector
+{
+	double	x;
+	double	y;
+}	t_vector;
 
 typedef struct s_textures
 {
@@ -33,21 +39,35 @@ typedef struct s_textures
 
 typedef struct	s_player
 {
-	float	x; //decide on what kind of varbiable this shoudl be
-	float	y;
-	float	orientation;
-	float	x_change;
-	float	y_change;
-	float	move_speed;
-	int		fov;
+	t_vector	pos; //decide on what kind of varbiable this shoudl be
+	t_vector	dir;
+	t_vector	plane;
+	double		move_speed;
+	double		rot_speed;
+	int			fov;
 }	t_player;
 
 typedef struct	s_images
 {
 	mlx_image_t	*img;
+	mlx_image_t	*maze;
 	mlx_image_t	*fps;
 	mlx_image_t	*player;
 }	t_images;
+
+typedef struct	s_ray
+{
+	t_vector	ray;
+	double		camerax;
+	int			map_x;
+	int			map_y;
+	t_vector	side_dist;
+	t_vector	block_dist;
+	int			step_dir_x;
+	int			step_dir_y;
+	int			side;
+	double		dist_to_wall;
+}	t_ray;
 
 typedef struct	s_game
 {
@@ -62,7 +82,8 @@ typedef struct	s_game
 
 void	key_hook(void *param);
 void	fps_counter(void *mlxshit);
-void	draw_player(t_game *game, mlx_image_t *img);
+//void	draw_player(t_game *game, mlx_image_t *img);
+void	draw_player(t_game *game, mlx_image_t *img, int colour);
 void	initialise_game(t_game *game, char *title);
 void	ft_mlx_error_and_exit(t_game *game);
 void	ft_error_and_exit(char *error_str);
@@ -71,5 +92,7 @@ void	draw_minimap(t_game *game);
 void	initialize_player(t_game *game);
 void	put_player_to_window(t_game *game);
 void	draw_rays(t_game *game);
+void	ray_caster(t_game *game);
+void	movement(t_player *player, t_game *game);
 
 #endif
