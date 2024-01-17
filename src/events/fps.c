@@ -37,6 +37,7 @@ static void	replace_image(t_game *game, int fps)
 	fps_string = create_fps_string(fps);
 	mlx_delete_image(game->mlx, game->images.fps);
 	game->images.fps = mlx_put_string(game->mlx, fps_string, 20, 20);
+//	game->images.fps->instances[0].z = 0;
 	free(fps_string);
 	if (game->images.fps == NULL)
 	{
