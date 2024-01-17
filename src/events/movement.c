@@ -13,26 +13,32 @@
 #include "cub3d.h"
 #include <math.h>
 
-static void	check_out_of_bounds(t_vector pos, t_vector dir, char **grid, t_player *player)
+static t_vector	get_sign(t_vector dir, int direction)
 {
-	if (grid[(int)player->pos.y][(int)pos.x] == '0')
-		player->pos.x = pos.x;
-	if (grid[(int)pos.y][(int)player->pos.x] == '0')
-		player->pos.x = pos.x;
+	t_vector	sign;
 
+	if (dir.x > 0)
+		sign.x = direction;
+	else
+		sign.x = -direction;
+	if (dir.y > 0)
+		sign.y = direction;
+	else
+		sign.y = -direction;
+	return (sign);
 }
 
-static void	move(t_player *player, int direction, char **grid)
+static void	move(t_player *player, t_vector dir,int direction, char **grid)
 {
-	double	new_x;
-	double	new_y;
 	t_vector	new_pos;
+	t_vector		sign;
 
-	new_pos.x = player->pos.x + player->dir.x * player->move_speed * direction;
-	new_pos.y = player->pos.y + player->dir.y * player->move_speed * direction;
-	if (grid[(int)player->pos.y][(int)new_pos.x] == '0')
+	new_pos.x = player->pos.x + dir.x * player->move_speed * direction;
+	new_pos.y = player->pos.y + dir.y * player->move_speed * direction;
+	sign = get_sign(dir, direction);
+	if (grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == '0')
 		player->pos.x = new_pos.x;
-	if (grid[(int)new_pos.y][(int)player->pos.x] == '0')
+	if (grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == '0')
 		player->pos.y = new_pos.y;
 }
 
@@ -48,8 +54,7 @@ static void	strafe(t_player *player, int direction, char **map)
 	sinus = sin(0.5 * PI);
 	new_dir.x = player->dir.x * cosinus - player->dir.y * sinus;
 	new_dir.y = player->dir.x * sinus + player->dir.y * cosinus;
-	player->pos.x += new_dir.x * player->move_speed * direction;
-	player->pos.y += new_dir.y * player->move_speed * direction;
+	move(player, new_dir, direction, map);
 }
 
 static void	rotate(t_player *player, int rotation)
@@ -81,8 +86,8 @@ void	movement(t_player *player, t_game *game)
 		strafe(player, 1, game->map);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S) \
 		|| mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
-		move(player, -1, game->map);
+		move(player, player->dir, -1, game->map);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) \
 		|| mlx_is_key_down(game->mlx, MLX_KEY_UP))
-		move(player, 1, game->map);
+		move(player, player->dir, 1, game->map);
 }
