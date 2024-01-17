@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 	initialise_game(&game, argv[1]);
 	mlx_loop_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, fps_counter, &game);
+	mlx_cursor_hook(game.mlx, cursor_hook, &game);
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
 	free_game_struct(&game);

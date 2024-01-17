@@ -15,6 +15,7 @@
 
 static void	set_block_distance(t_ray *ray_vars, t_player player)
 {
+	(void)player;
 	if (ray_vars->ray.x == 0)
 		ray_vars->block_dist.x = 1000000000;
 	else

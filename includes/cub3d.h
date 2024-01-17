@@ -94,5 +94,7 @@ void	put_player_to_window(t_game *game);
 void	draw_rays(t_game *game);
 void	ray_caster(t_game *game);
 void	movement(t_player *player, t_game *game);
+void	cursor_hook(double xpos, double ypos, void *param);
+void	rotate(t_player *player, int rotation);
 
 #endif
