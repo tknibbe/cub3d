@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:48 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/10 17:02:41 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/17 16:20:59 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	check_whole_line(t_game *game, int x, int y)
 {
 	int	i;
-	
+
 	i = 0;
 	if (x == 0 || x == game->map_rows -1)
 	{
@@ -24,8 +24,8 @@ static void	check_whole_line(t_game *game, int x, int y)
 		{
 			if (game->map[x][i] != '1' && game->map[x][i] != ' ')
 			{
-				printf("error (replace)\n");
-				exit(27);//
+				printf("[%c] %d && %d\n",game->map[x][i], x, i);
+				ft_error_and_exit("Error, unclosed edge found\n");
 			}
 			i++;
 		}
@@ -36,16 +36,10 @@ static void	check_whole_line(t_game *game, int x, int y)
 		while (i < game->map_rows -1)
 		{
 			if (game->map[i][y] != '1' && game->map[i][y] != ' ')
-			{
-				printf("error (replace)\n");
-				exit(27);//
-			}
+				ft_error_and_exit("Error, unclosed edge found\n");
 			i++;
-		// printf("%d %d %c [%d]\n", i, y, game->map[i][y], game->map_rows);
 		}
 	}
-	(void) y;
-	(void) x;
 }
 
 int	check_surroundings(t_game *game, int x, int y)
@@ -66,10 +60,7 @@ int	check_surroundings(t_game *game, int x, int y)
 		{
 			if (game->map[new_x][new_y] != '1' && \
 				game->map[new_x][new_y] != ' ')
-			{
-				printf("EROOOOORR, map appears to be invalid :( (replace this error message)\nplease check [x = %d, y = %d] in your map\n", new_x, new_y);
-				exit(27); //fix
-			}
+				ft_error_and_exit("Error, map is invalid\n");
 		}
 		i++;
 	}
@@ -99,8 +90,27 @@ void	find_player(char **map)
 	}
 	if (player == 1)
 		return ;
-	printf("NO PLAYER FOUND BITCH (replace this error message :))\n");
-	exit(27);//fix
+	if (player > 1)
+		ft_error_and_exit("Error, too many player positions found\n");
+	ft_error_and_exit("Error, no player found\n");
+}
+
+void	print_map(char **map)
+{
+	int	i, j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			printf("%c ", map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
 
 int	validate_map(t_game *game)
@@ -110,7 +120,7 @@ int	validate_map(t_game *game)
 
 	x = 0;
 	y = 0;
-
+	print_map(game->map);
 	check_whole_line(game, 0, 0);
 	check_whole_line(game, game->map_rows - 1, game->map_cols -1);
 	while (game->map[x])

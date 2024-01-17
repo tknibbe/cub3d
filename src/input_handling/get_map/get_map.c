@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:53:33 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/11 15:22:41 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/17 14:28:20 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ static void	check_invalid_chars(char *line)
 	while (line[i])
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'\
-		 && line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
-		{
-			printf("INVALID LINE FOUND [%s]\n", line);
-		 	exit(1);
-		}
+			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
+			ft_error_and_exit("Error, invalid char found in map\n");
 		i++;
 	}
 }
@@ -58,31 +55,14 @@ t_map	*put_in_linked_list(int fd)
 	return (map);
 }
 
-void print_2d(char **map) //debug 
-{
-	int	i = 0;
-	
-	while (map[i])
-	{
-		printf("%s [%zu]\n", map[i], ft_strlen(map[i]));
-		i++;
-	}
-}
-
-
-
 void	get_map(t_game *game, int fd)
 {
 	t_map	*temp_map;
-	
+
 	temp_map = put_in_linked_list(fd);
 	if (!temp_map)
-	{
-		printf("ZIEKE ERROR G (geen mappie gevonden)\n");
-		exit(27);//fix
-	}
+		ft_error_and_exit("Error, No map found\n");
 	change_to_dp(temp_map, game);
-	print_2d(game->map); //debug
 	validate_map(game);
 	free_map(temp_map);
 }

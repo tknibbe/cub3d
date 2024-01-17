@@ -6,21 +6,22 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:44:05 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/10 16:28:36 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/17 16:24:18 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
 
+#define SETF 0
+#define SETC 1
+#define GET 2
+
 void	not_all_textures_set(t_textures *t)
 {
 	if ((!t->north || !t->east || !t->south \
-		|| !t->west) || (t->floor == -1 || t->ceiling == -1))
-	{
-		printf("not enough textures found(replace this message)\n");
-		exit(1);
-	}
+		|| !t->west) || count_rgb(GET))
+		ft_error_and_exit("Error, not all textures are set\n");
 }
 
 void	check_double_texture(t_textures *text, int cat)
@@ -29,42 +30,64 @@ void	check_double_texture(t_textures *text, int cat)
 		|| (cat == EA && text->east)
 		|| (cat == SO && text->south) \
 		|| (cat == WE && text->west))
-	{
-		printf("double texture found (replace message)\n");
-		exit(1);
-	}
-}
-
-void	max_int_check_str(char *str)
-{
-	if (ft_strlen(str) > 10)
-	{
-		printf("number too big (replace)\n");
-		exit(1);
-	}
-	// if (ft_strlen )
+		ft_error_and_exit("Error, double texture found\n");
 }
 
 int	valid_rgb_value(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_strlen(s) > 3)
-	{
-		printf("invalid rgb value! replace this error\n");
-		exit(1);
-	}
+		ft_error_and_exit("Error, invalid RGB value (individual value is longer than 3 chars)\n");
 	while (s[i])
 	{
-		if (!ft_isdigit(s[i])) // && s[i] != '-')
-		{
-			printf("invalid char found in rgb value! replace this error\n");
-			exit(1);
-		}
+		if (!ft_isdigit(s[i]))
+			ft_error_and_exit("Error, invalid character found inside RGB value\n");
 		i++;
 	}
-	if (!ft_isdigit(s[i-1]))
-		exit(1);
+	if (!ft_isdigit(s[i - 1]))
+		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
+}
+
+int	count_rgb(int state)
+{
+	static int	f;
+	static int	c;
+
+	if (state == SETF)
+		f++;
+	else if (state == SETC)
+		c++;
+	if (f == 1 && c == 1)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
+
+int	calculate_rgb(char **nums)
+{
+	int	r;
+	int	g;
+	int	b;
+	int	i;
+	int	num;
+
+	i = 0;
+	while (nums[i])
+	{
+		nums[i] = ft_strdel(nums[i], " ");
+		valid_rgb_value(nums[i]);
+		nums[i] = ft_strdel(nums[i], " ");
+		num = ft_atoi(nums[i]);
+		if (num > 255 || num < 0)
+			break ;
+		i++;
+	}
+	if (i != 3)
+		ft_error_and_exit("RGB value incorrect\n");
+	r = ft_atoi(nums[0]);
+	g = ft_atoi(nums[1]);
+	b = ft_atoi(nums[2]);
+	return ((r << 24) | (g << 16) | (b << 8) | TRANSPARANCY);
 }
