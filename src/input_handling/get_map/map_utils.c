@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:56:33 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/07 16:25:19 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/17 14:17:26 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	map_lstsize(t_map *lst)
 because those pointers go straight into the 2d array*/
 void	free_map(t_map *map)
 {
-	t_map *temp;
-	
+	t_map	*temp;
+
 	while (map)
 	{
 		temp = map;

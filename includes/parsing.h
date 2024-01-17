@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:17:53 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/10 16:28:45 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/17 14:15:52 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,6 @@ int		validate_map(t_game *game);
 void	not_all_textures_set(t_textures *t);
 void	check_double_texture(t_textures *text, int cat);
 int		valid_rgb_value(char *s);
+int		count_rgb(int state);
+int		calculate_rgb(char **nums);
 #endif
