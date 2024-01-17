@@ -13,40 +13,35 @@
 #include "cub3d.h"
 #include <math.h>
 
+//static void	change_pos()
+
 static void	move(t_player *player, int direction, char **grid)
 {
-	double	delta_x;
-	double	delta_y;
+	double	new_x;
+	double	new_y;
 
-	delta_x = player->dir.x * player->move_speed * direction;
-	delta_y = player->dir.y * player->move_speed * direction;
-//	grid[player->pos.x + delta_x][player->pos.y]
-//	printf("position: %lf, %lf\n", player->pos.y, player->pos.x);
-//	printf("deltas: %lf, %lf\n", delta_y, delta_x);
-//	printf("actual grid%c\n", grid[3][7]);
-//	printf("%c\n", grid[(int)player->pos.y][(int)(player->pos.x + 0.1 * direction)]);
-//
-//	printf("importanto %d direction %d\n", (int)(player->pos.x + 0.1 * direction), direction);
-//	printf("DIRECTION: %d\n", direction);
-	if (grid[(int)player->pos.y][(int)(player->pos.x + delta_x)] == '0')
-		player->pos.x += player->dir.x * player->move_speed * direction;
-	if (grid[(int)(player->pos.y + delta_y)][(int)player->pos.x] == '0')
-		player->pos.y += player->dir.y * player->move_speed * direction;
+	new_x = player->pos.x + player->dir.x * player->move_speed * direction;
+	new_y = player->pos.y + player->dir.y * player->move_speed * direction;
+	if (grid[(int)player->pos.y][(int)new_x] == '0')
+		player->pos.x = new_x;
+	if (grid[(int)new_y][(int)player->pos.x] == '0')
+		player->pos.y = new_y;
 }
 
 static void	strafe(t_player *player, int direction, char **map)
 {
-	double	cosinus;
-	double	sinus;
+	double		cosinus;
+	double		sinus;
+	t_vector	new_dir;
 	double	dir_x;
 	double	dir_y;
 
 	cosinus = cos(0.5 * PI);
 	sinus = sin(0.5 * PI);
-	dir_x = player->dir.x * cosinus - player->dir.y * sinus;
-	dir_y = player->dir.x * sinus + player->dir.y * cosinus;
-	player->pos.x += dir_x * player->move_speed * direction;
-	player->pos.y += dir_y * player->move_speed * direction;
+	new_dir.x = player->dir.x * cosinus - player->dir.y * sinus;
+	new_dir.y = player->dir.x * sinus + player->dir.y * cosinus;
+	player->pos.x += new_dir.x * player->move_speed * direction;
+	player->pos.y += new_dir.y * player->move_speed * direction;
 }
 
 static void	rotate(t_player *player, int rotation)

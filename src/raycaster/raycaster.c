@@ -105,7 +105,7 @@ void	draw_line(t_ray ray_vars, t_game *game, int screen_x)
 	y = 0;
 	while (y < start_y)
 	{
-		mlx_put_pixel(game->images.maze, screen_x, y, game->textures.floor);
+		mlx_put_pixel(game->images.maze, screen_x, y, game->textures.ceiling);
 		y++;
 	}
 	while (y <= end_y)
@@ -115,7 +115,7 @@ void	draw_line(t_ray ray_vars, t_game *game, int screen_x)
 	}
 	while (y < HEIGHT)
 	{
-		mlx_put_pixel(game->images.maze, screen_x, y, game->textures.ceiling);
+		mlx_put_pixel(game->images.maze, screen_x, y, game->textures.floor);
 		y++;
 	}
 }
