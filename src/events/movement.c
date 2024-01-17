@@ -13,19 +13,27 @@
 #include "cub3d.h"
 #include <math.h>
 
-//static void	change_pos()
+static void	check_out_of_bounds(t_vector pos, t_vector dir, char **grid, t_player *player)
+{
+	if (grid[(int)player->pos.y][(int)pos.x] == '0')
+		player->pos.x = pos.x;
+	if (grid[(int)pos.y][(int)player->pos.x] == '0')
+		player->pos.x = pos.x;
+
+}
 
 static void	move(t_player *player, int direction, char **grid)
 {
 	double	new_x;
 	double	new_y;
+	t_vector	new_pos;
 
-	new_x = player->pos.x + player->dir.x * player->move_speed * direction;
-	new_y = player->pos.y + player->dir.y * player->move_speed * direction;
-	if (grid[(int)player->pos.y][(int)new_x] == '0')
-		player->pos.x = new_x;
-	if (grid[(int)new_y][(int)player->pos.x] == '0')
-		player->pos.y = new_y;
+	new_pos.x = player->pos.x + player->dir.x * player->move_speed * direction;
+	new_pos.y = player->pos.y + player->dir.y * player->move_speed * direction;
+	if (grid[(int)player->pos.y][(int)new_pos.x] == '0')
+		player->pos.x = new_pos.x;
+	if (grid[(int)new_pos.y][(int)player->pos.x] == '0')
+		player->pos.y = new_pos.y;
 }
 
 static void	strafe(t_player *player, int direction, char **map)
