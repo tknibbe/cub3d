@@ -15,6 +15,7 @@
 
 void	put_player_to_window(t_game *game)
 {
+	(void)game;
 //	game->images.player->instances[0].x = (int)game->player.x;
 //	game->images.player->instances[0].y = (int)game->player.y;
 }
@@ -24,6 +25,7 @@ void	draw_player(t_game *game, mlx_image_t *img, int colour)
 	double	xSize = WIDTH / game->map_rows;
 	double	ySize = HEIGHT / game->map_cols;
 //	printf("%lf %lf\n", xSize, ySize);
+	(void)img;
 //	game->images.player = mlx_new_image(game->mlx, 8, 8);
 //	for (int x = 0; x < 8; x++)
 //	{
@@ -58,7 +60,7 @@ void	initialize_player(t_game *game)
 	game->player.pos.x = 10;
 	game->player.pos.y = 3;
 	game->player.move_speed = 0.05;
-	game->player.rot_speed = 0.05;
+	game->player.rot_speed = 0.01;
 	game->player.dir.x = -1;
 	game->player.dir.y = 0;
 	game->player.plane.x = 0;
