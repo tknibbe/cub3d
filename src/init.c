@@ -44,7 +44,7 @@ void	initialise_game(t_game *game, char *title)
 	initialise_images(game);
 	cursor = mlx_create_cursor(game->textures.east);
 
-	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+//	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_cursor(game->mlx, cursor);
 //	mlx_destroy_cursor(cursor);
 //	ray_caster(game);
