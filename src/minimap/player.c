@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   player.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: jmolenaa <marvin@42.fr>                      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/01/13 13:27:39 by jmolenaa      #+#    #+#                 */
-/*   Updated: 2024/01/18 13:35:57 by janmolenaar   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/13 13:27:39 by jmolenaa          #+#    #+#             */
+/*   Updated: 2024/01/18 14:08:23 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ void	set_plane(t_player *player)
 
 void	initialize_player(t_game *game)
 {
-	game->player.pos.x = 10;
-	game->player.pos.y = 3;
+	// game->player.pos.x = 10;
+	// game->player.pos.y = 3;
+	// game->player.dir.x = 0;
+	// game->player.dir.y = -1;
 	game->player.move_speed = 0.05;
 	game->player.rot_speed = 0.01;
-	game->player.dir.x = 0;
-	game->player.dir.y = -1;
 	set_plane(&game->player);
 	// game->player.plane.x = 0;
 	// game->player.plane.y = 0.66;

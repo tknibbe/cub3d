@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:17:53 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/17 14:15:52 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:07:44 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	free_map(t_map *map);
 void	change_to_dp(t_map *temp_map, t_game *game);
 
 int		validate_map(t_game *game);
+void	set_player(t_player *player, int x, int y, char dir);
 
 void	not_all_textures_set(t_textures *t);
 void	check_double_texture(t_textures *text, int cat);

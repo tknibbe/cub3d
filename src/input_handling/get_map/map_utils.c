@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:56:33 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/17 14:17:26 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:17:21 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,22 @@ int	map_lstsize(t_map *lst)
 		}
 	}
 	return (i);
+}
+
+void	set_player(t_player *player, int x, int y, char dir)
+{
+	player->pos.x = x + 0.5;
+	player->pos.y = y + 0.5;
+	player->dir.x = 0;
+	player->dir.y = 0;
+	if (dir == 'N')
+		player->dir.y = -1;
+	if (dir == 'E')
+		player->dir.x = 1;
+	if (dir == 'S')
+		player->dir.y = 1;
+	if (dir == 'W')
+		player->dir.x = -1;
 }
 
 /*frees the t_map linked list nodes but does NOT free the string stored inside

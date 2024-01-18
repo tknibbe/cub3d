@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:48 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/17 16:20:59 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:17:14 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,29 @@ int	check_surroundings(t_game *game, int x, int y)
 	return (0);
 }
 
-void	find_player(char **map)
+void	find_player(char **map, t_game *game)
 {
 	int	x;
 	int	y;
 	int	player;
 
-	x = 0;
 	y = 0;
 	player = 0;
-	while (map[x])
+	while (map[y])
 	{
-		while (map[x][y])
+		x = 0;
+		while (map[y][x])
 		{
-			if (map[x][y] == 'N' || map[x][y] == 'S' || \
-				map[x][y] == 'W' || map[x][y] == 'E')
+			if (map[y][x] == 'N' || map[y][x] == 'S' || \
+				map[y][x] == 'W' || map[y][x] == 'E')
+			{
+				set_player(&game->player, x, y, map[y][x]);
+				map[y][x] = '0';
 				player++;
-			y++;
+			}
+			x++;
 		}
-		y = 0;
-		x++;
+		y++;
 	}
 	if (player == 1)
 		return ;
@@ -95,7 +98,7 @@ void	find_player(char **map)
 	ft_error_and_exit("Error, no player found\n");
 }
 
-void	print_map(char **map)
+void	print_map(char **map, t_player player)
 {
 	int	i, j;
 
@@ -105,7 +108,10 @@ void	print_map(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			printf("%c ", map[i][j]);
+			if (i == (int)player.pos.x && j == (int)player.pos.y)
+				printf("P ");
+			else
+				printf("%c ", map[i][j]);
 			j++;
 		}
 		printf("\n");
@@ -120,7 +126,6 @@ int	validate_map(t_game *game)
 
 	x = 0;
 	y = 0;
-	print_map(game->map);
 	check_whole_line(game, 0, 0);
 	check_whole_line(game, game->map_rows - 1, game->map_cols -1);
 	while (game->map[x])
@@ -134,6 +139,7 @@ int	validate_map(t_game *game)
 		y = 0;
 		x++;
 	}
-	find_player(game->map);
+	find_player(game->map, game);
+	print_map(game->map, game->player);
 	return (0);
 }
