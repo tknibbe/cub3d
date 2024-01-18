@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycaster.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jmolenaa <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 18:43:37 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/13 18:43:38 by jmolenaa         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycaster.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jmolenaa <marvin@42.fr>                      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/13 18:43:37 by jmolenaa      #+#    #+#                 */
+/*   Updated: 2024/01/18 13:18:37 by janmolenaar   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	dda(t_ray *ray_vars, t_game *game)
 	int hit;
 
 	hit = 0;
+	(void)hit;
 	while (game->map[ray_vars->map_y][ray_vars->map_x] == '0')
 	{
 		if (ray_vars->side_dist.x < ray_vars->side_dist.y)

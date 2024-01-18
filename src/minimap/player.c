@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jmolenaa <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 13:27:39 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/13 13:27:40 by jmolenaa         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   player.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jmolenaa <marvin@42.fr>                      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/13 13:27:39 by jmolenaa      #+#    #+#                 */
+/*   Updated: 2024/01/18 13:35:57 by janmolenaar   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,63 @@ void	draw_player(t_game *game, mlx_image_t *img, int colour)
 
 }
 
+void	set_plane(t_player *player)
+{
+	if (player->dir.x == -1)
+	{
+		player->plane.x = 0;
+		player->plane.y = 0.66;
+	}
+	else if (player->dir.x == 1)
+	{
+		player->plane.x = 0;
+		player->plane.y = -0.66;
+	}
+	else if (player->dir.y == -1)
+	{
+		player->plane.x = -0.66;
+		player->plane.y = 0;
+	}
+	else
+	{
+		player->plane.x = 0.66;
+		player->plane.y = 0;
+	}
+	// (void)player;
+}
+
+// double	pitagors(t_vector a, t_vector b)
+// {
+// 	double	length_a;
+// 	double	length_b;
+
+// 	length_a = a.x * a.x + a.y * a.y;
+// 	length_b = b.x * b.x + b.y * b.y;
+// 	printf("%lf, %lf\n", length_a, length_b);
+// 	printf("%lf\n", length_b / length_a);
+// 	return (sqrt(length_a + length_b));
+// }
+
 void	initialize_player(t_game *game)
 {
 	game->player.pos.x = 10;
 	game->player.pos.y = 3;
 	game->player.move_speed = 0.05;
 	game->player.rot_speed = 0.01;
-	game->player.dir.x = -1;
-	game->player.dir.y = 0;
-	game->player.plane.x = 0;
-	game->player.plane.y = 0.66;
+	game->player.dir.x = 0;
+	game->player.dir.y = -1;
+	set_plane(&game->player);
+	// game->player.plane.x = 0;
+	// game->player.plane.y = 0.66;
+	// t_vector	a;
+	// t_vector	b;
+	// a.x = 0;
+	// a.y = 4;
+	// b.x = 0;
+	// b.y = 3;
+	
+	// printf("%lf\n", pitagors(game->player.dir, game->player.plane));
+	// printf("%lf\n", sqrt(power(game->player.dir.x, 2) )
 //	game->player.x_change = cos(game->player.orientation) * game->player.move_speed;
 //	game->player.y_change = sin(game->player.orientation) * game->player.move_speed;
 //	printf("%lf\n", game->player.orientation);
