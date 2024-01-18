@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmolenaa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 20:19:37 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/14 20:19:38 by jmolenaa         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:25:51 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,8 @@ void	movement(t_player *player, t_game *game)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) \
 		|| mlx_is_key_down(game->mlx, MLX_KEY_UP))
 		move(player, player->dir, 1, game->map);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
+		game->player.move_speed = 0.15;
+	if (!mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
+		game->player.move_speed = 0.05;
 }

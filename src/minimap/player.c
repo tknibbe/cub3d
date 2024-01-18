@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 13:27:39 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/18 14:08:23 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:25:30 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	initialize_player(t_game *game)
 	// game->player.dir.x = 0;
 	// game->player.dir.y = -1;
 	game->player.move_speed = 0.05;
-	game->player.rot_speed = 0.01;
+	game->player.rot_speed = 0.02;
 	set_plane(&game->player);
 	// game->player.plane.x = 0;
 	// game->player.plane.y = 0.66;
