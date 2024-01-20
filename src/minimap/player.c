@@ -57,10 +57,10 @@ void	draw_player(t_game *game, mlx_image_t *img, int colour)
 
 void	initialize_player(t_game *game)
 {
-	game->player.pos.x = 10;
-	game->player.pos.y = 3;
+	game->player.pos.x = 10.5;
+	game->player.pos.y = 3.5;
 	game->player.move_speed = 0.05;
-	game->player.rot_speed = 0.01;
+	game->player.rot_speed = 0.03;
 	game->player.dir.x = -1;
 	game->player.dir.y = 0;
 	game->player.plane.x = 0;

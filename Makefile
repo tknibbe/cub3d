@@ -14,6 +14,7 @@ SRC_FILES =	main.c \
 			minimap/minimap.c \
 			minimap/player.c \
 			raycaster/raycaster.c \
+			raycaster/set_variables.c \
 			input_handling/parse_input.c \
 			input_handling/get_textures/get_textures.c \
 			input_handling/get_textures/text_utils.c \

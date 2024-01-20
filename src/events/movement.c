@@ -13,10 +13,11 @@
 #include "cub3d.h"
 #include <math.h>
 
-// this function checks what direction we're moving into
-// based on the direction vector and the key we pressed (indicated by direction)
-// then it returns the actual direction we're moving into to our previous function
-// this is for checking collisions and keeping a 0.3 distance between the player and wall
+// this function checks what direction we're moving into based on the
+// direction vector and the key we pressed (indicated by direction) then
+// it returns the actual direction we're moving into to our previous function
+// this is for checking collisions and
+// keeping a 0.3 distance between the player and wall
 static t_vector	get_sign(t_vector dir, int direction)
 {
 	t_vector	sign;
@@ -34,12 +35,12 @@ static t_vector	get_sign(t_vector dir, int direction)
 
 // direction integer tells us which way we're moving, 1 is forward
 // -1 is backwards
-// the dir vector is the direction vector the player is facing
-// it contains how much we move in the x direction and how much in the y direction
-static void	move(t_player *player, t_vector dir,int direction, char **grid)
+// the dir vector is the direction vector the player is facing it
+// contains how much we move in the x direction and how much in the y direction
+static void	move(t_player *player, t_vector dir, int direction, char **grid)
 {
 	t_vector	new_pos;
-	t_vector		sign;
+	t_vector	sign;
 
 	new_pos.x = player->pos.x + dir.x * player->move_speed * direction;
 	new_pos.y = player->pos.y + dir.y * player->move_speed * direction;
@@ -87,6 +88,8 @@ void	rotate(t_player *player, int rotation)
 
 void	movement(t_player *player, t_game *game)
 {
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
+		player->move_speed = 0.2;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate(player, -2);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
@@ -101,4 +104,5 @@ void	movement(t_player *player, t_game *game)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) \
 		|| mlx_is_key_down(game->mlx, MLX_KEY_UP))
 		move(player, player->dir, 1, game->map);
+	player->move_speed = 0.05;
 }
