@@ -26,7 +26,6 @@ static void	fov_change(t_player *player, t_game *game)
 		player->plane.y *= 1.05;
 		player->fov = fov(player->plane.x, player->plane.y);
 	}
-//	printf("%lf\n", player->fov);
 }
 
 void	key_hook(void *param)
