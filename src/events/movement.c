@@ -87,16 +87,6 @@ void	rotate(t_player *player, int rotation)
 	player->plane.y = old_plane_x * sinus + player->plane.y * cosinus;
 }
 
-void	pitagoras(double a, double b)
-{
-	double	len;
-
-	len = a * a + b * b;
-//	printf("%lf\n", sqrt(len));
-	double lol = 2 * atan(sqrt(len));
-	printf("%lf\n", lol * 180 / PI);
-}
-
 void	movement(t_player *player, t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
@@ -117,7 +107,5 @@ void	movement(t_player *player, t_game *game)
 		game->player.move_speed = 0.15;
 	if (!mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
 		game->player.move_speed = 0.05;
-//	printf("%lf %lf\n", game->player.plane.x, game->player.plane.y);
-//	pitagoras(game->player.dir.x, game->player.dir.y);
-//	pitagoras(game->player.plane.x, game->player.plane.y);
+	printf("%lf %lf\n", game->player.dir.x, game->player.dir.y);
 }

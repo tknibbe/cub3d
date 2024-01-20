@@ -16,14 +16,14 @@ static void	fov_change(t_player *player, t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_MINUS) && player->fov > 50)
 	{
-		player->plane.x *= 0.9;
-		player->plane.y *= 0.9;
+		player->plane.x *= 0.95;
+		player->plane.y *= 0.95;
 		player->fov = fov(player->plane.x, player->plane.y);
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_EQUAL) && player->fov < 100)
 	{
-		player->plane.x *= 1.1;
-		player->plane.y *= 1.1;
+		player->plane.x *= 1.05;
+		player->plane.y *= 1.05;
 		player->fov = fov(player->plane.x, player->plane.y);
 	}
 //	printf("%lf\n", player->fov);

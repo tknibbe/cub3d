@@ -19,7 +19,7 @@ static void	dda(t_ray *ray_vars, t_game *game)
 	hit = 0;
 	(void)hit;
 //	hit = 0;
-	while (game->map[ray_vars->map_y][ray_vars->map_x] == '0')
+	while (hit == 0)
 	{
 		if (ray_vars->side_dist.x < ray_vars->side_dist.y)
 		{
@@ -33,8 +33,8 @@ static void	dda(t_ray *ray_vars, t_game *game)
 			ray_vars->map_y += (int)ray_vars->step_dir_y;
 			ray_vars->side = 1;
 		}
-//		if (game->map[ray_vars->map_y][ray_vars->map_x] > '0')
-//			hit = 1;
+		if (game->map[ray_vars->map_y][ray_vars->map_x] > '0')
+			hit = 1;
 	}
 }
 

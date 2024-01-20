@@ -14,14 +14,14 @@
 
 void	cursor_hook(double xpos, double ypos, void *param)
 {
-	static double	last_x;
+	static double	last_x = WIDTH / 2;
 	t_game			*game;
 
 	(void)ypos;
 	game = param;
 	if (last_x > xpos)
 		rotate(&game->player, 1);
-	else
+	else if (last_x < xpos)
 		rotate(&game->player, -1);
 	last_x = xpos;
 }
