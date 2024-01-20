@@ -107,5 +107,4 @@ void	movement(t_player *player, t_game *game)
 		game->player.move_speed = 0.15;
 	if (!mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
 		game->player.move_speed = 0.05;
-	printf("%lf %lf\n", game->player.dir.x, game->player.dir.y);
 }
