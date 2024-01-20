@@ -14,8 +14,9 @@
 
 void	key_hook(void *param)
 {
-	t_game *game = param; //change parameters here so we can free our data when ES is pressed
+	t_game	*game;
 
+	game = param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	movement(&game->player, game);

@@ -24,7 +24,4 @@ void	cursor_hook(double xpos, double ypos, void *param)
 	else
 		rotate(&game->player, -1);
 	last_x = xpos;
-	//	(void)param;
-
-//	printf("%lf %lf\n", xpos, ypos);
 }
