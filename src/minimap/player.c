@@ -80,17 +80,13 @@ void	set_plane(t_player *player)
 	// (void)player;
 }
 
-// double	pitagors(t_vector a, t_vector b)
-// {
-// 	double	length_a;
-// 	double	length_b;
+double	fov(double a, double b)
+{
+	double	length;
 
-// 	length_a = a.x * a.x + a.y * a.y;
-// 	length_b = b.x * b.x + b.y * b.y;
-// 	printf("%lf, %lf\n", length_a, length_b);
-// 	printf("%lf\n", length_b / length_a);
-// 	return (sqrt(length_a + length_b));
-// }
+	length = sqrt(a * a + b * b);
+	return (2 * atan(length) * 180 / PI);
+}
 
 void	initialize_player(t_game *game)
 {
@@ -101,6 +97,8 @@ void	initialize_player(t_game *game)
 	game->player.move_speed = 0.05;
 	game->player.rot_speed = 0.02;
 	set_plane(&game->player);
+	game->player.fov = fov(game->player.plane.x, game->player.plane.y);
+	printf("%lf\n", game->player.fov);
 	// game->player.plane.x = 0;
 	// game->player.plane.y = 0.66;
 	// t_vector	a;

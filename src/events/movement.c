@@ -68,7 +68,8 @@ static void	strafe(t_player *player, int direction, char **map)
 
 // rotation rotates both the plane of the camera and the direction vector
 // the player is facing, the rotation integer is to decide which
-// side we are rotating, if its 1 we rotate left, if it's -1 we rotate right
+// side we are rotating, if its positive we rotate left
+// if it's negative we rotate right
 void	rotate(t_player *player, int rotation)
 {
 	double	sinus;
@@ -84,6 +85,16 @@ void	rotate(t_player *player, int rotation)
 	player->dir.y = old_x * sinus + player->dir.y * cosinus;
 	player->plane.x = player->plane.x * cosinus - player->plane.y * sinus;
 	player->plane.y = old_plane_x * sinus + player->plane.y * cosinus;
+}
+
+void	pitagoras(double a, double b)
+{
+	double	len;
+
+	len = a * a + b * b;
+//	printf("%lf\n", sqrt(len));
+	double lol = 2 * atan(sqrt(len));
+	printf("%lf\n", lol * 180 / PI);
 }
 
 void	movement(t_player *player, t_game *game)
@@ -106,4 +117,7 @@ void	movement(t_player *player, t_game *game)
 		game->player.move_speed = 0.15;
 	if (!mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
 		game->player.move_speed = 0.05;
+//	printf("%lf %lf\n", game->player.plane.x, game->player.plane.y);
+//	pitagoras(game->player.dir.x, game->player.dir.y);
+//	pitagoras(game->player.plane.x, game->player.plane.y);
 }

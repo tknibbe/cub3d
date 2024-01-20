@@ -44,7 +44,7 @@ typedef struct	s_player
 	t_vector	plane;
 	double		move_speed;
 	double		rot_speed;
-	int			fov;
+	double		fov;
 }	t_player;
 
 typedef struct	s_images
@@ -97,5 +97,6 @@ void	movement(t_player *player, t_game *game);
 void	cursor_hook(double xpos, double ypos, void *param);
 void	rotate(t_player *player, int rotation);
 void	setup_ray_vars(t_ray *ray_vars, t_player player, int screen_x);
+double	fov(double a, double b);
 
 #endif

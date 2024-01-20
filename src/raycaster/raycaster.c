@@ -14,7 +14,7 @@
 
 static void	dda(t_ray *ray_vars, t_game *game)
 {
-//	int hit;
+	int hit;
 
 	hit = 0;
 	(void)hit;

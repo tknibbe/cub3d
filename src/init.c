@@ -27,7 +27,6 @@ void	initialise_images(t_game *game)
 	{
 		ft_mlx_error_and_exit(game);
 	}
-	ft_memset(game->images.maze->pixels, 255, WIDTH * HEIGHT * 4);
 	ray_caster(game);
 	mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
 }

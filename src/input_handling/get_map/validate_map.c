@@ -108,7 +108,7 @@ void	print_map(char **map, t_player player)
 		j = 0;
 		while (map[i][j])
 		{
-			if (i == (int)player.pos.x && j == (int)player.pos.y)
+			if (j == (int)player.pos.x && i == (int)player.pos.y)
 				printf("P ");
 			else
 				printf("%c ", map[i][j]);
