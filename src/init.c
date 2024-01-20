@@ -20,7 +20,6 @@ void	initialise_images(t_game *game)
 	{
 		ft_mlx_error_and_exit(game);
 	}
-//	draw_minimap(game);
 	initialize_player(game);
 	game->images.maze = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (game->images.maze == NULL)
@@ -29,6 +28,7 @@ void	initialise_images(t_game *game)
 	}
 	ray_caster(game);
 	mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
+	draw_minimap(game);
 }
 
 void	initialise_game(t_game *game, char *title)

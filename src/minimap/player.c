@@ -38,7 +38,7 @@ void	draw_player(t_game *game, mlx_image_t *img, int colour)
 	{
 		for (int y = -5;y < 5; y++)
 		{
-			mlx_put_pixel(game->images.img, game->player.pos.x * xSize + x, game->player.pos.y * ySize + y, colour);
+			mlx_put_pixel(game->images.minimap, game->player.pos.x * xSize + x, game->player.pos.y * ySize + y, colour);
 //			printf("this %lf, %d\n", game->player.pos.y, y);
 //			printf("%lf, %lf\n", xSize, ySize);
 //			printf("that %d %d\n", (int)(game->player.pos.x * xSize + x), (int)(game->player.pos.y * ySize + y));
@@ -48,7 +48,7 @@ void	draw_player(t_game *game, mlx_image_t *img, int colour)
 	{
 		for (int y = -2;y < 2; y++)
 		{
-			mlx_put_pixel(game->images.img, game->player.pos.x * xSize + game->player.dir.x * 20 + x, game->player.pos.y * ySize + game->player.dir.y * 20 + y, colour);
+			mlx_put_pixel(game->images.minimap, game->player.pos.x * xSize + game->player.dir.x * 20 + x, game->player.pos.y * ySize + game->player.dir.y * 20 + y, colour);
 
 		}
 	}
