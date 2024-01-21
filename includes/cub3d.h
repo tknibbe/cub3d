@@ -49,7 +49,7 @@ typedef struct	s_player
 
 typedef struct	s_images
 {
-	mlx_image_t	*img;
+	mlx_image_t	*minimap;
 	mlx_image_t	*maze;
 	mlx_image_t	*fps;
 	mlx_image_t	*player;

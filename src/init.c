@@ -20,7 +20,6 @@ void	initialise_images(t_game *game)
 	{
 		ft_mlx_error_and_exit(game);
 	}
-//	draw_minimap(game);
 	initialize_player(game);
 	game->images.maze = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (game->images.maze == NULL)
@@ -29,11 +28,12 @@ void	initialise_images(t_game *game)
 	}
 	ray_caster(game);
 	mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
+	draw_minimap(game);
 }
 
 void	initialise_game(t_game *game, char *title)
 {
-	mlx_win_cursor_t	*cursor;
+//	mlx_win_cursor_t	*cursor;
 
 	game->mlx = mlx_init(WIDTH, HEIGHT, title, true);
 	if (game->mlx == NULL)
@@ -41,12 +41,12 @@ void	initialise_game(t_game *game, char *title)
 		ft_mlx_error_and_exit(game);
 	}
 	initialise_images(game);
-//	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
-	cursor = mlx_create_cursor(game->textures.east);
+//	cursor = mlx_create_cursor(game->textures.east);
 
 
-	mlx_set_cursor(game->mlx, cursor);
+//	mlx_set_cursor(game->mlx, cursor);
 //	mlx_destroy_cursor(cursor);
 //	ray_caster(game);
 }

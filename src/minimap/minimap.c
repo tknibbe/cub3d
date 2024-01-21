@@ -12,6 +12,11 @@
 
 #include "cub3d.h"
 
+// to talk about
+// do we increase the HEIGHT and the WIDTH think not
+// decide on size of minimap, should probably be square
+// decide on tile size, probably 2x2
+
 //void draw_player(t_game *game, mlx_image_t *img)
 //{
 //	game->images.player = mlx_new_image(game->mlx, 8, 8);
@@ -33,8 +38,9 @@
 
 void	draw_tile(int x, int y, mlx_image_t *img, int colour, t_game *game)
 {
-	int	xSize = WIDTH / game->map_rows;
-	int	ySize = HEIGHT / game->map_cols;
+	(void)game;
+	int	xSize = 5;
+	int	ySize = 5;
 	int xPos = xSize * x;
 	int	yPos = ySize * y;
 
@@ -53,10 +59,10 @@ void	draw_tile(int x, int y, mlx_image_t *img, int colour, t_game *game)
 
 mlx_image_t	*test(t_game *game, mlx_t *mlx)
 {
-	mlx_image_t *img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	for (int i = 0; i < WIDTH; i++)
+	mlx_image_t *img = mlx_new_image(mlx, WIDTH / 5, HEIGHT / 5);
+	for (int i = 0; i < WIDTH / 5; i++)
 	{
-		for (int x = 0; x < HEIGHT; x++)
+		for (int x = 0; x < HEIGHT / 5; x++)
 		{
 			mlx_put_pixel(img, i, x, 0x808080FF);
 		}
@@ -83,7 +89,7 @@ mlx_image_t	*test(t_game *game, mlx_t *mlx)
 
 void	draw_minimap(t_game *game)
 {
-	game->images.img  = test(game, game->mlx);
-	mlx_image_to_window(game->mlx, game->images.img, 0, 0);
+	game->images.minimap  = test(game, game->mlx);
+	mlx_image_to_window(game->mlx, game->images.minimap, 0, 0);
 //	game->images.img->instances[0].z = 1;
 }
