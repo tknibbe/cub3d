@@ -39,8 +39,8 @@
 void	draw_tile(int x, int y, mlx_image_t *img, int colour, t_game *game)
 {
 	(void)game;
-	int	xSize = 10;
-	int	ySize = 10;
+	int	xSize = 5;
+	int	ySize = 5;
 	int xPos = xSize * x;
 	int	yPos = ySize * y;
 

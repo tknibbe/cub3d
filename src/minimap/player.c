@@ -60,21 +60,21 @@ void	set_plane(t_player *player)
 	if (player->dir.x == -1)
 	{
 		player->plane.x = 0;
-		player->plane.y = 0.66;
+		player->plane.y = -0.66;
 	}
 	else if (player->dir.x == 1)
 	{
 		player->plane.x = 0;
-		player->plane.y = -0.66;
+		player->plane.y = 0.66;
 	}
 	else if (player->dir.y == -1)
 	{
-		player->plane.x = -0.66;
+		player->plane.x = 0.66;
 		player->plane.y = 0;
 	}
 	else
 	{
-		player->plane.x = 0.66;
+		player->plane.x = -0.66;
 		player->plane.y = 0;
 	}
 	// (void)player;

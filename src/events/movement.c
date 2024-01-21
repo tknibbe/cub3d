@@ -90,13 +90,13 @@ void	rotate(t_player *player, int rotation)
 void	movement(t_player *player, t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		rotate(player, -2);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 		rotate(player, 2);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+		rotate(player, -2);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-		strafe(player, -1, game->map);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 		strafe(player, 1, game->map);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		strafe(player, -1, game->map);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S) \
 		|| mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 		move(player, player->dir, -1, game->map);

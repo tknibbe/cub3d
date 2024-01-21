@@ -20,8 +20,8 @@ void	cursor_hook(double xpos, double ypos, void *param)
 	(void)ypos;
 	game = param;
 	if (last_x > xpos)
-		rotate(&game->player, 1);
-	else if (last_x < xpos)
 		rotate(&game->player, -1);
+	else if (last_x < xpos)
+		rotate(&game->player, 1);
 	last_x = xpos;
 }

@@ -46,6 +46,12 @@ void	set_icon(mlx_t *mlx) // zet jan als icon
 	mlx_set_icon(mlx, pic);
 }
 
+void	print_array(char **arr)
+{
+	for (int i = 0; arr[i]; i++)
+		printf("%s\n", arr[i]);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game		game;
@@ -56,6 +62,7 @@ int	main(int argc, char **argv)
 	if (get_input(&game, argv[1]))
 		return (EXIT_FAILURE);
 	initialise_game(&game, argv[1]);
+	print_array(game.map);
 	set_icon(game.mlx);
 	mlx_loop_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, fps_counter, &game);
