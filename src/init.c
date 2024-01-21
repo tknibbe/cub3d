@@ -28,7 +28,7 @@ void	initialise_images(t_game *game)
 	}
 	ray_caster(game);
 	mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
-	draw_minimap(game);
+//	draw_minimap(game);
 }
 
 void	initialise_game(t_game *game, char *title)
