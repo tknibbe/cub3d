@@ -36,60 +36,143 @@
 ////	}
 //}
 
-void	draw_tile(int x, int y, mlx_image_t *img, int colour, t_game *game)
+void	draw_tile(int y, int x, mlx_image_t *img, int colour, t_game *game)
 {
 	(void)game;
-	int	xSize = 5;
-	int	ySize = 5;
-	int xPos = xSize * x;
-	int	yPos = ySize * y;
+	int	xSize = CUBE_SIDE;
+	int	ySize = CUBE_SIDE;
+	int yPos = xSize * y;
+	int	xPos = ySize * x;
 
 	// printf("xpos = %d\nyPos = %d\n", xPos,yPos);
-	while (xPos < xSize * (x+1))
+	while (yPos < ySize * (y+1))
 	{
-		while (yPos < ySize * (y+1))
+		while (xPos < xSize * (x+1))
 		{
-			mlx_put_pixel(img, yPos, xPos, colour);
-			yPos++;
+			mlx_put_pixel(img, xPos, yPos, colour);
+			xPos++;
 		}
-		yPos = ySize * y;
-		xPos++;
+		xPos = xSize * x;
+		yPos++;
 	}
 }
 
-mlx_image_t	*test(t_game *game, mlx_t *mlx)
+double	find_min(double player_pos, int map_dimension)
 {
-	mlx_image_t *img = mlx_new_image(mlx, WIDTH / 5, HEIGHT / 5);
-	for (int i = 0; i < WIDTH / 5; i++)
+//	double	min_dimension;
+
+//	printf("%lf\n", player_pos);
+	if (map_dimension * CUBE_SIDE < MAX_MINIMAP_SIDE)
 	{
-		for (int x = 0; x < HEIGHT / 5; x++)
+//		printf("twat\n");
+
+		return (0);
+	}
+	if (player_pos * CUBE_SIDE > (double)MAX_MINIMAP_SIDE / 2)
+	{
+		if ((map_dimension - player_pos) * CUBE_SIDE > (double)MAX_MINIMAP_SIDE / 2)
 		{
-			mlx_put_pixel(img, i, x, 0x808080FF);
+//			printf("this %lf\n", player_pos - (double)MAX_MINIMAP_SIDE / CUBE_SIDE / 2);
+			return (player_pos - (double)MAX_MINIMAP_SIDE / CUBE_SIDE / 2);
+		}
+//		printf("that\n");
+		return (player_pos - ((double)MAX_MINIMAP_SIDE / CUBE_SIDE - map_dimension + player_pos));
+	}
+	return (0);
+}
+
+mlx_image_t	*test(t_game *game, mlx_t *mlx, t_minimap *minimap)
+{
+	(void)minimap;
+	mlx_image_t *img = mlx_new_image(mlx, game->minimap.width, game->minimap.height);
+	mlx_image_t *test_img = mlx_new_image(mlx, MAX_MINIMAP_SIDE, MAX_MINIMAP_SIDE);
+	for (int i = 0; i < game->minimap.width; i++)
+	{
+		for (int x = 0; x < game->minimap.height; x++)
+		{
+			mlx_put_pixel(img, i, x, 0x80808088);
 		}
 	}
-
+	for (int i = 0; i < MAX_MINIMAP_SIDE; i++)
+	{
+		for (int x = 0; x < MAX_MINIMAP_SIDE; x++)
+		{
+			mlx_put_pixel(test_img, i, x, 0xFF0000FF);
+		}
+	}
 	int	x = 0;
 	int	y = 0;
-	while (game->map[x])
+
+//	printf("x\n");
+	double	start_x = find_min(game->player.pos.x, game->map_cols);
+//	printf("y\n");
+	double	start_y = find_min(game->player.pos.y, game->map_rows);
+	double x_coord;
+
+
+	printf("map : %d %d\n", game->map_cols, game->map_rows);
+	printf("player : %lf %lf\n", game->player.pos.x, game->player.pos.y);
+	printf("starts : %lf %lf\n", start_x, start_y);
+	while (y < minimap->height)
 	{
-		while (game->map[x][y])
+		x = 0;
+		x_coord = start_x;
+		while (x < minimap->width)
 		{
-			if (game->map[x][y] == '1' || game->map[x][y] == ' ')
-				draw_tile(x, y, img, 0x000000FF, game);
-			else
-				draw_tile(x, y, img, 0xFFFFFFFF, game);
-			y++;
+			if (game->map[(int)start_y][(int)x_coord] == '1')
+			{
+				mlx_put_pixel(img, x, y, 0x000000AA);
+			}
+			else if (game->map[(int)start_y][(int )x_coord] == '0')
+			{
+				mlx_put_pixel(img, x, y, 0xFFFFFFAA);
+			}
+			x_coord += 0.125;
+			x++;
 		}
-		y = 0;
-		x++;
+		start_y += 0.125;
+		y++;
 	}
+
+//	while (game->map[y])
+//	{
+//		while (game->map[y][x])
+//		{
+//			if (game->map[y][x] == '1')
+//				draw_tile(y, x, img, 0x000000AA, game);
+//			else if (game->map[y][x] == '0')
+//				draw_tile(y, x, img, 0xFFFFFFAA, game);
+//			x++;
+//		}
+//		x = 0;
+//		y++;
+//	}
+	mlx_image_to_window(game->mlx, test_img, WIDTH - MAX_MINIMAP_SIDE - MARGIN, MARGIN);
 	return (img);
 }
 
+void	get_minimap_size(t_game *game)
+{
+	game->minimap.width = game->map_cols * CUBE_SIDE;
+	if (game->minimap.width > MAX_MINIMAP_SIDE)
+	{
+		printf("Width too big");
+		game->minimap.width = MAX_MINIMAP_SIDE;
+	}
+	game->minimap.height = game->map_rows * CUBE_SIDE;
+	if (game->minimap.height > MAX_MINIMAP_SIDE)
+	{
+		printf("Height too big");
+		game->minimap.height = MAX_MINIMAP_SIDE;
+	}
+}
 
 void	draw_minimap(t_game *game)
 {
-	game->images.minimap  = test(game, game->mlx);
-	mlx_image_to_window(game->mlx, game->images.minimap, 0, 0);
+	get_minimap_size(game);
+	printf("%d %d\n", game->map_rows, game->map_cols);
+	printf("%d %d\n", game->minimap.width, game->minimap.height);
+	game->images.minimap  = test(game, game->mlx, &game->minimap);
+	mlx_image_to_window(game->mlx, game->images.minimap, WIDTH - game->minimap.width - MARGIN, MARGIN);
 //	game->images.img->instances[0].z = 1;
 }

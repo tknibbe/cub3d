@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
+#include "minimap.h"
 
 void	initialise_images(t_game *game)
 {
