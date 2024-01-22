@@ -6,14 +6,14 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/17 13:15:08 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/22 18:51:41 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define WIDTH 1920
 
+# define WIDTH 1920
 # define HEIGHT 1080
 # define PI 3.1415926
 
@@ -98,5 +98,6 @@ void	cursor_hook(double xpos, double ypos, void *param);
 void	rotate(t_player *player, int rotation);
 void	setup_ray_vars(t_ray *ray_vars, t_player player, int screen_x);
 double	fov(double a, double b);
-
+void	line_to_buffer(int *buffer, t_game *game, t_ray ray_vars, int x);
+void	buffer_to_img(int *buffer, mlx_image_t *img);
 #endif
