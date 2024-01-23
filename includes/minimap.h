@@ -15,18 +15,25 @@
 
 # include "cub3d.h"
 
-# define MAX_MINIMAP_SIDE 200
+# define MAX_MINIMAP_PIXELS 200
 # define MARGIN 40
 # define CUBE_SIDE 8
+# define PLAYER_SIZE 4
+# define MAX_MINIMAP_BLOCKS ((double)MAX_MINIMAP_PIXELS / CUBE_SIDE)
+# define MINIMAP_PIXEL_STEP ((double)1 / CUBE_SIDE)
 
 typedef struct s_game t_game;
+typedef struct s_vector t_vector;
 
 typedef struct s_minimap
 {
-	int	width;
-	int	height;
+	int			width;
+	int			height;
+	mlx_image_t	*img;
 }	t_minimap;
 
-void	draw_minimap(t_game *game);
+void	draw_player(t_game *game, t_minimap *minimap, t_vector start);
+void	initialise_minimap(t_game *game, t_minimap *minimap);
+void	draw_minimap(t_game *game, t_minimap *minimap);
 
 #endif
