@@ -7,12 +7,15 @@ CYAN=\033[1;36m
 END=\033[0m
 
 NAME = cub3D
-HEADERS  = includes/cub3d.h
+HEADER_FILES = cub3d.h minimap.h parsing.h
+HEADERS = $(HEADER_FILES:%=includes/%)
 SRC_FILES =	main.c \
 			utils/error.c \
 			utils/free.c \
 			minimap/minimap.c \
-			minimap/player.c \
+			minimap/draw_minimap.c \
+			minimap/draw_player.c \
+			player.c \
 			raycaster/raycaster.c \
 			raycaster/set_variables.c \
 			input_handling/parse_input.c \

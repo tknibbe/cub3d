@@ -20,6 +20,7 @@
 # include "MLX42.h"
 # include <stdio.h>
 # include <stdlib.h>
+# include "minimap.h"
 
 typedef struct	s_vector
 {
@@ -77,21 +78,17 @@ typedef struct	s_game
 	t_textures	textures;
 	t_player	player;
 	t_images	images;
+	t_minimap	minimap;
 	mlx_t		*mlx;
 }	t_game;
 
 void	key_hook(void *param);
 void	fps_counter(void *mlxshit);
-//void	draw_player(t_game *game, mlx_image_t *img);
-void	draw_player(t_game *game, mlx_image_t *img, int colour);
 void	initialise_game(t_game *game, char *title);
 void	ft_mlx_error_and_exit(t_game *game);
 void	ft_error_and_exit(char *error_str);
 void	free_game_struct(t_game *game);
-void	draw_minimap(t_game *game);
-void	initialize_player(t_game *game);
-void	put_player_to_window(t_game *game);
-void	draw_rays(t_game *game);
+void	initialise_player(t_game *game);
 void	ray_caster(t_game *game);
 void	movement(t_player *player, t_game *game);
 void	cursor_hook(double xpos, double ypos, void *param);

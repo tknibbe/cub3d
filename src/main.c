@@ -13,6 +13,7 @@
 #include "cub3d.h"
 #include "parsing.h"
 #include "libft.h"
+#include "minimap.h"
 #include <errno.h>
 
 void	draw_floor_and_ceiling(t_textures text, mlx_image_t *bg) //move to
@@ -62,7 +63,7 @@ int	main(int argc, char **argv)
 	if (get_input(&game, argv[1]))
 		return (EXIT_FAILURE);
 	initialise_game(&game, argv[1]);
-	print_array(game.map);
+//	print_array(game.map);
 	set_icon(game.mlx);
 	mlx_loop_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, fps_counter, &game);
