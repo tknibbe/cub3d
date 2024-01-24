@@ -39,6 +39,7 @@ static void	free_textures(t_textures textures)
 	safe_delete_texture(textures.east);
 	safe_delete_texture(textures.south);
 	safe_delete_texture(textures.west);
+	safe_delete_texture(textures.icon);
 }
 
 /**

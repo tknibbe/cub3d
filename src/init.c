@@ -13,6 +13,14 @@
 #include "cub3d.h"
 #include "minimap.h"
 
+static void	initialise_icon(t_game *game)
+{
+	game->textures.icon = mlx_load_png("./textures/jan.png");
+	if (!game->textures.icon)
+		ft_mlx_error_and_exit(game);
+	mlx_set_icon(game->mlx, game->textures.icon);
+}
+
 static void	initialise_images(t_game *game)
 {
 	game->images.fps = mlx_put_string(game->mlx, "FPS 59", 20, 20);
@@ -41,6 +49,7 @@ void	initialise_game(t_game *game, char *title)
 	initialise_images(game);
 	initialise_minimap(game, &game->minimap);
 	initialise_player(game);
+	initialise_icon(game);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 //	cursor = mlx_create_cursor(game->textures.east);

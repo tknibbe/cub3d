@@ -34,6 +34,7 @@ typedef struct s_textures
 	mlx_texture_t	*east;
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
+	mlx_texture_t	*icon;
 	int	floor;
 	int	ceiling;
 }	t_textures;
