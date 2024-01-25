@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/25 15:16:14 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:49:51 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_player
 	double		move_speed;
 	double		rot_speed;
 	double		fov;
+	bool		has_moved;
 }	t_player;
 
 typedef struct	s_images

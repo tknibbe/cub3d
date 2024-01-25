@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 14:46:29 by tknibbe           #+#    #+#             */
-/*   Updated: 2023/12/13 17:03:43 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:51:04 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,9 @@ void	key_hook(void *param)
 		mlx_close_window(game->mlx);
 	movement(&game->player, game);
 	fov_change(&game->player, game);
-	ray_caster(game);
+	if (game->player.has_moved == true)
+	{
+		ray_caster(game);
+		game->player.has_moved = false;
+	}
 }

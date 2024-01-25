@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 20:19:37 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/18 15:25:51 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:51:32 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	move(t_player *player, t_vector dir, int direction, char **grid)
 		player->pos.x = new_pos.x;
 	if (grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == '0')
 		player->pos.y = new_pos.y;
+	player->has_moved = true;
 }
 
 // for moving left and right we need to rotate our direction vector
@@ -85,6 +86,7 @@ void	rotate(t_player *player, int rotation)
 	player->dir.y = old_x * sinus + player->dir.y * cosinus;
 	player->plane.x = player->plane.x * cosinus - player->plane.y * sinus;
 	player->plane.y = old_plane_x * sinus + player->plane.y * cosinus;
+	player->has_moved = true;
 }
 
 void	movement(t_player *player, t_game *game)
