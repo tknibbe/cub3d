@@ -25,12 +25,13 @@ SRC_FILES =	main.c \
 			events/key_hook.c \
 			events/fps.c \
 			init.c \
+			textures/texture.c \
 			events/movement.c \
 			events/cursor.c
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR =	obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures \
-			obj/events obj/raycaster obj/minimap
+			obj/events obj/raycaster obj/minimap obj/textures
 
 # MLX variables
 
@@ -46,7 +47,7 @@ LIBFT_DIR = libft
 
 CC = cc
 INCLUDES = -I includes -I libft/includes -I MLX42/include/MLX42
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -o3 -flto -march=native -Wall -Werror -Wextra
 ifdef DEBUG
 CFLAGS += -g -fsanitize=address
 endif
