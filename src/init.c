@@ -11,16 +11,23 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
+#include "minimap.h"
 
-void	initialise_images(t_game *game)
+static void	initialise_icon(t_game *game)
+{
+	game->textures.icon = mlx_load_png("./textures/jan.png");
+	if (!game->textures.icon)
+		ft_mlx_error_and_exit(game);
+	mlx_set_icon(game->mlx, game->textures.icon);
+}
+
+static void	initialise_images(t_game *game)
 {
 	game->images.fps = mlx_put_string(game->mlx, "FPS 59", 20, 20);
 	if (game->images.fps == NULL)
 	{
 		ft_mlx_error_and_exit(game);
 	}
-	initialize_player(game);
 	game->images.maze = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (game->images.maze == NULL)
 	{
@@ -28,7 +35,6 @@ void	initialise_images(t_game *game)
 	}
 	ray_caster(game);
 	mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
-//	draw_minimap(game);
 }
 
 void	initialise_game(t_game *game, char *title)
@@ -41,6 +47,9 @@ void	initialise_game(t_game *game, char *title)
 		ft_mlx_error_and_exit(game);
 	}
 	initialise_images(game);
+	initialise_minimap(game, &game->minimap);
+	initialise_player(game);
+	initialise_icon(game);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 //	cursor = mlx_create_cursor(game->textures.east);

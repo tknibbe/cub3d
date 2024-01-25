@@ -13,38 +13,6 @@
 #include "cub3d.h"
 #include "parsing.h"
 #include "libft.h"
-#include <errno.h>
-
-void	draw_floor_and_ceiling(t_textures text, mlx_image_t *bg) //move to
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			if (y < HEIGHT / 2)
-				mlx_put_pixel(bg, x, y, text.ceiling);
-			else
-				mlx_put_pixel(bg, x, y, text.floor);
-			y++;
-		}
-		x++;
-	}
-}
-
-void	set_icon(mlx_t *mlx) // zet jan als icon
-{
-	mlx_texture_t *pic;
-
-	pic = mlx_load_png("./textures/jan.png");
-	if (!pic)
-		ft_error_and_exit("Icon location not found\n");
-	mlx_set_icon(mlx, pic);
-}
 
 void	print_array(char **arr)
 {
@@ -62,8 +30,7 @@ int	main(int argc, char **argv)
 	if (get_input(&game, argv[1]))
 		return (EXIT_FAILURE);
 	initialise_game(&game, argv[1]);
-	print_array(game.map);
-	set_icon(game.mlx);
+//	print_array(game.map);
 	mlx_loop_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, fps_counter, &game);
 	mlx_cursor_hook(game.mlx, cursor_hook, &game);
