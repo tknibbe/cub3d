@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/22 18:51:41 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/01/25 15:16:14 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ typedef struct	s_ray
 	int			step_dir_y;
 	int			side;
 	double		dist_to_wall;
+	//-------------
+	int				wall_height;
+	int				wall_start;
+	int				wall_end;
+	int				tex_height;
+	int				tex_width;
+	mlx_texture_t	*texture;
+	//-------------
 }	t_ray;
 
 typedef struct	s_game
