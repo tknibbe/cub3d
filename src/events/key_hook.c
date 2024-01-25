@@ -67,4 +67,5 @@ void	key_hook(void *param)
 		adjust_texture(game->textures.west);
 		ray_caster(game);
 	}
+	draw_sprites(game);
 }

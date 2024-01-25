@@ -28,6 +28,12 @@ typedef struct	s_vector
 	double	y;
 }	t_vector;
 
+typedef struct	s_sprite
+{
+	double	x;
+	double	y;
+}	t_sprite;
+
 typedef struct s_textures
 {
 	mlx_texture_t	*north;
@@ -109,4 +115,6 @@ void	setup_ray_vars(t_ray *ray_vars, t_player player, int screen_x);
 double	fov(double a, double b);
 void	line_to_buffer(int *buffer, t_game *game, t_ray ray_vars, int x);
 void	buffer_to_img(int *buffer, mlx_image_t *img);
+void	draw_sprites(t_game *game);
+double	get_player_angle(t_vector dir);
 #endif

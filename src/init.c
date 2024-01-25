@@ -50,6 +50,7 @@ void	initialise_game(t_game *game, char *title)
 	initialise_minimap(game, &game->minimap);
 	initialise_player(game);
 	initialise_icon(game);
+	draw_sprites(game);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 //	cursor = mlx_create_cursor(game->textures.east);
