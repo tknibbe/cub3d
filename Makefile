@@ -30,7 +30,9 @@ SRC_FILES =	main.c \
 			init.c \
 			textures/texture.c \
 			events/movement.c \
-			events/cursor.c
+			events/cursor.c \
+			events/door.c
+
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR =	obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures \

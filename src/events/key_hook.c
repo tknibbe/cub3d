@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 14:46:29 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/25 19:38:10 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/05 14:53:17 by tymonknibbe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	adjust_texture(mlx_texture_t *tex)
 void	key_hook(void *param)
 {
 	t_game	*game;
-	static int	frame;
+	// static int	frame;
 
 	game = param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -57,14 +57,15 @@ void	key_hook(void *param)
 		ray_caster(game);
 		game->player.has_moved = false;
 	}
-	frame++;
-	if (frame == 5)
-	{
-		frame = 0;
-		adjust_texture(game->textures.north);
-		adjust_texture(game->textures.east);
-		adjust_texture(game->textures.south);
-		adjust_texture(game->textures.west);
-		ray_caster(game);
-	}
+	open_door(game);
+	// frame++;
+	// if (frame == 5)
+	// {
+	// 	frame = 0;
+	// 	adjust_texture(game->textures.north);
+	// 	adjust_texture(game->textures.east);
+	// 	adjust_texture(game->textures.south);
+	// 	adjust_texture(game->textures.west);
+	// 	ray_caster(game);
+	// }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:53:33 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/17 14:28:20 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/05 12:42:15 by tymonknibbe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	check_invalid_chars(char *line)
 	while (line[i])
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'\
-			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
+			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ' && line[i] != '2')
 			ft_error_and_exit("Error, invalid char found in map\n");
 		i++;
 	}
@@ -39,9 +39,7 @@ t_map	*put_in_linked_list(int fd)
 	{
 		line = get_next_line(fd);
 		if (!line)
-		{
 			break ;
-		}
 		line = ft_strdel(line, "\n");
 		if (line[0])
 		{
