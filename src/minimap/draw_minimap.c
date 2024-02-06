@@ -42,11 +42,15 @@ static int	colour(char **map, t_vector start, int x, double y_coord)
 	x_coord = start.x + x * MINIMAP_PIXEL_STEP;
 	if (map[(int)y_coord][(int)x_coord] == '1')
 	{
-		return (0x000000AA);
+		return (0x000000FF);
 	}
 	else if (map[(int)y_coord][(int)x_coord] == '0')
 	{
-		return (0xFFFFFFAA);
+		return (0xFFFFFFFF);
+	}
+	else if (map[(int)y_coord][(int)x_coord] == '2')
+	{
+		return (0xA52A2AFF);
 	}
 	return (0);
 }
