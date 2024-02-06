@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:10:57 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/25 18:58:00 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/05 13:07:38 by tymonknibbe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	draw_wall(t_ray ray, t_game *game, int *y, int *buffer, int x) //fix
 	// printf ("wall is hit at %f\nx in texture is %d (out of %d)\n", Wallx, texx, game->textures.north->width);
 	
 	
-	double step = (double) ray.tex_height / ray.wall_height; // why 1.0 *?
+	double step = (double) ray.tex_height / ray.wall_height;
 
 	// printf("%f vs %d\n", 1.0 * ray.tex_height / ray.wall_height, ray.tex_height / ray.wall_height);
 	double texPos = (ray.wall_start - HEIGHT / 2 + ray.wall_height / 2) * step;
@@ -82,6 +82,13 @@ static void	draw_wall(t_ray ray, t_game *game, int *y, int *buffer, int x) //fix
 
 static void	set_texture_direction(t_game *game, t_ray *ray)
 {
+	if (ray->door)
+	{
+		ray->texture = game->textures.door;
+		ray->tex_height = game->textures.door->height;
+		ray->tex_width = game->textures.door->width;
+		return ;
+	}
 	if (ray->side == 0 && ray->ray.x < 0)
 	{
 		ray->texture = game->textures.west;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:56:28 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/17 16:47:23 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/05 14:43:36 by tymonknibbe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	main(int argc, char **argv)
 //	print_array(game.map);
 	mlx_loop_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, fps_counter, &game);
+	mlx_loop_hook(game.mlx, check_door, &game);
 	mlx_cursor_hook(game.mlx, cursor_hook, &game);
+	
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
 	free_game_struct(&game);

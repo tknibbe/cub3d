@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/25 19:48:47 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/05 15:20:40 by tymonknibbe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1080
+# define HEIGHT 720
 # define PI 3.1415926
 
 # include "MLX42.h"
@@ -41,6 +41,7 @@ typedef struct s_textures
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
 	mlx_texture_t	*icon;
+	mlx_texture_t	*door;
 	int	floor;
 	int	ceiling;
 }	t_textures;
@@ -61,6 +62,7 @@ typedef struct	s_images
 	mlx_image_t	*minimap;
 	mlx_image_t	*maze;
 	mlx_image_t	*fps;
+	mlx_image_t *door_help;
 	mlx_image_t	*player;
 }	t_images;
 
@@ -83,6 +85,7 @@ typedef struct	s_ray
 	int				tex_height;
 	int				tex_width;
 	mlx_texture_t	*texture;
+	uint8_t			door;
 	//-------------
 }	t_ray;
 
@@ -117,4 +120,7 @@ void	line_to_buffer(int *buffer, t_game *game, t_ray ray_vars, int x);
 void	buffer_to_img(int *buffer, mlx_image_t *img);
 void	draw_sprites(t_game *game);
 double	get_player_angle(t_vector dir);
+void	load_door(t_game *game);
+void	check_door(void *game);
+void	open_door(t_game *game);
 #endif

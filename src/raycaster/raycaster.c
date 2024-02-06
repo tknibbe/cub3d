@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 18:43:37 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/22 19:39:27 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/05 13:05:53 by tymonknibbe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	dda(t_ray *ray_vars, t_game *game)
 	int hit;
 
 	hit = 0;
-	(void)hit;
-//	hit = 0;
+	if (ray_vars->door)
+		ray_vars->door = 0;
 	while (hit == 0)
 	{
 		if (ray_vars->side_dist.x < ray_vars->side_dist.y)
@@ -34,8 +34,13 @@ static void	dda(t_ray *ray_vars, t_game *game)
 			ray_vars->map_y += (int)ray_vars->step_dir_y;
 			ray_vars->side = 1;
 		}
-		if (game->map[ray_vars->map_y][ray_vars->map_x] > '0')
+		if (game->map[ray_vars->map_y][ray_vars->map_x] == '1')
 			hit = 1;
+		if (game->map[ray_vars->map_y][ray_vars->map_x] == '2') // door
+		{
+			ray_vars->door = 1;
+			hit = 1;
+		}
 	}
 }
 
