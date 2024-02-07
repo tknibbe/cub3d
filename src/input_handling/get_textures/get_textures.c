@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:33:50 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/17 16:31:32 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/07 16:20:40 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,6 @@
 
 #define SETF 0
 #define SETC 1
-
-static int	get_rgb(char *line)
-{
-	int		i;
-	char	**nums;
-	int		ret;
-
-	i = 0;
-	if (line[i] == 'F')
-		count_rgb(SETF);
-	else
-		count_rgb(SETC);
-	i++;
-	while (ft_isspace(line[i]))
-		i++;
-	nums = ft_split(&line[i], ',');
-	if (!nums)
-		ft_error_and_exit("Malloc() failed in ft_split()\n");
-	ret = calculate_rgb(nums);
-	ft_free_array(nums);
-	return (ret);
-}
 
 static void	put_in_struct(t_textures *text, char *path, int cat)
 {
@@ -70,9 +48,8 @@ static int	add_line(t_textures *text, char *line, int categorie)
 		ft_error_and_exit("ft_split() allocation went wrong\n");
 	if (!text_fn[1])
 		ft_error_and_exit("Error, no texture location found\n");
-	if (valid_file_name(&text_fn[1][i], ".png") && \
-		valid_file_name(&text_fn[1][i], ".xpm42")) //idk bout xpm42. look at it later
-		ft_error_and_exit("Wrong file extension\n");
+	if (valid_file_name(&text_fn[1][i], ".png"))
+		ft_error_and_exit("Wrong texture file extension (only .png)\n");
 	put_in_struct(text, &text_fn[1][i], categorie);
 	while (text_fn[i])
 	{
@@ -83,7 +60,7 @@ static int	add_line(t_textures *text, char *line, int categorie)
 	return (EXIT_SUCCESS);
 }
 
-static int	valid_and_add_line(t_textures *text, char *line) //make it return true if a texture is found
+static int	valid_and_add_line(t_textures *text, char *line)
 {
 	int	i;
 
@@ -92,24 +69,16 @@ static int	valid_and_add_line(t_textures *text, char *line) //make it return tru
 		return (EXIT_FAILURE);
 	while (ft_isspace(line[i]))
 		i++;
-	if (!ft_strncmp(&line[i], "NO", 2))
-		return(add_line(text, line, NO));
-	else if (!ft_strncmp(&line[i], "EA", 2))
-		return(add_line(text, line, EA));
-	else if (!ft_strncmp(&line[i], "SO", 2))
-		return(add_line(text, line, SO));
-	else if (!ft_strncmp(&line[i], "WE", 2))
-		return(add_line(text, line, WE));
-	else if (!ft_strncmp(&line[i], "F", 1))
-	{
-		text->floor = get_rgb(line);
+	if (!ft_strncmp(line, "NO", 2))
+		return (add_line(text, line, NO));
+	else if (!ft_strncmp(line, "EA", 2))
+		return (add_line(text, line, EA));
+	else if (!ft_strncmp(line, "SO", 2))
+		return (add_line(text, line, SO));
+	else if (!ft_strncmp(line, "WE", 2))
+		return (add_line(text, line, WE));
+	else if (!check_f_and_c(text, line))
 		return (EXIT_SUCCESS);
-	}
-	else if (!ft_strncmp(&line[i], "C", 1))
-	{
-		text->ceiling = get_rgb(line);
-		return (EXIT_SUCCESS);
-	}
 	ft_error_and_exit("Error, wrong texture delimiter found\n");
 	return (EXIT_FAILURE);
 }

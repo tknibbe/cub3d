@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:48 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/05 15:20:04 by tymonknibbe      ###   ########.fr       */
+/*   Updated: 2024/02/07 16:21:50 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ static void	check_whole_line(t_game *game, int x, int y)
 		while (i < game->map_cols)
 		{
 			if (game->map[x][i] != '1' && game->map[x][i] != ' ')
-			{
-				printf("[%c] %d && %d\n",game->map[x][i], x, i);
 				ft_error_and_exit("Error, unclosed edge found\n");
-			}
 			i++;
 		}
 	}
@@ -91,32 +88,8 @@ void	find_player(char **map, t_game *game)
 		}
 		y++;
 	}
-	if (player == 1)
-		return ;
-	if (player > 1)
-		ft_error_and_exit("Error, too many player positions found\n");
-	ft_error_and_exit("Error, no player found\n");
-}
-
-void	print_map(char **map, t_player player)
-{
-	int	i, j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (j == (int)player.pos.x && i == (int)player.pos.y)
-				printf("P ");
-			else
-				printf("%c ", map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	if (player != 1)
+		ft_error_and_exit("Error, please check player position in the map\n");
 }
 
 int	validate_map(t_game *game)
@@ -140,6 +113,5 @@ int	validate_map(t_game *game)
 		x++;
 	}
 	find_player(game->map, game);
-	print_map(game->map, game->player);
 	return (0);
 }

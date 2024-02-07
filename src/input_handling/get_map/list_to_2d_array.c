@@ -6,18 +6,41 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:03:20 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/01/17 16:31:50 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/07 15:58:54 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
 
+static char	*adjust_len(char *str, int len)
+{
+	char	*temp;
+	int		i;
+
+	temp = malloc(sizeof(char) * len + 1);
+	if (!temp)
+		ft_error_and_exit("Malloc() failed\n");
+	i = 0;
+	while (str[i])
+	{
+		temp[i] = str[i];
+		i++;
+	}
+	while (i < len)
+	{
+		temp[i] = ' ';
+		i++;
+	}
+	temp[i] = '\0';
+	free(str);
+	return (temp);
+}
+
 void	adjust_string_lengths(t_game *game)
 {
 	size_t	max_len;
 	int		i;
-	char	*temp;
 
 	max_len = 0;
 	i = 0;
@@ -30,14 +53,7 @@ void	adjust_string_lengths(t_game *game)
 	i = 0;
 	while (game->map[i])
 	{
-		while (ft_strlen(game->map[i]) < max_len)
-		//ik heb persoonlijk problemen met deze aanpak
-		{
-			temp = ft_strjoin_free_first(game->map[i], " ");
-			if (!temp)
-				ft_error_and_exit("ft_strjoin() failed\n");
-			game->map[i] = temp;
-		}
+		game->map[i] = adjust_len(game->map[i], max_len);
 		i++;
 	}
 	game->map_cols = max_len;
