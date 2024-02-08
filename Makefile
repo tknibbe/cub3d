@@ -12,11 +12,13 @@ HEADERS = $(HEADER_FILES:%=includes/%)
 SRC_FILES =	main.c \
 			utils/error.c \
 			utils/free.c \
+			utils/utils.c \
 			minimap/minimap.c \
 			minimap/draw_minimap.c \
 			minimap/draw_player.c \
 			player.c \
 			raycaster/raycaster.c \
+			raycaster/sprites.c \
 			raycaster/set_variables.c \
 			input_handling/parse_input.c \
 			input_handling/get_textures/get_textures.c \
@@ -28,10 +30,11 @@ SRC_FILES =	main.c \
 			events/key_hook.c \
 			events/fps.c \
 			init.c \
+			fix_textures.c \
 			textures/texture.c \
 			events/movement.c \
 			events/cursor.c \
-			events/door.c
+			events/door.c \
 
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
