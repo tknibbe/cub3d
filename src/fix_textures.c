@@ -48,4 +48,5 @@ void	fix_textures(t_game *game)
 	fix_texture(game->textures.north);
 	fix_texture(game->textures.south);
 	fix_texture(game->textures.west);
+	fix_texture(game->textures.door);
 }
