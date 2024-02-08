@@ -52,7 +52,7 @@ void	initialise_game(t_game *game, char *title)
 	initialise_icon(game);
 	load_door(game);
 	fix_textures(game);
-//	draw_sprites(game);
+	draw_sprites(game);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 //	cursor = mlx_create_cursor(game->textures.east);

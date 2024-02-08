@@ -1,10 +1,10 @@
 NO ./textures/jan.png
 SO ./textures/jan.png
 WE ./textures/jan.png
-EA ./textures/jan.png
+EA ./textures/tymon.png
 
-F 0,0,0
-C 255,0,255
+C 0,0,0
+F 255,0,255
 
 
 
