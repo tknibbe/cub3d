@@ -30,10 +30,11 @@ SRC_FILES =	main.c \
 			events/key_hook.c \
 			events/fps.c \
 			init.c \
+			fix_textures.c \
 			textures/texture.c \
 			events/movement.c \
 			events/cursor.c \
-			events/door.c
+			events/door.c \
 
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)

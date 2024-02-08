@@ -13,8 +13,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 # define PI 3.1415926
 
 # include "MLX42.h"
@@ -123,4 +123,6 @@ double	get_player_angle(t_vector dir);
 void	load_door(t_game *game);
 void	check_door(void *game);
 void	open_door(t_game *game);
+void	fix_textures(t_game *game);
+
 #endif
