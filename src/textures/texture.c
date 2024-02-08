@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:10:57 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/08 15:15:59 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/08 15:26:13 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	set_texture_direction(t_game *game, t_ray *ray)
 {
 	if (ray->door)
 		set_texture(ray, game->textures.door);
-	if (ray->side == 0 && ray->ray.x < 0)
+	else if (ray->side == 0 && ray->ray.x < 0)
 		set_texture(ray, game->textures.west);
 	else if (ray->side == 0 && ray->ray.x >= 0)
 		set_texture(ray, game->textures.east);
