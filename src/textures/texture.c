@@ -6,18 +6,12 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:10:57 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/08 15:11:18 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/08 15:15:59 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
-
-#include <stdio.h> //debug
-#include <unistd.h>
-
-#define RED		0xFF0000FF
-#define GREEN	0x00FF00FF
 
 void	buffer_to_img(int *buffer, mlx_image_t *img)
 {
