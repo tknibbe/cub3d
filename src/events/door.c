@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions_door.c                                     :+:      :+:    :+:   */
+/*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 14:22:31 by tymonknibbe       #+#    #+#             */
-/*   Updated: 2024/02/05 15:29:45 by tymonknibbe      ###   ########.fr       */
+/*   Updated: 2024/02/08 12:53:38 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ void	load_door(t_game *game)
 {
 	mlx_texture_t *texture;
 
-	printf("loading door :)\n");
-	texture = mlx_load_png("./textures/roodmuurtje.png");
+	texture = mlx_load_png("./textures/tknibbe.png");
 	if (!texture)
 		ft_error_and_exit("mlx_load_png() failed\n");
 	game->textures.door = texture;
