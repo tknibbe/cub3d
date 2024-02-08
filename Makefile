@@ -20,6 +20,7 @@ SRC_FILES =	main.c \
 			raycaster/set_variables.c \
 			input_handling/parse_input.c \
 			input_handling/get_textures/get_textures.c \
+			input_handling/get_textures/get_colours.c \
 			input_handling/get_textures/text_utils.c \
 			input_handling/get_map/get_map.c \
 			input_handling/get_map/map_utils.c \

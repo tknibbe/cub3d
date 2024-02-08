@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:17:53 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/05 15:20:36 by tymonknibbe      ###   ########.fr       */
+/*   Updated: 2024/02/08 12:43:01 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	set_player(t_player *player, int x, int y, char dir);
 
 void	not_all_textures_set(t_textures *t);
 void	check_double_texture(t_textures *text, int cat);
+int		get_rgb(char *line);
 int		valid_rgb_value(char *s);
 int		count_rgb(int state);
 int		calculate_rgb(char **nums);
+int		check_f_and_c(t_textures *text, char *line);
 #endif
