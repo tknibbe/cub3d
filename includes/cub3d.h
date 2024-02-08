@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tymonknibbe <tymonknibbe@student.42.fr>    +#+  +:+       +#+        */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/05 15:20:40 by tymonknibbe      ###   ########.fr       */
+/*   Updated: 2024/02/08 14:55:19 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ typedef struct	s_ray
 	int				wall_end;
 	int				tex_height;
 	int				tex_width;
+	double			wallx;
+	int				texx;
+	double			step;
+	double			texpos;
+	int				texy;
+	int				y;
+	uint32_t		colour;
 	mlx_texture_t	*texture;
 	uint8_t			door;
 	//-------------
