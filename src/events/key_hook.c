@@ -57,15 +57,16 @@ void	key_hook(void *param)
 		ray_caster(game);
 		game->player.has_moved = false;
 	}
+	frame++;
+	if (frame == 5)
+	{
+		frame = 0;
+		adjust_texture(game->textures.north);
+		adjust_texture(game->textures.east);
+		adjust_texture(game->textures.south);
+		adjust_texture(game->textures.west);
+		ray_caster(game);
+	}
+	draw_sprites(game);
 	open_door(game);
-	// frame++;
-	// if (frame == 5)
-	// {
-	// 	frame = 0;
-	// 	adjust_texture(game->textures.north);
-	// 	adjust_texture(game->textures.east);
-	// 	adjust_texture(game->textures.south);
-	// 	adjust_texture(game->textures.west);
-	// 	ray_caster(game);
-	// }
 }

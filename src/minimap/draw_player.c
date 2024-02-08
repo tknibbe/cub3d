@@ -37,7 +37,7 @@ void	draw_player(t_game *game, t_minimap *minimap, t_vector start)
 		x = 0;
 		while (x < PLAYER_SIZE)
 		{
-			mlx_put_pixel(minimap->img, start_x + x, start_y + y, 0x0000FFAA);
+			mlx_put_pixel(minimap->img, start_x + x, start_y + y, 0xFF0000FF);
 			x++;
 		}
 		y++;

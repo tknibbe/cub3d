@@ -13,8 +13,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 # define PI 3.1415926
 
 # include "MLX42.h"
@@ -27,6 +27,12 @@ typedef struct	s_vector
 	double	x;
 	double	y;
 }	t_vector;
+
+typedef struct	s_sprite
+{
+	double	x;
+	double	y;
+}	t_sprite;
 
 typedef struct s_textures
 {
@@ -112,7 +118,11 @@ void	setup_ray_vars(t_ray *ray_vars, t_player player, int screen_x);
 double	fov(double a, double b);
 void	line_to_buffer(int *buffer, t_game *game, t_ray ray_vars, int x);
 void	buffer_to_img(int *buffer, mlx_image_t *img);
+void	draw_sprites(t_game *game);
+double	get_player_angle(t_vector dir);
 void	load_door(t_game *game);
 void	check_door(void *game);
 void	open_door(t_game *game);
+void	fix_textures(t_game *game);
+
 #endif
