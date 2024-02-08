@@ -69,10 +69,12 @@ static void	draw_wall(t_ray ray, t_game *game, int *y, int *buffer, int x) //fix
 		colour = 0;
 		int texy = (int)texPos;
 		texPos += step;
-		colour |= ray.texture->pixels[(ray.tex_height * texy + texx) * 4] << 24;
-		colour |= ray.texture->pixels[(ray.tex_height * texy + texx) * 4 + 1] << 16;
-		colour |= ray.texture->pixels[(ray.tex_height * texy + texx) * 4 + 2] << 8;
-		colour |= ray.texture->pixels[(ray.tex_height * texy + texx) * 4 + 3];
+		colour = ((int *)ray.texture->pixels)[(ray.tex_height * texy + texx)];
+
+//		colour |= ray.texture->pixels[(ray.tex_height * texy + texx) * 4] << 24;
+//		colour |= ray.texture->pixels[(ray.tex_height * texy + texx) * 4 + 1] << 16;
+//		colour |= ray.texture->pixels[(ray.tex_height * texy + texx) * 4 + 2] << 8;
+//		colour |= ray.texture->pixels[(ray.tex_height * texy + texx) * 4 + 3];
 		// if (ray.side == 1)
 		// 	colour = (colour >> 1) & 8355711;
 		buffer[x * HEIGHT + *y] = colour;

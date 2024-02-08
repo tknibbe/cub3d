@@ -45,7 +45,7 @@ void	adjust_texture(mlx_texture_t *tex)
 void	key_hook(void *param)
 {
 	t_game	*game;
-	// static int	frame;
+	 static int	frame;
 
 	game = param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
