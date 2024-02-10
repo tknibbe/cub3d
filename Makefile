@@ -15,7 +15,6 @@ SRC_FILES =	main.c \
 			minimap/minimap.c \
 			minimap/draw_minimap.c \
 			minimap/draw_player.c \
-			player.c \
 			raycaster/raycaster.c \
 			raycaster/set_variables.c \
 			input_handling/parse_input.c \
@@ -28,17 +27,19 @@ SRC_FILES =	main.c \
 			input_handling/get_map/validate_map.c \
 			events/key_hook.c \
 			events/fps.c \
-			init.c \
-			fix_textures.c \
+			init/init_player.c \
+			init/init.c \
+			init/fix_textures.c \
 			textures/texture.c \
 			events/movement.c \
 			events/cursor.c \
 			events/door.c \
+#			raycaster/sprites.c \
 
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR =	obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures \
-			obj/events obj/raycaster obj/minimap obj/textures
+			obj/events obj/raycaster obj/minimap obj/textures obj/init
 
 # MLX variables
 

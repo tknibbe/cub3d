@@ -30,8 +30,9 @@ typedef struct	s_vector
 
 typedef struct	s_sprite
 {
-	double	x;
-	double	y;
+	double			x;
+	double			y;
+	mlx_texture_t	*texture;
 }	t_sprite;
 
 typedef struct s_textures
@@ -101,10 +102,12 @@ typedef struct	s_game
 	char		**map;
 	int			map_cols;
 	int			map_rows;
+	int			sprite_nr;
 	t_textures	textures;
 	t_player	player;
 	t_images	images;
 	t_minimap	minimap;
+	t_sprite	*sprites;
 	mlx_t		*mlx;
 }	t_game;
 
