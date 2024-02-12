@@ -7,7 +7,7 @@ CYAN=\033[1;36m
 END=\033[0m
 
 NAME = cub3D
-HEADER_FILES = cub3d.h minimap.h parsing.h
+HEADER_FILES = cub3d.h minimap.h parsing.h sprites.h
 HEADERS = $(HEADER_FILES:%=includes/%)
 SRC_FILES =	main.c \
 			utils/error.c \
@@ -34,12 +34,14 @@ SRC_FILES =	main.c \
 			events/movement.c \
 			events/cursor.c \
 			events/door.c \
-#			raycaster/sprites.c \
+			sprites/draw_sprites.c \
+			sprites/sprite_utils.c \
+			sprites/set_sprite_variables.c \
 
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR =	obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures \
-			obj/events obj/raycaster obj/minimap obj/textures obj/init
+			obj/events obj/raycaster obj/minimap obj/textures obj/init obj/sprites
 
 # MLX variables
 
@@ -55,7 +57,7 @@ LIBFT_DIR = libft
 
 CC = cc
 INCLUDES = -I includes -I libft/includes -I MLX42/include/MLX42
-CFLAGS = -o3 -flto -march=native -Wall -Werror -Wextra
+CFLAGS = -o3 -flto -Wall -Werror -Wextra
 ifdef DEBUG
 CFLAGS += -g -fsanitize=address
 endif
@@ -65,6 +67,7 @@ endif
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
 	MLX_FLAGS = -Iinclude -ldl -lglfw -pthread -lm
+	CFLAGS += -march=native
 else ifeq ($(UNAME_S), Darwin)
 	GLFW = $(shell brew --prefix glfw)
 	MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L $(GLFW)/lib

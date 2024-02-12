@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "minimap.h"
+#include "libft.h"
 
 static void	initialise_icon(t_game *game)
 {
@@ -37,25 +37,11 @@ static void	initialise_images(t_game *game)
 	mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
 }
 
-void	initialise_sprites(t_game *game)
-{
-	game->sprites = malloc(3 * sizeof(t_sprite));
-	game->sprites[0].x = 7.5;
-	game->sprites[0].y = 7.5;
-	game->sprites[0].texture = mlx_load_png("textures/tymon.png");
-	game->sprites[1].x = 1.5;
-	game->sprites[1].y = 1.5;
-	game->sprites[1].texture = mlx_load_png("textures/tymon.png");
-	game->sprites[2].x = 10.5;
-	game->sprites[2].y = 1.5;
-	game->sprites[2].texture = mlx_load_png("textures/tymon.png");
-	game->sprite_nr = 3;
-}
-
 void	initialise_game(t_game *game, char *title)
 {
 //	mlx_win_cursor_t	*cursor;
 
+	game->wall_distances = ft_calloc(WIDTH, sizeof(double));
 	game->mlx = mlx_init(WIDTH, HEIGHT, title, true);
 	if (game->mlx == NULL)
 	{
@@ -68,7 +54,7 @@ void	initialise_game(t_game *game, char *title)
 	initialise_sprites(game);
 	load_door(game);
 	fix_textures(game);
-//	draw_sprites(game);
+	draw_sprites(game);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 //	cursor = mlx_create_cursor(game->textures.east);

@@ -45,7 +45,7 @@ void	adjust_texture(mlx_texture_t *tex)
 void	key_hook(void *param)
 {
 	t_game	*game;
-	 static int	frame;
+	static int	frame;
 
 	game = param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -56,6 +56,7 @@ void	key_hook(void *param)
 	{
 		ray_caster(game);
 		game->player.has_moved = false;
+		draw_sprites(game);
 	}
 	frame++;
 	if (frame == 5)
@@ -66,7 +67,7 @@ void	key_hook(void *param)
 		adjust_texture(game->textures.south);
 		adjust_texture(game->textures.west);
 		ray_caster(game);
+		draw_sprites(game);
 	}
-//	draw_sprites(game);
 	open_door(game);
 }

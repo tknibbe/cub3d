@@ -15,10 +15,13 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define HALF_HEIGHT ((double)HEIGHT / 2)
+# define HALF_WIDTH ((double)WIDTH / 2)
 # define PI 3.1415926
 
 # include "MLX42.h"
 # include "minimap.h"
+# include "sprites.h"
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -27,13 +30,6 @@ typedef struct	s_vector
 	double	x;
 	double	y;
 }	t_vector;
-
-typedef struct	s_sprite
-{
-	double			x;
-	double			y;
-	mlx_texture_t	*texture;
-}	t_sprite;
 
 typedef struct s_textures
 {
@@ -103,6 +99,7 @@ typedef struct	s_game
 	int			map_cols;
 	int			map_rows;
 	int			sprite_nr;
+	double		*wall_distances;
 	t_textures	textures;
 	t_player	player;
 	t_images	images;
@@ -114,12 +111,11 @@ typedef struct	s_game
 void	key_hook(void *param);
 void	fps_counter(void *mlxshit);
 void	initialise_game(t_game *game, char *title);
+void	initialise_sprites(t_game *game);
+void	initialise_player(t_game *game);
 void	ft_mlx_error_and_exit(t_game *game);
 void	ft_error_and_exit(char *error_str);
 void	free_game_struct(t_game *game);
-void	initialise_player(t_game *game);
-void	put_player_to_window(t_game *game);
-void	draw_rays(t_game *game);
 void	ray_caster(t_game *game);
 void	movement(t_player *player, t_game *game);
 void	cursor_hook(double xpos, double ypos, void *param);
@@ -128,8 +124,6 @@ void	setup_ray_vars(t_ray *ray_vars, t_player player, int screen_x);
 double	fov(double a, double b);
 void	line_to_buffer(int *buffer, t_game *game, t_ray ray_vars, int x);
 void	buffer_to_img(int *buffer, mlx_image_t *img);
-void	draw_sprites(t_game *game);
-double	get_player_angle(t_vector dir);
 void	load_door(t_game *game);
 void	check_door(void *game);
 void	open_door(t_game *game);

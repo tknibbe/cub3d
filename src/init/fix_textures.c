@@ -44,9 +44,17 @@ static void	fix_texture(mlx_texture_t *texture)
 
 void	fix_textures(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	fix_texture(game->textures.east);
 	fix_texture(game->textures.north);
 	fix_texture(game->textures.south);
 	fix_texture(game->textures.west);
 	fix_texture(game->textures.door);
+	while (i < game->sprite_nr)
+	{
+		fix_texture(game->sprites[i].tex);
+		i++;
+	}
 }
