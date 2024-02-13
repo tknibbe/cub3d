@@ -15,10 +15,9 @@
 // to do
 // get animations going
 // add David as a sprite
-// add sprites in map somehow, so parsing, so w edont hardcode them
+// add sprites in map somehow, so parsing, so we dont hardcode them
 // add comments to stuff so things are more clear
-// look at stuff to maybe optimise, in textures as well, add the halfheights and stuff
-// improve sorting
+// look at stuff to maybe optimise, in textures as well, add the half heights and stuff
 // add maybe to a check for if the player moved so we dont sort or change variables
 // figure out offsets
 // refactor files so its more cleaner
@@ -69,7 +68,7 @@ void	draw_sprites(t_game *game)
 	int	i;
 
 	calc_dist(game->player.pos, game->sprites, game->sprite_nr);
-	sort_sprites(game->sprites, game->sprite_nr);
+	resort_sprites(game->sprites, game->sprite_nr);
 	i = 0;
 	while (i < game->sprite_nr)
 	{

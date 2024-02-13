@@ -42,6 +42,25 @@ void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr)
 	}
 }
 
+void	resort_sprites(t_sprite *sprites, int sprite_nr)
+{
+	int			j;
+	t_sprite	temp;
+
+	j = 0;
+	while (j < sprite_nr - 1)
+	{
+		if (sprites[j].dist_to_player < sprites[j + 1].dist_to_player)
+		{
+			temp = sprites[j];
+			sprites[j] = sprites[j + 1];
+			sprites[j + 1] = temp;
+			break ;
+		}
+		j++;
+	}
+}
+
 void	sort_sprites(t_sprite *sprites, int sprite_nr)
 {
 	int			i;
@@ -51,7 +70,7 @@ void	sort_sprites(t_sprite *sprites, int sprite_nr)
 	i = 0;
 	while (i < sprite_nr - 1)
 	{
-		j = i;
+		j = 0;
 		while (j < sprite_nr - i - 1)
 		{
 			if (sprites[j].dist_to_player < sprites[j + 1].dist_to_player)
@@ -95,6 +114,50 @@ void	initialise_sprites(t_game *game)
 	new_sprite.y = 7.5;
 	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
 	new_sprite.height_offset = -new_sprite.tex->height;
+	add_sprite(game, new_sprite);
+	new_sprite.x = 8.5;
+	new_sprite.y = 7.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 9.5;
+	new_sprite.y = 7.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 10.5;
+	new_sprite.y = 7.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 11.5;
+	new_sprite.y = 7.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 7.5;
+	new_sprite.y = 8.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 7.5;
+	new_sprite.y = 1.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 8.5;
+	new_sprite.y = 8.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 9.5;
+	new_sprite.y = 8.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 10.5;
+	new_sprite.y = 8.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 11.5;
+	new_sprite.y = 8.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
+	add_sprite(game, new_sprite);
+	new_sprite.x = 12.5;
+	new_sprite.y = 1.5;
+	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
 	add_sprite(game, new_sprite);
 	new_sprite.x = 11.5;
 	new_sprite.y = 1.5;

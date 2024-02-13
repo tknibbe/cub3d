@@ -46,6 +46,6 @@ void	sort_sprites(t_sprite *sprites, int sprite_nr);
 void	print_sprites(t_sprite *sprites, int sprite_nr); // remove later
 void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr);
 void	set_sprite_variables(t_game *game, t_sprite *sprite);
+void	resort_sprites(t_sprite *sprites, int sprite_nr);
 
 #endif
-

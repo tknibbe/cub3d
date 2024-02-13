@@ -54,6 +54,10 @@ void	initialise_game(t_game *game, char *title)
 	initialise_sprites(game);
 	load_door(game);
 	fix_textures(game);
+	calc_dist(game->player.pos, game->sprites, game->sprite_nr);
+	print_sprites(game->sprites, game->sprite_nr);
+	sort_sprites(game->sprites, game->sprite_nr);
+	print_sprites(game->sprites, game->sprite_nr);
 	draw_sprites(game);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
