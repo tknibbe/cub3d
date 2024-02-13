@@ -42,6 +42,28 @@ void	adjust_texture(mlx_texture_t *tex)
 	free(row);
 }
 
+void	change_sprites(t_sprite *sprites, int sprite_nr)
+{
+	int	i;
+	unsigned int alread_done;
+
+	i = 0;
+	alread_done = 0;
+	while (i < sprite_nr)
+	{
+		if ((sprites[i].type & alread_done) == 0)
+		{
+//			printf("%dspr\n", sprites[i].curr_cycle);
+			sprites[i].curr_cycle = (sprites[i].curr_cycle + 1) % 2;
+			printf("%dspr\n", sprites[i].curr_cycle);
+			*(sprites[i].tex) = *sprites[i].texture_cycle[sprites[i].curr_cycle];
+			alread_done |= sprites[i].type;
+		}
+		i++;
+	}
+	printf("done\n\n");
+}
+
 void	key_hook(void *param)
 {
 	t_game	*game;
@@ -67,6 +89,7 @@ void	key_hook(void *param)
 		adjust_texture(game->textures.south);
 		adjust_texture(game->textures.west);
 		ray_caster(game);
+		change_sprites(game->sprites, game->sprite_nr);
 		draw_sprites(game);
 	}
 	open_door(game);

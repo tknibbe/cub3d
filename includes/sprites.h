@@ -19,6 +19,12 @@
 
 typedef struct s_game t_game;
 
+typedef enum	e_sprt_type
+{
+	CHEERLEADER = 1,
+	LAMP = 2
+}	t_sprt_type;
+
 typedef struct	s_sprite
 {
 	double			x;
@@ -38,6 +44,10 @@ typedef struct	s_sprite
 	int				draw_end_y;
 	int				draw_end_x;
 	mlx_texture_t	*tex;
+	t_sprt_type		type;
+	mlx_texture_t	**texture_cycle;
+	int				curr_cycle;
+	int				texture_nbr;
 }	t_sprite;
 
 void	add_sprite(t_game *game, t_sprite new_sprite);

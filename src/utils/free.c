@@ -35,7 +35,8 @@ static void	safe_delete_texture(mlx_texture_t *texture)
 
 static void	free_textures(t_textures textures, t_game *game)
 {
-	int	i;
+	int				i;
+	unsigned int	already_done;
 
 	safe_delete_texture(textures.north);
 	safe_delete_texture(textures.east);
@@ -44,9 +45,15 @@ static void	free_textures(t_textures textures, t_game *game)
 	safe_delete_texture(textures.door);
 	safe_delete_texture(textures.icon);
 	i = 0;
+	already_done = 0;
 	while (i < game->sprite_nr)
 	{
-		safe_delete_texture(game->sprites[i].tex);
+		if ((game->sprites[i].type & already_done) == 0)
+		{
+			safe_delete_texture(game->sprites[i].texture_cycle[0]);
+			safe_delete_texture(game->sprites[i].texture_cycle[1]);
+			already_done |= game->sprites[i].type;
+		}
 		i++;
 	}
 }
@@ -59,6 +66,7 @@ void	free_game_struct(t_game *game)
 //	free_images(game, game->images);
 	free_textures(game->textures, game);
 	ft_free_array(game->map);
+	free(game->sprites->texture_cycle);
 	free(game->sprites);
 	free(game->wall_distances);
 }
