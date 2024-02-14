@@ -70,7 +70,7 @@ void	draw_sprites(t_game *game)
 	int	i;
 
 	calc_dist(game->player.pos, game->sprites, game->sprite_nr);
-	resort_sprites(game->sprites, game->sprite_nr);
+	sort_sprites(game->sprites, game->sprite_nr);
 	i = 0;
 	while (i < game->sprite_nr)
 	{

@@ -21,9 +21,17 @@ typedef struct s_game t_game;
 
 typedef enum	e_sprt_type
 {
+	NOTHING = 0,
 	CHEERLEADER = 1,
 	LAMP = 2
 }	t_sprt_type;
+
+typedef struct	s_coords
+{
+	int			x;
+	int			y;
+	t_sprt_type	type;
+}	t_coords;
 
 typedef struct	s_sprite
 {
