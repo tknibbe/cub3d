@@ -42,27 +42,42 @@ static void	fix_texture(mlx_texture_t *texture)
 	}
 }
 
-void	fix_textures(t_game *game)
+static void fix_sprite_type(t_sprite sprite)
+{
+	int	i;
+
+	i = 0;
+	while (i < sprite.texture_nbr)
+	{
+		fix_texture(sprite.texture_cycle[i]);
+		i++;
+	}
+}
+
+static void	fix_sprite_textures(t_sprite *sprites, int sprite_nr)
 {
 	int				i;
 	unsigned int	already_done;
 
 	i = 0;
 	already_done = 0;
+	while (i < sprite_nr)
+	{
+		if ((sprites[i].type & already_done) == 0)
+		{
+			fix_sprite_type(sprites[i]);
+			already_done |= sprites[i].type;
+		}
+		i++;
+	}
+}
+
+void	fix_textures(t_game *game)
+{
 	fix_texture(game->textures.east);
 	fix_texture(game->textures.north);
 	fix_texture(game->textures.south);
 	fix_texture(game->textures.west);
 	fix_texture(game->textures.door);
-	while (i < game->sprite_nr)
-	{
-		if ((game->sprites[i].type & already_done) == 0)
-		{
-			fix_texture(game->sprites[i].tex);
-			fix_texture(game->sprites[i].texture_cycle[1]);
-			already_done |= game->sprites[i].type;
-//			printf("once\n");
-		}
-		i++;
-	}
+	fix_sprite_textures(game->sprites, game->sprite_nr);
 }

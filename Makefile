@@ -27,6 +27,7 @@ SRC_FILES =	main.c \
 			input_handling/get_map/validate_map.c \
 			events/key_hook.c \
 			events/fps.c \
+			events/change_textures.c \
 			init/init_player.c \
 			init/init.c \
 			init/fix_textures.c \
@@ -37,6 +38,7 @@ SRC_FILES =	main.c \
 			sprites/draw_sprites.c \
 			sprites/sprite_utils.c \
 			sprites/set_sprite_variables.c \
+			sprites/initialise_sprites.c \
 
 
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)

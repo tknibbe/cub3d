@@ -33,29 +33,47 @@ static void	safe_delete_texture(mlx_texture_t *texture)
 		mlx_delete_texture(texture);
 }
 
-static void	free_textures(t_textures textures, t_game *game)
+static void	free_sprite_type(t_sprite sprite)
+{
+	int	i;
+
+	i = 0;
+	while (i < sprite.texture_nbr)
+	{
+		safe_delete_texture(sprite.texture_cycle[i]);
+		i++;
+	}
+}
+
+static void	free_sprites(t_sprite *sprites, int sprite_nr)
 {
 	int				i;
 	unsigned int	already_done;
 
+	i = 0;
+	already_done = 0;
+	while (i < sprite_nr)
+	{
+		if ((sprites[i].type & already_done) == 0)
+		{
+			free_sprite_type(sprites[i]);
+			free(sprites[i].texture_cycle);
+			free(sprites[i].tex);
+			already_done |= sprites[i].type;
+		}
+		i++;
+	}
+	free(sprites);
+}
+
+static void	free_textures(t_textures textures)
+{
 	safe_delete_texture(textures.north);
 	safe_delete_texture(textures.east);
 	safe_delete_texture(textures.south);
 	safe_delete_texture(textures.west);
 	safe_delete_texture(textures.door);
 	safe_delete_texture(textures.icon);
-	i = 0;
-	already_done = 0;
-	while (i < game->sprite_nr)
-	{
-		if ((game->sprites[i].type & already_done) == 0)
-		{
-			safe_delete_texture(game->sprites[i].texture_cycle[0]);
-			safe_delete_texture(game->sprites[i].texture_cycle[1]);
-			already_done |= game->sprites[i].type;
-		}
-		i++;
-	}
 }
 
 /**
@@ -64,9 +82,8 @@ static void	free_textures(t_textures textures, t_game *game)
 void	free_game_struct(t_game *game)
 {
 //	free_images(game, game->images);
-	free_textures(game->textures, game);
+	free_textures(game->textures);
+	free_sprites(game->sprites, game->sprite_nr);
 	ft_free_array(game->map);
-	free(game->sprites->texture_cycle);
-	free(game->sprites);
 	free(game->wall_distances);
 }

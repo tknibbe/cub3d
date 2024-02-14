@@ -23,6 +23,7 @@
 // refactor files so its more cleaner
 // add a malloc for the bufefr caus enow valgrind is oooooof
 // figure out how to fix teextures when we will have the same sprite for a lot of stuff
+// make sprite animation more robust and universal
 // improve free later
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 {

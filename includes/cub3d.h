@@ -128,5 +128,6 @@ void	load_door(t_game *game);
 void	check_door(void *game);
 void	open_door(t_game *game);
 void	fix_textures(t_game *game);
+void	adjust_textures(t_game *game);
 
 #endif
