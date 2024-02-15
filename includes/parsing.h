@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:17:53 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/15 16:59:24 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:08:34 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #define FLOOR		'0'
 #define WALL		'1'
 #define DOOR_CLOSED	'2'
-#define DOOR_OPEN	'3'
+#define DOOR_OPEN	'3' //could change to '9' or something for map making logic. not allowed in map making and no user interaction
 #define ENEMY		'4'
 
 typedef struct s_map t_map;
