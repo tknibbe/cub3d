@@ -24,8 +24,8 @@ static void	change_sprite_textures(t_sprite *sprites, int sprite_nr)
 	{
 		if ((sprites[i].type & already_done) == 0)
 		{
-			sprites[i].curr_cycle = (sprites[i].curr_cycle + 1) % sprites[i].texture_nbr;
-			*(sprites[i].tex) = *sprites[i].texture_cycle[sprites[i].curr_cycle];
+			sprites[i].curr_cycle = (sprites[i].curr_cycle + 1) % sprites[i].tex_nb;
+			*(sprites[i].tex) = *sprites[i].tex_cycle[sprites[i].curr_cycle];
 			already_done |= sprites[i].type;
 		}
 		i++;

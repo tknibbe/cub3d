@@ -14,6 +14,7 @@
 # define SPRITES_H
 
 # define INVIS_COLOUR 0xC929EBFF
+# define SPRITE_DIV 4
 
 # include "cub3d.h"
 
@@ -37,25 +38,25 @@ typedef struct	s_sprite
 {
 	double			x;
 	double			y;
+	mlx_texture_t	*tex;
+	t_sprt_type		type;
+	mlx_texture_t	**tex_cycle;
+	int				sprite_scale;
+	int				height_offset;
+	int				curr_cycle;
+	int				tex_nb;
 	double			dist_to_player;
 	double			transform_x;
 	double			transform_y;
-	int				sprite_scale;
 	int				sprite_dimension;
 	double			dim_proportion;
 	int				sprite_dimension_half;
 	int				sprite_x_on_screen;
-	int				height_offset;
 	int				transform_offset;
 	int				draw_start_y;
 	int				draw_start_x;
 	int				draw_end_y;
 	int				draw_end_x;
-	mlx_texture_t	*tex;
-	t_sprt_type		type;
-	mlx_texture_t	**texture_cycle;
-	int				curr_cycle;
-	int				texture_nbr;
 }	t_sprite;
 
 void	add_sprite(t_game *game, t_sprite new_sprite);
@@ -66,5 +67,10 @@ void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr);
 void	set_sprite_variables(t_game *game, t_sprite *sprite);
 void	resort_sprites(t_sprite *sprites, int sprite_nr);
 void	initialise_sprites(t_game *game);
+void	initialise_lamps(t_game *game, t_coords *empty_spots, int n);
+void	initialise_cheerleaders(t_game *game, t_coords *empty_spots, int n);
+void	add_type(t_sprite new_sprite, t_game *game, t_coords *empty_spots_coordinates, int empty_spots_nr);
+void	randomise_sprites_positions(t_coords *empty_spots, int empty_spots_nr);
+void	check_for_errors(t_sprite *new_sprite, t_game *game);
 
 #endif

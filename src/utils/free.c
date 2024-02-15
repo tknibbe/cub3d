@@ -38,9 +38,9 @@ static void	free_sprite_type(t_sprite sprite)
 	int	i;
 
 	i = 0;
-	while (i < sprite.texture_nbr)
+	while (i < sprite.tex_nb)
 	{
-		safe_delete_texture(sprite.texture_cycle[i]);
+		safe_delete_texture(sprite.tex_cycle[i]);
 		i++;
 	}
 }
@@ -57,7 +57,7 @@ static void	free_sprites(t_sprite *sprites, int sprite_nr)
 		if ((sprites[i].type & already_done) == 0)
 		{
 			free_sprite_type(sprites[i]);
-			free(sprites[i].texture_cycle);
+			free(sprites[i].tex_cycle);
 			free(sprites[i].tex);
 			already_done |= sprites[i].type;
 		}

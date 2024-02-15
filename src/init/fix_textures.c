@@ -47,9 +47,9 @@ static void fix_sprite_type(t_sprite sprite)
 	int	i;
 
 	i = 0;
-	while (i < sprite.texture_nbr)
+	while (i < sprite.tex_nb)
 	{
-		fix_texture(sprite.texture_cycle[i]);
+		fix_texture(sprite.tex_cycle[i]);
 		i++;
 	}
 }
