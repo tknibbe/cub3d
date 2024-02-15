@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/15 15:17:19 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:19:31 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct	s_game
 	int			map_rows;
 	int			sprite_nr;
 	double		*wall_distances;
+	int			*img_buffer;
 	t_textures	textures;
 	t_player	player;
 	t_images	images;
@@ -124,7 +125,7 @@ void	cursor_hook(double xpos, double ypos, void *param);
 void	rotate(t_player *player, int rotation);
 void	setup_ray_vars(t_ray *ray_vars, t_player player, int screen_x);
 double	fov(double a, double b);
-void	line_to_buffer(int *buffer, t_game *game, t_ray ray_vars, int x);
+void	line_to_buffer(t_game *game, t_ray ray_vars, int x);
 void	buffer_to_img(int *buffer, mlx_image_t *img);
 void	load_door(t_game *game);
 void	check_door(void *game);

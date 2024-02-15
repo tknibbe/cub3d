@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 20:26:40 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/25 19:46:29 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:23:16 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,5 @@ void	free_game_struct(t_game *game)
 	free_sprites(game->sprites, game->sprite_nr);
 	ft_free_array(game->map);
 	free(game->wall_distances);
+	free(game->img_buffer);
 }

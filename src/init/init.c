@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:36 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/02/14 16:20:04 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:22:13 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	initialise_game(t_game *game, char *title)
 {
 //	mlx_win_cursor_t	*cursor;
 
-	game->wall_distances = ft_calloc(WIDTH, sizeof(double));
+	game->wall_distances = ft_calloc(WIDTH, sizeof(double)); //PROTECT
+	game->img_buffer = malloc(sizeof(uint32_t) * (HEIGHT * WIDTH)); // PROTECT
 	game->mlx = mlx_init(WIDTH, HEIGHT, title, true);
 	if (game->mlx == NULL)
 	{
@@ -74,7 +75,6 @@ void	load_door(t_game *game)
 {
 	mlx_texture_t	*texture;
 
-	printf("loading door\n");
 	texture = mlx_load_png("./textures/tknibbe.png");
 	if (!texture)
 		ft_error_and_exit("mlx_load_png() failed\n");
