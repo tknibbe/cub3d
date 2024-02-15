@@ -15,15 +15,16 @@
 // to do
 // get animations going
 // add David as a sprite
-// add sprites in map somehow, so parsing, so w edont hardcode them
+// add sprites in map somehow, so parsing, so we dont hardcode them
 // add comments to stuff so things are more clear
-// look at stuff to maybe optimise, in textures as well, add the halfheights and stuff
-// improve sorting
+// look at stuff to maybe optimise, in textures as well, add the half heights and stuff
 // add maybe to a check for if the player moved so we dont sort or change variables
 // figure out offsets
 // refactor files so its more cleaner
 // add a malloc for the bufefr caus enow valgrind is oooooof
 // figure out how to fix teextures when we will have the same sprite for a lot of stuff
+// make sprite animation more robust and universal
+// improve free later
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 {
 	int	temp_tex_y;

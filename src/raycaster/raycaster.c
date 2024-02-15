@@ -48,8 +48,8 @@ void	ray_caster(t_game *game)
 {
 	int		screen_x;
 	t_ray	ray_vars;
-	int		buffer[WIDTH * HEIGHT]; //change to malloc at least
-//	 int		*buffer = malloc(sizeof(uint32_t) * (WIDTH * HEIGHT));//	[WIDTH * HEIGHT]; //change to malloc at least
+//	int		buffer[WIDTH * HEIGHT]; //change to malloc at least
+	 int		*buffer = malloc(sizeof(uint32_t) * (WIDTH * HEIGHT));//	[WIDTH * HEIGHT]; //change to malloc at least
 
 	// ft_memset(buffer, 0x00FF00, sizeof(uint32_t) * WIDTH * HEIGHT);
 	screen_x = 0;
@@ -68,5 +68,5 @@ void	ray_caster(t_game *game)
 	}
 	buffer_to_img(buffer, game->images.maze);
 	// mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
-//	 free(buffer);
+	 free(buffer);
 }

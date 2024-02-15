@@ -26,6 +26,27 @@ void	print_sprites(t_sprite *sprites, int sprite_nr)
 	printf("\n");
 }
 
+// loops through empty spots and checks if the sprite type
+// in the empty spot corresponds to the current sprite
+// if it does we add the sprite to the array with the
+// coordinates of the empty spot
+void	add_type(t_sprite new_spr, t_game *game, t_coords *empty_spots, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (new_spr.type == empty_spots[i].type)
+		{
+			new_spr.x = empty_spots[i].x + 0.5;
+			new_spr.y = empty_spots[i].y + 0.5;
+			add_sprite(game, new_spr);
+		}
+		i++;
+	}
+}
+
 void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr)
 {
 	int		i;
@@ -42,6 +63,25 @@ void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr)
 	}
 }
 
+void	resort_sprites(t_sprite *sprites, int sprite_nr)
+{
+	int			j;
+	t_sprite	temp;
+
+	j = 0;
+	while (j < sprite_nr - 1)
+	{
+		if (sprites[j].dist_to_player < sprites[j + 1].dist_to_player)
+		{
+			temp = sprites[j];
+			sprites[j] = sprites[j + 1];
+			sprites[j + 1] = temp;
+			break ;
+		}
+		j++;
+	}
+}
+
 void	sort_sprites(t_sprite *sprites, int sprite_nr)
 {
 	int			i;
@@ -51,7 +91,7 @@ void	sort_sprites(t_sprite *sprites, int sprite_nr)
 	i = 0;
 	while (i < sprite_nr - 1)
 	{
-		j = i;
+		j = 0;
 		while (j < sprite_nr - i - 1)
 		{
 			if (sprites[j].dist_to_player < sprites[j + 1].dist_to_player)
@@ -84,28 +124,4 @@ void	add_sprite(t_game *game, t_sprite new_sprite)
 	game->sprite_nr++;
 	free(game->sprites);
 	game->sprites = new_sprites;
-}
-
-void	initialise_sprites(t_game *game)
-{
-	t_sprite	new_sprite;
-
-	new_sprite.sprite_scale = 2;
-	new_sprite.x = 7.5;
-	new_sprite.y = 7.5;
-	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
-	new_sprite.height_offset = -new_sprite.tex->height;
-	add_sprite(game, new_sprite);
-	new_sprite.x = 11.5;
-	new_sprite.y = 1.5;
-	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
-	add_sprite(game, new_sprite);
-	new_sprite.x = 1.5;
-	new_sprite.y = 1.5;
-	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
-	add_sprite(game, new_sprite);
-	new_sprite.x = 10.5;
-	new_sprite.y = 1.5;
-	new_sprite.tex = mlx_load_png("textures/tymon_sprite_teeth.png");
-	add_sprite(game, new_sprite);
 }

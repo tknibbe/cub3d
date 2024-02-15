@@ -6,12 +6,15 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 20:19:37 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/02/14 15:16:34 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:05:20 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
+
+#define FLOOR '0'
+#define DOOR_OPEN '3'
 
 // this function checks what direction we're moving into based on the
 // direction vector and the key we pressed (indicated by direction) then
@@ -45,11 +48,11 @@ static void	move(t_player *player, t_vector dir, int direction, char **grid)
 	new_pos.x = player->pos.x + dir.x * player->move_speed * direction;
 	new_pos.y = player->pos.y + dir.y * player->move_speed * direction;
 	sign = get_sign(dir, direction);
-	if (grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == '0' || \
-			grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == '3')
+	if (grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == FLOOR || \
+			grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == DOOR_OPEN)
 		player->pos.x = new_pos.x;
-	if (grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == '0' || \
-		grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == '3')
+	if (grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == FLOOR || \
+		grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == DOOR_OPEN)
 		player->pos.y = new_pos.y;
 	player->has_moved = true;
 }

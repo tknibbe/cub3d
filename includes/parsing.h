@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:17:53 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/08 12:43:01 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:59:24 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 #include <fcntl.h>
 #include "cub3d.h"
+
+#define FLOOR		'0'
+#define WALL		'1'
+#define DOOR_CLOSED	'2'
+#define DOOR_OPEN	'3'
+#define ENEMY		'4'
 
 typedef struct s_map t_map;
 

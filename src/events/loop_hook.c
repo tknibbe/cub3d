@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 14:46:29 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/14 16:08:03 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 15:18:34 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,10 @@ void	loop_hook(void *param)
 		draw_sprites(game);
 	}
 	frame++;
-	if (frame == 5)
+	if (frame == 10)
 	{
 		frame = 0;
-		adjust_texture(game->textures.north);
-		adjust_texture(game->textures.east);
-		adjust_texture(game->textures.south);
-		adjust_texture(game->textures.west);
+		adjust_textures(game);
 		ray_caster(game);
 		draw_sprites(game);
 	}

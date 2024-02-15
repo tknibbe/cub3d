@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:53:33 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/07 15:59:11 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:01:35 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	check_invalid_chars(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'\
+		if (line[i] != FLOOR && line[i] != WALL && line[i] != 'N' && line[i] != 'S'\
 			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ' \
-			&& line[i] != '2')
+			&& line[i] != DOOR_CLOSED && line[i] != ENEMY)
 			ft_error_and_exit("Error, invalid char found in map\n");
 		i++;
 	}

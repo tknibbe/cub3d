@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/14 15:47:36 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 15:17:19 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,6 @@ void	fix_textures(t_game *game);
 bool	door_status(char **map, t_vector pos, char stat);
 void	close_door(char **map, t_vector pos);
 void	open_door(char **map, t_vector pos);
+void	adjust_textures(t_game *game);
+
 #endif
