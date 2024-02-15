@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:10:57 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/08 15:26:13 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:10:48 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	draw_wall(t_ray ray, t_game *game, int *buffer, int x)
 	if (ray.side == 1 && ray.ray.y < 0)
 		ray.texx = ray.tex_width - ray.texx - 1;
 	ray.step = (double) ray.tex_height / ray.wall_height;
-	ray.texpos = (ray.wall_start - HEIGHT / 2 + ray.wall_height / 2) * ray.step;
+	ray.texpos = (ray.wall_start - HALF_HEIGHT + ray.wall_height / 2) * ray.step;
 	while (ray.y < ray.wall_end)
 	{
 		ray.texy = (int)ray.texpos;
@@ -81,10 +81,10 @@ void	line_to_buffer(int *buffer, t_game *game, t_ray ray_vars, int x)
 {
 	ray_vars.y = 0;
 	ray_vars.wall_height = (int)(HEIGHT / ray_vars.dist_to_wall);
-	ray_vars.wall_start = -ray_vars.wall_height / 2 + HEIGHT / 2;
+	ray_vars.wall_start = -ray_vars.wall_height / 2 + HALF_HEIGHT;
 	if (ray_vars.wall_start < 0)
 		ray_vars.wall_start = 0;
-	ray_vars.wall_end = ray_vars.wall_height / 2 + HEIGHT / 2;
+	ray_vars.wall_end = ray_vars.wall_height / 2 + HALF_HEIGHT;
 	if (ray_vars.wall_end >= HEIGHT)
 		ray_vars.wall_end = HEIGHT - 1;
 	set_texture_direction(game, &ray_vars);
