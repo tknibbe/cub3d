@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmolenaa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 21:04:34 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/23 21:04:37 by jmolenaa         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:06:38 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	draw_player(t_game *game, t_minimap *minimap, t_vector start)
 		x = 0;
 		while (x < PLAYER_SIZE)
 		{
-			mlx_put_pixel(minimap->img, start_x + x, start_y + y, 0xFF0000FF);
+			mlx_put_pixel(minimap->img, start_x + x, start_y + y, 0x0000FFFF);
 			x++;
 		}
 		y++;

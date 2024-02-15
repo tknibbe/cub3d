@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:23:25 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/08 14:55:19 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:47:36 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ typedef struct	s_images
 	mlx_image_t	*minimap;
 	mlx_image_t	*maze;
 	mlx_image_t	*fps;
-	mlx_image_t *door_help;
+	mlx_image_t *door_open_text;
+	mlx_image_t *door_close_text;
 	mlx_image_t	*player;
 }	t_images;
 
@@ -108,7 +109,8 @@ typedef struct	s_game
 	mlx_t		*mlx;
 }	t_game;
 
-void	key_hook(void *param);
+void	loop_hook(void *param);
+void	key_hook(mlx_key_data_t keydata, void *param);
 void	fps_counter(void *mlxshit);
 void	initialise_game(t_game *game, char *title);
 void	initialise_sprites(t_game *game);
@@ -126,7 +128,9 @@ void	line_to_buffer(int *buffer, t_game *game, t_ray ray_vars, int x);
 void	buffer_to_img(int *buffer, mlx_image_t *img);
 void	load_door(t_game *game);
 void	check_door(void *game);
-void	open_door(t_game *game);
+void	interact_door(t_game *game);
 void	fix_textures(t_game *game);
-
+bool	door_status(char **map, t_vector pos, char stat);
+void	close_door(char **map, t_vector pos);
+void	open_door(char **map, t_vector pos);
 #endif

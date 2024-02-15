@@ -6,23 +6,26 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 14:22:31 by tymonknibbe       #+#    #+#             */
-/*   Updated: 2024/02/08 15:18:33 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:49:24 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	door_is_near(char **map, t_vector pos)
+#define DOOR_CLOSED '2'
+#define DOOR_OPENED '3'
+
+int	door_is_near(char **map, t_vector pos, char door_status)
 {
 	int	new_x;
 	int	new_y;
 
 	new_x = (int) pos.x;
 	new_y = (int) pos.y;
-	if (map[new_y - 1][new_x] == '2' ||
-		map[new_y + 1][new_x] == '2' ||
-		map[new_y][new_x - 1] == '2' ||
-		map[new_y][new_x + 1] == '2')
+	if (map[new_y - 1][new_x] == door_status ||
+		map[new_y + 1][new_x] == door_status ||
+		map[new_y][new_x - 1] == door_status ||
+		map[new_y][new_x + 1] == door_status)
 		return (true);
 	return (false);
 }
@@ -32,49 +35,65 @@ void	check_door(void *param)
 	t_game	*game;
 
 	game = param;
-	if (door_is_near(game->map, game->player.pos))
-		game->images.door_help->enabled = true;
+	if (door_is_near(game->map, game->player.pos, DOOR_CLOSED))
+		game->images.door_open_text->enabled = true;
 	else
-		game->images.door_help->enabled = false;
+		game->images.door_open_text->enabled = false;
+	if (door_is_near(game->map, game->player.pos, DOOR_OPENED))
+		game->images.door_close_text->enabled = true;
+	else
+		game->images.door_close_text->enabled = false;
+		
 }
 
-void	try_open(char **map, t_vector pos)
+void	open_door(char **map, t_vector pos)
 {
 	int	new_x;
 	int	new_y;
 
 	new_x = (int) pos.x;
 	new_y = (int) pos.y;
-	if (map[new_y - 1][new_x] == '2')
-		map[new_y - 1][new_x] = '0';
-	else if (map[new_y + 1][new_x] == '2')
-		map[new_y + 1][new_x] = '0';
-	else if (map[new_y][new_x - 1] == '2')
-		map[new_y][new_x - 1] = '0';
-	else if (map[new_y][new_x + 1] == '2')
-		map[new_y][new_x + 1] = '0';
+	if (map[new_y - 1][new_x] == DOOR_CLOSED)
+		map[new_y - 1][new_x] = DOOR_OPENED;
+	else if (map[new_y + 1][new_x] == DOOR_CLOSED)
+		map[new_y + 1][new_x] = DOOR_OPENED;
+	else if (map[new_y][new_x - 1] == DOOR_CLOSED)
+		map[new_y][new_x - 1] = DOOR_OPENED;
+	else if (map[new_y][new_x + 1] == DOOR_CLOSED)
+		map[new_y][new_x + 1] = DOOR_OPENED;
 }
 
-void	open_door(t_game *game)
+void	close_door(char **map, t_vector pos)
 {
-	if (mlx_is_key_down(game->mlx, MLX_KEY_E))
-	{
-		try_open(game->map, game->player.pos);
-		game->player.has_moved = true;
-	}
+	int	new_x;
+	int	new_y;
+
+	new_x = (int) pos.x;
+	new_y = (int) pos.y;
+	if (map[new_y - 1][new_x] == DOOR_OPENED)
+		map[new_y - 1][new_x] = DOOR_CLOSED;
+	else if (map[new_y + 1][new_x] == DOOR_OPENED)
+		map[new_y + 1][new_x] = DOOR_CLOSED;
+	else if (map[new_y][new_x - 1] == DOOR_OPENED)
+		map[new_y][new_x - 1] = DOOR_CLOSED;
+	else if (map[new_y][new_x + 1] == DOOR_OPENED)
+		map[new_y][new_x + 1] = DOOR_CLOSED;
 }
 
-void	load_door(t_game *game)
+bool	door_status(char **map, t_vector pos, char stat)
 {
-	mlx_texture_t	*texture;
+	int	new_x;
+	int	new_y;
 
-	texture = mlx_load_png("./textures/tknibbe.png");
-	if (!texture)
-		ft_error_and_exit("mlx_load_png() failed\n");
-	game->textures.door = texture;
-	game->images.door_help = mlx_put_string(game->mlx, \
-			"press 'E' to open door", WIDTH / 2 - 100, HEIGHT - 100);
-	if (!game->images.door_help)
-		ft_error_and_exit("mlx_load_png messed up man :(\n");
-	game->images.door_help->enabled = false;
+	new_x = (int) pos.x;
+	new_y = (int) pos.y;
+	if (map[new_y - 1][new_x] == stat)
+		return true;
+	else if (map[new_y + 1][new_x] == stat)
+		return true;
+	else if (map[new_y][new_x - 1] == stat)
+		return true;
+	else if (map[new_y][new_x + 1] == stat)
+		return true;
+	return false;
 }

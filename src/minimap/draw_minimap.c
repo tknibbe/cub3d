@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmolenaa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:41:41 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/23 20:41:42 by jmolenaa         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:50:25 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	colour(char **map, t_vector start, int x, double y_coord)
 	{
 		return (0xFFFFFFFF);
 	}
-	else if (map[(int)y_coord][(int)x_coord] == '2')
+	else if (map[(int)y_coord][(int)x_coord] == '2' || \
+		map[(int)y_coord][(int)x_coord] == '3')
 	{
 		return (0xA52A2AFF);
 	}

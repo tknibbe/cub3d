@@ -26,6 +26,7 @@ SRC_FILES =	main.c \
 			input_handling/get_map/list_to_2d_array.c \
 			input_handling/get_map/validate_map.c \
 			events/key_hook.c \
+			events/loop_hook.c \
 			events/fps.c \
 			init/init_player.c \
 			init/init.c \
