@@ -76,7 +76,6 @@ void	resort_sprites(t_sprite *sprites, int sprite_nr)
 			temp = sprites[j];
 			sprites[j] = sprites[j + 1];
 			sprites[j + 1] = temp;
-			break ;
 		}
 		j++;
 	}

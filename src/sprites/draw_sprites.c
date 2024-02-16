@@ -13,18 +13,13 @@
 #include "cub3d.h"
 
 // to do
-// get animations going
+// think about sort stuff. write a new one?
 // add David as a sprite
-// add sprites in map somehow, so parsing, so we dont hardcode them
 // add comments to stuff so things are more clear
 // look at stuff to maybe optimise, in textures as well, add the half heights and stuff
 // add maybe to a check for if the player moved so we dont sort or change variables
 // figure out offsets
 // refactor files so its more cleaner
-// add a malloc for the bufefr caus enow valgrind is oooooof
-// figure out how to fix teextures when we will have the same sprite for a lot of stuff
-// make sprite animation more robust and universal
-// improve free later
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 {
 	int	temp_tex_y;
@@ -70,7 +65,7 @@ void	draw_sprites(t_game *game)
 	int	i;
 
 	calc_dist(game->player.pos, game->sprites, game->sprite_nr);
-	sort_sprites(game->sprites, game->sprite_nr);
+	resort_sprites(game->sprites, game->sprite_nr);
 	i = 0;
 	while (i < game->sprite_nr)
 	{
