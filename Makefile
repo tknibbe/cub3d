@@ -41,6 +41,7 @@ SRC_FILES =	main.c \
 			sprites/set_sprite_variables.c \
 			sprites/initialise_sprites.c \
 			sprites/initialise_lamps.c \
+			sprites/initialise_enemies.c \
 			sprites/initialise_cheerleaders.c \
 			sprites/randomise_sprites.c \
 

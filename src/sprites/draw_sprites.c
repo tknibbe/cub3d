@@ -12,6 +12,8 @@
 
 #include "cub3d.h"
 
+#define INVIS_COLOUR 0xC929EBFF
+
 // to do
 // think about sort stuff. write a new one?
 // add David as a sprite
@@ -20,6 +22,15 @@
 // add maybe to a check for if the player moved so we dont sort or change variables
 // figure out offsets
 // refactor files so its more cleaner
+// enemies
+// make them lose you the game if you walk into them
+// add maybe flyers and goombas
+// add flying and crouching
+// make them static or moving? this will make it hard to check for colission
+// otherwise it's just checking if we're on a tyle with an enemy and
+// if we're like within 0.25 of the middle of the tile
+// how do we make the lose thing, we cna have a you lose thing
+// then close the window? I guess we make that
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 {
 	int	temp_tex_y;

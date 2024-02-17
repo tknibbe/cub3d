@@ -30,11 +30,13 @@ void	print_sprites(t_sprite *sprites, int sprite_nr)
 // in the empty spot corresponds to the current sprite
 // if it does we add the sprite to the array with the
 // coordinates of the empty spot
-void	add_type(t_sprite new_spr, t_game *game, t_coords *empty_spots, int n)
+bool	add_type(t_sprite new_spr, t_game *game, t_coords *empty_spots, int n)
 {
-	int	i;
+	int		i;
+	bool	was_added;
 
 	i = 0;
+	was_added = false;
 	while (i < n)
 	{
 		if (new_spr.type == empty_spots[i].type)
@@ -42,9 +44,11 @@ void	add_type(t_sprite new_spr, t_game *game, t_coords *empty_spots, int n)
 			new_spr.x = empty_spots[i].x + 0.5;
 			new_spr.y = empty_spots[i].y + 0.5;
 			add_sprite(game, new_spr);
+			was_added = true;
 		}
 		i++;
 	}
+	return (was_added);
 }
 
 void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr)

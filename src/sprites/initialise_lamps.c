@@ -12,14 +12,14 @@
 
 #include "cub3d.h"
 
-void	check_for_errors(t_sprite *new_sprite, t_game *game)
+void	check_for_errors(mlx_texture_t	**textures, t_game *game, int n)
 {
 	int	i;
 
 	i = 0;
-	while (i < new_sprite->tex_nb)
+	while (i < n)
 	{
-		if (new_sprite->tex_cycle[i] == NULL)
+		if (textures[i] == NULL)
 			ft_mlx_error_and_exit(game);
 		i++;
 	}
@@ -29,7 +29,7 @@ static void	load_textures(t_sprite *new_sprite, t_game *game)
 {
 	new_sprite->tex_cycle[0] = mlx_load_png("textures/tymon_sprite_teeth.png");
 	new_sprite->tex_cycle[1] = mlx_load_png("textures/tymon_sprite.png");
-	check_for_errors(new_sprite, game);
+	check_for_errors(new_sprite->tex_cycle, game, new_sprite->tex_nb);
 	*new_sprite->tex = *new_sprite->tex_cycle[0];
 }
 
@@ -37,7 +37,7 @@ static void	load_textures(t_sprite *new_sprite, t_game *game)
 // only thing that differs is the coordinates of the sprite
 // the sprites share the pointers to the textures,
 // so we only allocate once per sprite type
-// they also contain z tex variable that hold the value
+// they also contain a tex variable that hold the value
 // of the texture currently displayed
 // (changes every couple frames for animation)
 // scale decides how big the sprite is
@@ -57,5 +57,6 @@ void	initialise_lamps(t_game *game, t_coords *empty_spots, int n)
 		ft_error_and_exit("Malloc failure\n");
 	load_textures(&new_sprite, game);
 	new_sprite.height_offset = -1 * (int)new_sprite.tex->height;
-	add_type(new_sprite, game, empty_spots, n);
+	if (add_type(new_sprite, game, empty_spots, n) == false)
+		free_sprite_type(new_sprite);
 }

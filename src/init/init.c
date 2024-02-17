@@ -57,10 +57,12 @@ void	initialise_game(t_game *game, char *title)
 	initialise_sprites(game);
 	fix_textures(game);
 	calc_dist(game->player.pos, game->sprites, game->sprite_nr);
-	print_sprites(game->sprites, game->sprite_nr);
 	sort_sprites(game->sprites, game->sprite_nr);
-	print_sprites(game->sprites, game->sprite_nr);
 	draw_sprites(game);
+//	for(int i = 0; game->map[i]; i++)
+//	{
+//		printf("%s\n", game->map[i]);
+//	}
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
 //	cursor = mlx_create_cursor(game->textures.east);

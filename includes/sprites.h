@@ -13,9 +13,6 @@
 #ifndef SPRITES_H
 # define SPRITES_H
 
-# define INVIS_COLOUR 0xC929EBFF
-# define SPRITE_DIV 4
-
 # include "cub3d.h"
 
 typedef struct s_game t_game;
@@ -24,7 +21,9 @@ typedef enum	e_sprt_type
 {
 	NOTHING = 0,
 	CHEERLEADER = 1,
-	LAMP = 2
+	LAMP = 2,
+	GROUND_ENEMY = 4,
+	FLYING_ENEMY = 8
 }	t_sprt_type;
 
 typedef struct	s_coords
@@ -69,8 +68,11 @@ void	resort_sprites(t_sprite *sprites, int sprite_nr);
 void	initialise_sprites(t_game *game);
 void	initialise_lamps(t_game *game, t_coords *empty_spots, int n);
 void	initialise_cheerleaders(t_game *game, t_coords *empty_spots, int n);
-void	add_type(t_sprite new_sprite, t_game *game, t_coords *empty_spots_coordinates, int empty_spots_nr);
+void	initialise_enemies(t_game *game);
+bool	add_type(t_sprite new_sprite, t_game *game, t_coords *empty_spots_coordinates, int empty_spots_nr);
 void	randomise_sprites_positions(t_coords *empty_spots, int empty_spots_nr);
-void	check_for_errors(t_sprite *new_sprite, t_game *game);
+void	free_sprite_type(t_sprite sprite);
+//void	check_for_errors(t_sprite *new_sprite, t_game *game);
+void	check_for_errors(mlx_texture_t	**textures, t_game *game, int n);
 
 #endif

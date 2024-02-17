@@ -79,5 +79,6 @@ void	initialise_sprites(t_game *game)
 	randomise_sprites_positions(empty_spots, nr_empty_spots);
 	initialise_cheerleaders(game, empty_spots, nr_empty_spots);
 	initialise_lamps(game, empty_spots, nr_empty_spots);
+	initialise_enemies(game);
 	free(empty_spots);
 }

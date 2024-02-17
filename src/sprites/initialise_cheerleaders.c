@@ -16,7 +16,7 @@ static void	load_textures(t_sprite *new_sprite, t_game *game)
 {
 	new_sprite->tex_cycle[0] = mlx_load_png("textures/tymon_sprite_teeth.png");
 	new_sprite->tex_cycle[1] = mlx_load_png("textures/tymon_sprite.png");
-	check_for_errors(new_sprite, game);
+	check_for_errors(new_sprite->tex_cycle, game, new_sprite->tex_nb);
 	*new_sprite->tex = *new_sprite->tex_cycle[0];
 }
 
@@ -44,5 +44,6 @@ void	initialise_cheerleaders(t_game *game, t_coords *empty_spots, int n)
 		ft_error_and_exit("Malloc failure\n");
 	load_textures(&new_sprite, game);
 	new_sprite.height_offset = (int)new_sprite.tex->height;
-	add_type(new_sprite, game, empty_spots, n);
+	if (add_type(new_sprite, game, empty_spots, n) == false)
+		free_sprite_type(new_sprite);
 }

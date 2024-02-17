@@ -33,7 +33,7 @@ static void	safe_delete_texture(mlx_texture_t *texture)
 		mlx_delete_texture(texture);
 }
 
-static void	free_sprite_type(t_sprite sprite)
+void	free_sprite_type(t_sprite sprite)
 {
 	int	i;
 
@@ -43,6 +43,8 @@ static void	free_sprite_type(t_sprite sprite)
 		safe_delete_texture(sprite.tex_cycle[i]);
 		i++;
 	}
+	free(sprite.tex_cycle);
+	free(sprite.tex);
 }
 
 static void	free_sprites(t_sprite *sprites, int sprite_nr)
@@ -56,9 +58,8 @@ static void	free_sprites(t_sprite *sprites, int sprite_nr)
 	{
 		if ((sprites[i].type & already_done) == 0)
 		{
+			printf("%d\n", sprites[i].type);
 			free_sprite_type(sprites[i]);
-			free(sprites[i].tex_cycle);
-			free(sprites[i].tex);
 			already_done |= sprites[i].type;
 		}
 		i++;

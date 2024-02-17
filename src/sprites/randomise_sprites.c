@@ -14,6 +14,8 @@
 #include "libft.h"
 #include <time.h>
 
+#define SPRITE_DIV 4
+
 static bool	already_rolled(int rolled_number, int *selected_numbers, int i)
 {
 	while (i > 0)
