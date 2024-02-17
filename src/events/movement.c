@@ -15,6 +15,7 @@
 
 #define FLOOR '0'
 #define DOOR_OPEN '3'
+#define ENEMY '4'
 
 // this function checks what direction we're moving into based on the
 // direction vector and the key we pressed (indicated by direction) then
@@ -49,9 +50,11 @@ static void	move(t_player *player, t_vector dir, int direction, char **grid)
 	new_pos.y = player->pos.y + dir.y * player->move_speed * direction;
 	sign = get_sign(dir, direction);
 	if (grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == FLOOR || \
-			grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == DOOR_OPEN)
+		grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == ENEMY || \
+		grid[(int)player->pos.y][(int)(new_pos.x + 0.3 * sign.x)] == DOOR_OPEN)
 		player->pos.x = new_pos.x;
 	if (grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == FLOOR || \
+		grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == ENEMY || \
 		grid[(int)(new_pos.y + 0.3 * sign.y)][(int)player->pos.x] == DOOR_OPEN)
 		player->pos.y = new_pos.y;
 	player->has_moved = true;

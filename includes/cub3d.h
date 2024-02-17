@@ -135,5 +135,6 @@ bool	door_status(char **map, t_vector pos, char stat);
 void	close_door(char **map, t_vector pos);
 void	open_door(char **map, t_vector pos);
 void	adjust_textures(t_game *game);
+void	check_death(t_game *game);
 
 #endif

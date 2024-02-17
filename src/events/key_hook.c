@@ -20,20 +20,6 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	t_game	*game;
 
 	game = param;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_MINUS) && game->player.fov > 50)
-	{
-		game->player.plane.x *= 0.95;
-		game->player.plane.y *= 0.95;
-		game->player.fov = fov(game->player.plane.x, game->player.plane.y);
-	}
-	if (mlx_is_key_down(game->mlx, MLX_KEY_EQUAL) && game->player.fov < 100)
-	{
-		game->player.plane.x *= 1.05;
-		game->player.plane.y *= 1.05;
-		game->player.fov = fov(game->player.plane.x, game->player.plane.y);
-	}
-
-	game = param;
 	if (keydata.key == MLX_KEY_E && keydata.action == MLX_PRESS)
 	{
 		if (door_status(game->map, game->player.pos, DOOR_CLOSED))

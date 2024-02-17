@@ -54,6 +54,7 @@ void	loop_hook(void *param)
 	fov_change(&game->player, game);
 	if (game->player.has_moved == true)
 	{
+		check_death(game);
 		ray_caster(game);
 		game->player.has_moved = false;
 		draw_sprites(game);

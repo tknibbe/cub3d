@@ -29,13 +29,14 @@ SRC_FILES =	main.c \
 			events/loop_hook.c \
 			events/fps.c \
 			events/change_textures.c \
+			events/death.c \
+			events/movement.c \
+			events/cursor.c \
+			events/door.c \
 			init/init_player.c \
 			init/init.c \
 			init/fix_textures.c \
 			textures/texture.c \
-			events/movement.c \
-			events/cursor.c \
-			events/door.c \
 			sprites/draw_sprites.c \
 			sprites/sprite_utils.c \
 			sprites/set_sprite_variables.c \
