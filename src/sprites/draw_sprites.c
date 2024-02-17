@@ -20,13 +20,10 @@
 // add comments to stuff so things are more clear
 // look at stuff to maybe optimise, in textures as well, add the half heights and stuff
 // add maybe to a check for if the player moved so we dont sort or change variables
-// figure out offsets
 // refactor files so its more cleaner
 // enemies
 // make them lose you the game if you walk into them
-// add maybe flyers and goombas
 // add flying and crouching
-// make them static or moving? this will make it hard to check for colission
 // otherwise it's just checking if we're on a tyle with an enemy and
 // if we're like within 0.25 of the middle of the tile
 // how do we make the lose thing, we cna have a you lose thing

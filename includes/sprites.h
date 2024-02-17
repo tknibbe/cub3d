@@ -58,7 +58,6 @@ typedef struct	s_sprite
 	int				draw_end_x;
 }	t_sprite;
 
-void	add_sprite(t_game *game, t_sprite new_sprite);
 void	draw_sprites(t_game *game);
 void	sort_sprites(t_sprite *sprites, int sprite_nr);
 void	print_sprites(t_sprite *sprites, int sprite_nr); // remove later
@@ -69,10 +68,11 @@ void	initialise_sprites(t_game *game);
 void	initialise_lamps(t_game *game, t_coords *empty_spots, int n);
 void	initialise_cheerleaders(t_game *game, t_coords *empty_spots, int n);
 void	initialise_enemies(t_game *game);
-bool	add_type(t_sprite new_sprite, t_game *game, t_coords *empty_spots_coordinates, int empty_spots_nr);
+bool	add_type(t_sprite new_spr, t_game *game, t_coords *empty_spots, int n);
 void	randomise_sprites_positions(t_coords *empty_spots, int empty_spots_nr);
 void	free_sprite_type(t_sprite sprite);
-//void	check_for_errors(t_sprite *new_sprite, t_game *game);
-void	check_for_errors(mlx_texture_t	**textures, t_game *game, int n);
+void	check_for_errors(t_sprite *new_sprite, t_game *game);
+bool	is_type_in_array(t_sprite *sprites, int sprite_nr, t_sprt_type type);
+void	add_enemies(t_game *game, t_sprite ground_enemy, t_sprite flying_enemy);
 
 #endif

@@ -16,7 +16,7 @@ static void	load_textures(t_sprite *new_sprite, t_game *game)
 {
 	new_sprite->tex_cycle[0] = mlx_load_png("textures/tymon_sprite_teeth.png");
 	new_sprite->tex_cycle[1] = mlx_load_png("textures/tymon_sprite.png");
-	check_for_errors(new_sprite->tex_cycle, game, new_sprite->tex_nb);
+	check_for_errors(new_sprite, game);
 	*new_sprite->tex = *new_sprite->tex_cycle[0];
 }
 

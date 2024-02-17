@@ -12,24 +12,11 @@
 
 #include "cub3d.h"
 
-void	check_for_errors(mlx_texture_t	**textures, t_game *game, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		if (textures[i] == NULL)
-			ft_mlx_error_and_exit(game);
-		i++;
-	}
-}
-
 static void	load_textures(t_sprite *new_sprite, t_game *game)
 {
 	new_sprite->tex_cycle[0] = mlx_load_png("textures/tymon_sprite_teeth.png");
 	new_sprite->tex_cycle[1] = mlx_load_png("textures/tymon_sprite.png");
-	check_for_errors(new_sprite->tex_cycle, game, new_sprite->tex_nb);
+	check_for_errors(new_sprite, game);
 	*new_sprite->tex = *new_sprite->tex_cycle[0];
 }
 

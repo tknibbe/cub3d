@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
 
 void	print_sprites(t_sprite *sprites, int sprite_nr)
 {
@@ -24,31 +23,6 @@ void	print_sprites(t_sprite *sprites, int sprite_nr)
 		i++;
 	}
 	printf("\n");
-}
-
-// loops through empty spots and checks if the sprite type
-// in the empty spot corresponds to the current sprite
-// if it does we add the sprite to the array with the
-// coordinates of the empty spot
-bool	add_type(t_sprite new_spr, t_game *game, t_coords *empty_spots, int n)
-{
-	int		i;
-	bool	was_added;
-
-	i = 0;
-	was_added = false;
-	while (i < n)
-	{
-		if (new_spr.type == empty_spots[i].type)
-		{
-			new_spr.x = empty_spots[i].x + 0.5;
-			new_spr.y = empty_spots[i].y + 0.5;
-			add_sprite(game, new_spr);
-			was_added = true;
-		}
-		i++;
-	}
-	return (was_added);
 }
 
 void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr)
@@ -109,22 +83,16 @@ void	sort_sprites(t_sprite *sprites, int sprite_nr)
 	}
 }
 
-void	add_sprite(t_game *game, t_sprite new_sprite)
+bool	is_type_in_array(t_sprite *sprites, int sprite_nr, t_sprt_type type)
 {
-	int			i;
-	t_sprite	*new_sprites;
+	int		i;
 
-	new_sprites = ft_calloc(game->sprite_nr + 1, sizeof(t_sprite));
-	if (new_sprites == NULL)
-		ft_error_and_exit("Malloc failure\n");
 	i = 0;
-	while (i < game->sprite_nr)
+	while (i < sprite_nr)
 	{
-		new_sprites[i] = game->sprites[i];
+		if (sprites[i].type == type)
+			return (true);
 		i++;
 	}
-	new_sprites[i] = new_sprite;
-	game->sprite_nr++;
-	free(game->sprites);
-	game->sprites = new_sprites;
+	return (false);
 }
