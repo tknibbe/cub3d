@@ -74,5 +74,6 @@ void	free_sprite_type(t_sprite sprite);
 void	check_for_errors(t_sprite *new_sprite, t_game *game);
 bool	is_type_in_array(t_sprite *sprites, int sprite_nr, t_sprt_type type);
 void	add_enemies(t_game *game, t_sprite ground_enemy, t_sprite flying_enemy);
+void	load_textures(char *path, t_sprite *new_sprite);
 
 #endif

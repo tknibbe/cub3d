@@ -11,37 +11,17 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <time.h>
-
-static void	load_textures_ground(t_sprite *new_sprite, t_game *game)
-{
-	new_sprite->tex_cycle[0] = mlx_load_png("textures/tymon.png");
-	new_sprite->tex_cycle[1] = mlx_load_png("textures/roodmuurtje.png");
-	check_for_errors(new_sprite, game);
-	*new_sprite->tex = *new_sprite->tex_cycle[0];
-}
-
-static void	load_textures_flying(t_sprite *new_sprite, t_game *game)
-{
-	new_sprite->tex_cycle[0] = mlx_load_png("textures/tymon.png");
-	new_sprite->tex_cycle[1] = mlx_load_png("textures/geelmuurtje.png");
-	check_for_errors(new_sprite, game);
-	*new_sprite->tex = *new_sprite->tex_cycle[0];
-}
 
 static t_sprite	initialise_flying_enemy(t_game *game)
 {
 	t_sprite	new_sprite;
 
 	new_sprite.sprite_scale = 3;
-	new_sprite.tex_nb = 2;
 	new_sprite.type = FLYING_ENEMY;
 	new_sprite.curr_cycle = 0;
-	new_sprite.tex_cycle = malloc(sizeof(mlx_texture_t *) * new_sprite.tex_nb);
-	new_sprite.tex = malloc(sizeof(mlx_texture_t));
-	if (new_sprite.tex_cycle == NULL || new_sprite.tex == NULL)
-		ft_error_and_exit("Malloc failure\n");
-	load_textures_flying(&new_sprite, game);
+	load_textures("textures/enemy_flying/", &new_sprite);
+	check_for_errors(&new_sprite, game);
+	*new_sprite.tex = *new_sprite.tex_cycle[0];
 	new_sprite.height_offset = -1 * (int)new_sprite.tex->height;
 	return (new_sprite);
 }
@@ -51,14 +31,11 @@ static t_sprite	initialise_ground_enemy(t_game *game)
 	t_sprite	new_sprite;
 
 	new_sprite.sprite_scale = 3;
-	new_sprite.tex_nb = 2;
 	new_sprite.type = GROUND_ENEMY;
 	new_sprite.curr_cycle = 0;
-	new_sprite.tex_cycle = malloc(sizeof(mlx_texture_t *) * new_sprite.tex_nb);
-	new_sprite.tex = malloc(sizeof(mlx_texture_t));
-	if (new_sprite.tex_cycle == NULL || new_sprite.tex == NULL)
-		ft_error_and_exit("Malloc failure\n");
-	load_textures_ground(&new_sprite, game);
+	load_textures("textures/enemy_ground/", &new_sprite);
+	check_for_errors(&new_sprite, game);
+	*new_sprite.tex = *new_sprite.tex_cycle[0];
 	new_sprite.height_offset = (int)new_sprite.tex->height;
 	return (new_sprite);
 }
@@ -73,7 +50,7 @@ static t_sprite	initialise_ground_enemy(t_game *game)
 // scale decides how big the sprite is
 // height offset sets how high the sprite is on the screen
 // enemies are on the ground
-void	initialise_enemies(t_game *game)
+void	lol(t_game *game)
 {
 	t_sprite		ground_enemy;
 	t_sprite		flying_enemy;

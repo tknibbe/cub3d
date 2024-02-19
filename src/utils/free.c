@@ -58,7 +58,6 @@ static void	free_sprites(t_sprite *sprites, int sprite_nr)
 	{
 		if ((sprites[i].type & already_done) == 0)
 		{
-			printf("%d\n", sprites[i].type);
 			free_sprite_type(sprites[i]);
 			already_done |= sprites[i].type;
 		}

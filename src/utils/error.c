@@ -43,6 +43,13 @@ void	ft_error_and_exit(char *error_str)
  * Writes an error using mlx error function, frees stuff and exits \n
  * Use for mlx functions
  */
+
+void	ft_exit_with_perror()
+{
+	perror("cub3D");
+	exit(EXIT_FAILURE);
+}
+
 void	ft_mlx_error_and_exit(t_game *game)
 {
 	const char	*error_string = mlx_strerror(mlx_errno);

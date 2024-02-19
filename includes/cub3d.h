@@ -136,5 +136,6 @@ void	close_door(char **map, t_vector pos);
 void	open_door(char **map, t_vector pos);
 void	adjust_textures(t_game *game);
 void	check_death(t_game *game);
+void	ft_exit_with_perror();
 
 #endif

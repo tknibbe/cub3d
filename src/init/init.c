@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 #include "libft.h"
+#include <errno.h>
 
 static void	initialise_icon(t_game *game)
 {
