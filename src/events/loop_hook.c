@@ -60,7 +60,7 @@ void	loop_hook(void *param)
 		draw_sprites(game);
 	}
 	frame++;
-	if (frame == 10)
+	if (frame == 5)
 	{
 		frame = 0;
 		adjust_textures(game);
