@@ -16,17 +16,14 @@
 
 #define ENEMY '4'
 
-bool	set_transparency(mlx_image_t *you_lost)
+static bool	adjust_alpha_until_max(mlx_image_t *you_lost)
 {
 	static int		time;
 	unsigned int	x;
 	unsigned int	y;
 
 	if (time == 63)
-	{
-		sleep(2);;
 		return (true);
-	}
 	y = 0;
 	while (y < you_lost->height)
 	{
@@ -64,13 +61,12 @@ static void	display_death_screen(t_game *game)
 		game->images.game_over = mlx_texture_to_image(game->mlx, lost_texture);
 		mlx_image_to_window(game->mlx, game->images.game_over, 0, 0);
 	}
-	set_transparency(game->images.game_over);
-	game->player.is_dead = true;
+	adjust_alpha_until_max(game->images.game_over);
 	if (lost_texture != NULL)
 		mlx_delete_texture(lost_texture);
 }
 
-void	check_death(t_game *game)
+static bool	colided_with_enemy(t_game *game)
 {
 	int				map_x;
 	int				map_y;
@@ -83,5 +79,24 @@ void	check_death(t_game *game)
 		fabs((double)map_y + 0.5 - game->player.pos.y) < 0.25))
 	{
 		display_death_screen(game);
+		game->player.is_dead = true;
+		return (true);
 	}
+	return (false);
+}
+
+bool	check_death(t_game *game)
+{
+	if (game->player.is_dead == true)
+	{
+		if (adjust_alpha_until_max(game->images.game_over) == true)
+		{
+			mlx_close_window(game->mlx);
+			sleep(2);
+		}
+		return (true);
+	}
+	if (colided_with_enemy(game) == true)
+		return (true);
+	return (false);
 }

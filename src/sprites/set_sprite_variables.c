@@ -25,15 +25,15 @@ static void	transform_pos_to_camera_plane(t_player plyr, t_sprite *sprt)
 	sprt->transform_y = inv * (-plyr.plane.y * sprt_x + plyr.plane.x * sprt_y);
 }
 
-static void	calculate_draw_start_and_end(t_sprite *sprite)
+static void	calculate_draw_start_and_end(t_sprite *sprite, t_game *game)
 {
 	int	half_dim;
 
 	half_dim = sprite->sprite_dimension_half;
 	sprite->draw_start_x = sprite->sprite_x_on_screen - half_dim;
 	sprite->draw_end_x = sprite->sprite_x_on_screen + half_dim;
-	sprite->draw_start_y = HALF_HEIGHT + sprite->transform_offset - half_dim;
-	sprite->draw_end_y = HALF_HEIGHT + sprite->transform_offset + half_dim;
+	sprite->draw_start_y = HALF_HEIGHT - game->wall_off + sprite->transform_offset - half_dim;
+	sprite->draw_end_y = HALF_HEIGHT - game->wall_off + sprite->transform_offset + half_dim;
 	if (sprite->draw_start_y < 0)
 		sprite->draw_start_y = 0;
 	if (sprite->draw_end_y >= HEIGHT)
@@ -54,5 +54,5 @@ void	set_sprite_variables(t_game *game, t_sprite *spr)
 	spr->sprite_x_on_screen = (int)(1.0 * HALF_WIDTH * \
 								(1 + spr->transform_x / spr->transform_y));
 	spr->transform_offset = (int)(spr->height_offset / spr->transform_y);
-	calculate_draw_start_and_end(spr);
+	calculate_draw_start_and_end(spr, game);
 }

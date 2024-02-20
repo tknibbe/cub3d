@@ -104,6 +104,7 @@ typedef struct	s_game
 	int			sprite_nr;
 	double		*wall_distances;
 	int			*img_buffer;
+	int			wall_off;
 	t_textures	textures;
 	t_player	player;
 	t_images	images;
@@ -137,8 +138,7 @@ bool	door_status(char **map, t_vector pos, char stat);
 void	close_door(char **map, t_vector pos);
 void	open_door(char **map, t_vector pos);
 void	adjust_textures(t_game *game);
-void	check_death(t_game *game);
+bool	check_death(t_game *game);
 void	ft_exit_with_perror();
-bool	set_transparency(mlx_image_t *you_lost);
 
 #endif

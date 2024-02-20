@@ -30,46 +30,42 @@ static void	fov_change(t_player *player, t_game *game)
 	}
 }
 
-void	adjust_texture(mlx_texture_t *tex)
-{
-	uint8_t *row;
-
-	row = malloc(tex->width * 5 * 4);
-	if (row == NULL)
-		ft_error_and_exit("Malloc failure\n");
-	ft_memmove(row, tex->pixels, tex->width * 5 * 4);
-	ft_memmove(tex->pixels, tex->pixels + tex->width * 5 * 4, tex->width * tex->height * 4 - tex->width * 5 * 4);
-	ft_memmove(tex->pixels + tex->width * tex->height * 4 - tex->width * 5 * 4, row, tex->width * 5 * 4);
-	free(row);
-}
-
 void	loop_hook(void *param)
 {
-	t_game	*game;
-	static int	frame;
+	t_game *game;
+	static int frame;
 
 	game = param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game->mlx);
-	movement(&game->player, game);
-	fov_change(&game->player, game);
-	if (game->player.is_dead == true)
 	{
-		if (set_transparency(game->images.game_over) == true)
-		{
-			mlx_close_window(game->mlx);
-			sleep(2);
-		}
+		mlx_close_window(game->mlx);
 		return ;
 	}
+	movement(&game->player, game);
+	fov_change(&game->player, game);
+	if (check_death(game) == true)
+		return ;
 	if (game->player.has_moved == true)
 	{
-		check_death(game);
 		ray_caster(game);
 		game->player.has_moved = false;
 		draw_sprites(game);
 	}
 	frame++;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_CONTROL))
+	{
+		game->wall_off = 300;
+//		game->wall_off += 5;
+	}
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
+	{
+
+		game->wall_off = -300;
+//		game->wall_off -= 5;
+	}
+//	printf("%d\n", game->wall_off);
+	else
+		game->wall_off = 0;
 	if (frame == 5)
 	{
 		frame = 0;
