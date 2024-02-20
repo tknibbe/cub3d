@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 #include "libft.h"
+#include <unistd.h>
 
 static void	fov_change(t_player *player, t_game *game)
 {
@@ -52,6 +53,15 @@ void	loop_hook(void *param)
 		mlx_close_window(game->mlx);
 	movement(&game->player, game);
 	fov_change(&game->player, game);
+	if (game->player.is_dead == true)
+	{
+		if (set_transparency(game->images.game_over) == true)
+		{
+			mlx_close_window(game->mlx);
+			sleep(2);
+		}
+		return ;
+	}
 	if (game->player.has_moved == true)
 	{
 		check_death(game);

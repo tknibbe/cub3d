@@ -52,6 +52,7 @@ typedef struct	s_player
 	double		rot_speed;
 	double		fov;
 	bool		has_moved;
+	bool		is_dead;
 }	t_player;
 
 typedef struct	s_images
@@ -62,6 +63,7 @@ typedef struct	s_images
 	mlx_image_t *door_open_text;
 	mlx_image_t *door_close_text;
 	mlx_image_t	*player;
+	mlx_image_t	*game_over;
 }	t_images;
 
 typedef struct	s_ray
@@ -137,5 +139,6 @@ void	open_door(char **map, t_vector pos);
 void	adjust_textures(t_game *game);
 void	check_death(t_game *game);
 void	ft_exit_with_perror();
+bool	set_transparency(mlx_image_t *you_lost);
 
 #endif

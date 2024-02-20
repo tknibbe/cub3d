@@ -15,8 +15,6 @@
 #define INVIS_COLOUR 0xC929EBFF
 
 // to do
-// think about sort stuff. write a new one?
-// add David as a sprite
 // add comments to stuff so things are more clear
 // look at stuff to maybe optimise, in textures as well, add the half heights and stuff
 // add maybe to a check for if the player moved so we dont sort or change variables
@@ -28,7 +26,11 @@
 // if we're like within 0.25 of the middle of the tile
 // how do we make the lose thing, we cna have a you lose thing
 // then close the window? I guess we make that
-// write a sorting function for the pngs
+// error checking
+// norm everything
+// add door texture
+// textures into makefile
+// make frames more consistent
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 {
 	int	temp_tex_y;

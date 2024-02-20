@@ -12,6 +12,11 @@
 
 #include "cub3d.h"
 
+#define CHEERLEADER_PATH "textures/cheerleader/"
+#define LAMP_PATH "textures/lamp/"
+#define ENEMY_F_PATH "textures/enemy_flying/"
+#define ENEMY_G_PATH "textures/enemy_ground/"
+
 static t_sprite	initialise_flying_enemy(t_game *game)
 {
 	t_sprite	new_sprite;
@@ -19,7 +24,7 @@ static t_sprite	initialise_flying_enemy(t_game *game)
 	new_sprite.sprite_scale = 3;
 	new_sprite.type = FLYING_ENEMY;
 	new_sprite.curr_cycle = 0;
-	load_textures("textures/enemy_flying/", &new_sprite);
+	load_textures(ENEMY_F_PATH, &new_sprite);
 	check_for_errors(&new_sprite, game);
 	*new_sprite.tex = *new_sprite.tex_cycle[0];
 	new_sprite.height_offset = -1 * (int)new_sprite.tex->height;
@@ -33,7 +38,7 @@ static t_sprite	initialise_ground_enemy(t_game *game)
 	new_sprite.sprite_scale = 3;
 	new_sprite.type = GROUND_ENEMY;
 	new_sprite.curr_cycle = 0;
-	load_textures("textures/enemy_ground/", &new_sprite);
+	load_textures(ENEMY_G_PATH, &new_sprite);
 	check_for_errors(&new_sprite, game);
 	*new_sprite.tex = *new_sprite.tex_cycle[0];
 	new_sprite.height_offset = (int)new_sprite.tex->height;
@@ -81,7 +86,7 @@ void	initialise_cheerleaders(t_game *game, t_coords *empty_spots, int n)
 	new_sprite.sprite_scale = 3;
 	new_sprite.type = CHEERLEADER;
 	new_sprite.curr_cycle = 0;
-	load_textures("textures/cheerleader/", &new_sprite);
+	load_textures(CHEERLEADER_PATH, &new_sprite);
 	check_for_errors(&new_sprite, game);
 	*new_sprite.tex = *new_sprite.tex_cycle[0];
 	new_sprite.height_offset = (int)new_sprite.tex->height;
@@ -106,7 +111,7 @@ void	initialise_lamps(t_game *game, t_coords *empty_spots, int n)
 	new_sprite.sprite_scale = 4;
 	new_sprite.type = LAMP;
 	new_sprite.curr_cycle = 0;
-	load_textures("textures/lamp/", &new_sprite);
+	load_textures(LAMP_PATH, &new_sprite);
 	check_for_errors(&new_sprite, game);
 	*new_sprite.tex = *new_sprite.tex_cycle[0];
 	new_sprite.height_offset = -1 * (int)new_sprite.tex->height;

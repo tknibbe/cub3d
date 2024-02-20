@@ -50,6 +50,7 @@ void	initialise_player(t_game *game)
 	game->player.move_speed = 0.05;
 	game->player.rot_speed = 0.02;
 	game->player.has_moved = true;
+	game->player.is_dead = false;
 	set_plane(&game->player);
 	game->player.fov = fov(game->player.plane.x, game->player.plane.y);
 	printf("%lf\n", game->player.fov);
