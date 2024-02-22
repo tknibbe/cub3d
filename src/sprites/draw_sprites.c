@@ -22,6 +22,7 @@
 // error checking
 // norm everything
 // add door texture
+// add enemies to minimap
 // textures into makefile
 // make frames more consistent
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
@@ -37,7 +38,7 @@ static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 	while (y < spr.draw_end_y)
 	{
 		tex_y = (int)(temp_tex_y * spr.dim_proportion);
-		colour = ((int *)spr.tex->pixels)[spr.tex->height * tex_y + tex_x];
+		colour = ((int *)spr.tex->pixels)[spr.tex->width * tex_y + tex_x];
 		if (colour != (int)INVIS_COLOUR)
 			mlx_put_pixel(game->images.maze, x, y, colour);
 		y++;

@@ -28,7 +28,7 @@ static void	fov_change(t_player *player, t_game *game)
 	}
 }
 
-void	jump_crouch(t_game *game)
+static void	flying_crouch(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
 	{
@@ -54,7 +54,7 @@ void	loop_hook(void *param)
 
 	game = param;
 	movement(&game->player, game);
-	jump_crouch(game);
+	flying_crouch(game);
 	fov_change(&game->player, game);
 	if (check_death(game) == true)
 		return ;

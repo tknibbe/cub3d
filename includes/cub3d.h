@@ -28,8 +28,8 @@
 typedef enum	e_state
 {
 	NORMAL = 0,
-	CROUCHING = 4,
-	FLYING = 8
+	FLYING = 4,
+	CROUCHING = 8
 }	t_state;
 
 typedef struct	s_vector

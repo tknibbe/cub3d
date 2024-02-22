@@ -47,6 +47,8 @@ static void	calculate_draw_start_and_end(t_sprite *sprite, t_game *game)
 
 void	set_sprite_variables(t_game *game, t_sprite *spr)
 {
+	if (spr->tex->height != spr->tex->width)
+		ft_error_and_exit("Invalid sprite, width and height need to be equal");
 	transform_pos_to_camera_plane(game->player, spr);
 	spr->sprite_dimension = abs((int)(HEIGHT / spr->transform_y));
 	spr->sprite_dimension /= spr->sprite_scale;

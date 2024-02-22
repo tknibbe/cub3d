@@ -17,6 +17,7 @@ SRC_FILES =	main.c \
 			minimap/draw_player.c \
 			raycaster/raycaster.c \
 			raycaster/set_variables.c \
+			raycaster/texture.c \
 			input_handling/parse_input.c \
 			input_handling/get_textures/get_textures.c \
 			input_handling/get_textures/get_colours.c \
@@ -36,7 +37,6 @@ SRC_FILES =	main.c \
 			init/init_player.c \
 			init/init.c \
 			init/fix_textures.c \
-			textures/texture.c \
 			sprites/draw_sprites.c \
 			sprites/sprite_utils.c \
 			sprites/set_sprite_variables.c \
