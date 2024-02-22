@@ -19,11 +19,6 @@
 // look at stuff to maybe optimise, in textures as well, add the half heights and stuff
 // add maybe to a check for if the player moved so we dont sort or change variables
 // refactor files so its more cleaner
-// enemies
-// make them lose you the game if you walk into them
-// add flying and crouching
-// otherwise it's just checking if we're on a tyle with an enemy and
-// if we're like within 0.25 of the middle of the tile
 // error checking
 // norm everything
 // add door texture
@@ -37,7 +32,7 @@ static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 	int	colour;
 
 	y = spr.draw_start_y;
-	temp_tex_y = y - spr.transform_offset - (int)HALF_HEIGHT + game->wall_off \
+	temp_tex_y = y - spr.transform_offset - (int)HALF_HEIGHT \
 				+ spr.sprite_dimension_half;
 	while (y < spr.draw_end_y)
 	{

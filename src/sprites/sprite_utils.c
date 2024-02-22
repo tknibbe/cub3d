@@ -12,17 +12,18 @@
 
 #include "cub3d.h"
 
-void	print_sprites(t_sprite *sprites, int sprite_nr)
+int	identify_enemy(t_game *game, int x, int y)
 {
 	int	i;
 
 	i = 0;
-	while (i < sprite_nr)
+	while (i < game->sprite_nr)
 	{
-		printf("%lf %lf %lf\n", sprites[i].x, sprites[i].y, sprites[i].dist_to_player);
+		if ((int)game->sprites[i].x == x && (int)game->sprites[i].y == y)
+			return (game->sprites[i].type);
 		i++;
 	}
-	printf("\n");
+	return (NOTHING);
 }
 
 void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr)

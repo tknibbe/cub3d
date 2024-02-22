@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
-#include <unistd.h>
 
 static void	fov_change(t_player *player, t_game *game)
 {
@@ -30,18 +28,33 @@ static void	fov_change(t_player *player, t_game *game)
 	}
 }
 
+void	jump_crouch(t_game *game)
+{
+	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
+	{
+		game->wall_off = 300;
+		game->player.state = FLYING;
+	}
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_CONTROL))
+	{
+		game->wall_off = -300;
+		game->player.state = CROUCHING;
+	}
+	else
+	{
+		game->wall_off = 0;
+		game->player.state = NORMAL;
+	}
+}
+
 void	loop_hook(void *param)
 {
 	t_game *game;
 	static int frame;
 
 	game = param;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-	{
-		mlx_close_window(game->mlx);
-		return ;
-	}
 	movement(&game->player, game);
+	jump_crouch(game);
 	fov_change(&game->player, game);
 	if (check_death(game) == true)
 		return ;
@@ -52,20 +65,6 @@ void	loop_hook(void *param)
 		draw_sprites(game);
 	}
 	frame++;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_CONTROL))
-	{
-		game->wall_off = 300;
-//		game->wall_off += 5;
-	}
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
-	{
-
-		game->wall_off = -300;
-//		game->wall_off -= 5;
-	}
-//	printf("%d\n", game->wall_off);
-	else
-		game->wall_off = 0;
 	if (frame == 5)
 	{
 		frame = 0;
@@ -74,4 +73,6 @@ void	loop_hook(void *param)
 		draw_sprites(game);
 	}
 	check_door(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
 }

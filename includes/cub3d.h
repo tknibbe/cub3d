@@ -25,6 +25,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+typedef enum	e_state
+{
+	NORMAL = 0,
+	CROUCHING = 4,
+	FLYING = 8
+}	t_state;
+
 typedef struct	s_vector
 {
 	double	x;
@@ -53,6 +60,7 @@ typedef struct	s_player
 	double		fov;
 	bool		has_moved;
 	bool		is_dead;
+	t_state		state;
 }	t_player;
 
 typedef struct	s_images
