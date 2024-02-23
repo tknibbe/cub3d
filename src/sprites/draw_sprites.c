@@ -21,8 +21,7 @@
 // refactor files so its more cleaner
 // error checking
 // norm everything
-// add door texture
-// add enemies to minimap
+// fix mirrored textures
 // textures into makefile
 // make frames more consistent
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)

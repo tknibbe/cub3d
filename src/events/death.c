@@ -73,7 +73,6 @@ static bool	colided_with_enemy(t_game *game)
 
 	map_x = (int)game->player.pos.x;
 	map_y = (int)game->player.pos.y;
-
 	if (game->map[map_y][map_x] == ENEMY && \
 		fabs((double)map_x + 0.5 - game->player.pos.x) < 0.25 && \
 		fabs((double)map_y + 0.5 - game->player.pos.y) < 0.25 && \

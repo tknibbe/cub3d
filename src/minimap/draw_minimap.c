@@ -51,7 +51,11 @@ static int	colour(char **map, t_vector start, int x, double y_coord)
 	else if (map[(int)y_coord][(int)x_coord] == '2' || \
 		map[(int)y_coord][(int)x_coord] == '3')
 	{
-		return (0xA52A2AFF);
+		return (0x00FF00FF);
+	}
+	else if (map[(int)y_coord][(int)x_coord] == '4')
+	{
+		return (0xFF0000FF);
 	}
 	return (0);
 }

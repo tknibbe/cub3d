@@ -78,7 +78,7 @@ void	load_door(t_game *game)
 {
 	mlx_texture_t	*texture;
 
-	texture = mlx_load_png("./textures/tknibbe.png");
+	texture = mlx_load_png("./textures/door.png");
 	if (!texture)
 		ft_error_and_exit("mlx_load_png() failed\n");
 	game->textures.door = texture;
