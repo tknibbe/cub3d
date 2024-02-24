@@ -80,5 +80,7 @@ void	initialise_sprites(t_game *game)
 	initialise_cheerleaders(game, empty_spots, nr_empty_spots);
 	initialise_lamps(game, empty_spots, nr_empty_spots);
 	initialise_enemies(game);
+	calc_dist(game->player.pos, game->sprites, game->sprite_nr);
+	sort_sprites(game->sprites, game->sprite_nr);
 	free(empty_spots);
 }

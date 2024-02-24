@@ -14,14 +14,16 @@
 
 static void	swap_values(mlx_texture_t *texture, uint32_t x, uint32_t y)
 {
-	uint8_t	temp;
+	uint8_t		temp;
+	uint		offset;
 
-	temp = texture->pixels[(texture->width * y + x) * 4];
-	texture->pixels[(texture->width * y + x) * 4] = texture->pixels[(texture->width * y + x) * 4 + 3];
-	texture->pixels[(texture->width * y + x) * 4 + 3] = temp;
-	temp = texture->pixels[(texture->width * y + x) * 4 + 1];
-	texture->pixels[(texture->width * y + x) * 4 + 1] = texture->pixels[(texture->width * y + x) * 4 + 2];
-	texture->pixels[(texture->width * y + x) * 4 + 2] = temp;
+	offset = (texture->width * y + x) * 4;
+	temp = texture->pixels[offset];
+	texture->pixels[offset] = texture->pixels[offset + 3];
+	texture->pixels[offset + 3] = temp;
+	temp = texture->pixels[offset + 1];
+	texture->pixels[offset + 1] = texture->pixels[offset + 2];
+	texture->pixels[offset + 2] = temp;
 }
 
 static void	fix_texture(mlx_texture_t *texture)
@@ -42,7 +44,7 @@ static void	fix_texture(mlx_texture_t *texture)
 	}
 }
 
-static void fix_sprite_type(t_sprite sprite)
+static void	fix_sprite_type(t_sprite sprite)
 {
 	int	i;
 
