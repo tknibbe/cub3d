@@ -15,7 +15,7 @@
 static void	swap_values(mlx_texture_t *texture, uint32_t x, uint32_t y)
 {
 	uint8_t		temp;
-	uint		offset;
+	uint32_t	offset;
 
 	offset = (texture->width * y + x) * 4;
 	temp = texture->pixels[offset];
