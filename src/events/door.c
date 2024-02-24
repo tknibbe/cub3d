@@ -43,7 +43,6 @@ void	check_door(void *param)
 		game->images.door_close_text->enabled = true;
 	else
 		game->images.door_close_text->enabled = false;
-		
 }
 
 void	open_door(char **map, t_vector pos)
@@ -88,12 +87,12 @@ bool	door_status(char **map, t_vector pos, char stat)
 	new_x = (int) pos.x;
 	new_y = (int) pos.y;
 	if (map[new_y - 1][new_x] == stat)
-		return true;
+		return (true);
 	else if (map[new_y + 1][new_x] == stat)
-		return true;
+		return (true);
 	else if (map[new_y][new_x - 1] == stat)
-		return true;
+		return (true);
 	else if (map[new_y][new_x + 1] == stat)
-		return true;
-	return false;
+		return (true);
+	return (false);
 }

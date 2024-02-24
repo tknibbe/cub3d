@@ -15,8 +15,8 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define HALF_HEIGHT ((double)HEIGHT / 2)
-# define HALF_WIDTH ((double)WIDTH / 2)
+# define HALF_HEIGHT 540.0
+# define HALF_WIDTH 960.0
 # define PI 3.1415926
 
 # include "MLX42.h"
@@ -25,14 +25,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef enum	e_state
+typedef enum e_state
 {
 	NORMAL = 0,
 	FLYING = 4,
 	CROUCHING = 8
 }	t_state;
 
-typedef struct	s_vector
+typedef struct s_vector
 {
 	double	x;
 	double	y;
@@ -46,13 +46,13 @@ typedef struct s_textures
 	mlx_texture_t	*west;
 	mlx_texture_t	*icon;
 	mlx_texture_t	*door;
-	int	floor;
-	int	ceiling;
+	int				floor;
+	int				ceiling;
 }	t_textures;
 
-typedef struct	s_player
+typedef struct s_player
 {
-	t_vector	pos; //decide on what kind of varbiable this shoudl be
+	t_vector	pos;
 	t_vector	dir;
 	t_vector	plane;
 	double		move_speed;
@@ -63,29 +63,29 @@ typedef struct	s_player
 	t_state		state;
 }	t_player;
 
-typedef struct	s_images
+typedef struct s_images
 {
 	mlx_image_t	*minimap;
 	mlx_image_t	*maze;
 	mlx_image_t	*fps;
-	mlx_image_t *door_open_text;
-	mlx_image_t *door_close_text;
+	mlx_image_t	*door_open_text;
+	mlx_image_t	*door_close_text;
 	mlx_image_t	*player;
 	mlx_image_t	*game_over;
 }	t_images;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
-	t_vector	ray;
-	double		camerax;
-	int			map_x;
-	int			map_y;
-	t_vector	side_dist;
-	t_vector	block_dist;
-	int			step_dir_x;
-	int			step_dir_y;
-	int			side;
-	double		dist_to_wall;
+	t_vector		ray;
+	double			camerax;
+	int				map_x;
+	int				map_y;
+	t_vector		side_dist;
+	t_vector		block_dist;
+	int				step_dir_x;
+	int				step_dir_y;
+	int				side;
+	double			dist_to_wall;
 	//-------------
 	int				wall_height;
 	int				wall_start;
@@ -104,7 +104,7 @@ typedef struct	s_ray
 	//-------------
 }	t_ray;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	char		**map;
 	int			map_cols;
@@ -145,8 +145,8 @@ void	fix_textures(t_game *game);
 bool	door_status(char **map, t_vector pos, char stat);
 void	close_door(char **map, t_vector pos);
 void	open_door(char **map, t_vector pos);
-void	adjust_textures(t_game *game);
+void	change_textures(t_game *game);
 bool	check_death(t_game *game);
-void	ft_exit_with_perror();
+void	ft_exit_with_perror(void);
 
 #endif

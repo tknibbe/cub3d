@@ -28,4 +28,6 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 			close_door(game->map, game->player.pos);
 		game->player.has_moved = true;
 	}
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_window(game->mlx);
 }

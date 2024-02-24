@@ -13,23 +13,14 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-#include <fcntl.h>
-#include "cub3d.h"
+# include <fcntl.h>
+# include "cub3d.h"
 
-#define FLOOR		'0'
-#define WALL		'1'
-#define DOOR_CLOSED	'2'
-#define DOOR_OPEN	'3' //could change to '9' or something for map making logic. not allowed in map making and no user interaction
-#define ENEMY		'4'
-
-typedef struct s_map t_map;
-
-typedef struct s_map
-{
-	char	*line;
-	t_map	*next;
-}	t_map;
-
+# define FLOOR			'0'
+# define WALL			'1'
+# define DOOR_CLOSED	'2'
+# define DOOR_OPEN		'3' //could change to '9' or something for map making logic. not allowed in map making and no user interaction
+# define ENEMY			'4'
 # define NO 0
 # define EA 1
 # define SO 2
@@ -37,6 +28,14 @@ typedef struct s_map
 # define F	4
 # define C	5
 # define TRANSPARANCY 255
+
+typedef struct s_map	t_map;
+
+typedef struct s_map
+{
+	char	*line;
+	t_map	*next;
+}	t_map;
 
 int		get_input(t_game *game, char *filename);
 void	get_textures(t_textures *textures, int fd);

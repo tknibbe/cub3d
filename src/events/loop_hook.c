@@ -49,30 +49,20 @@ static void	flying_crouch(t_game *game)
 
 void	loop_hook(void *param)
 {
-	t_game *game;
-	static int frame;
+	t_game		*game;
 
 	game = param;
+	if (check_death(game) == true)
+		return ;
 	movement(&game->player, game);
 	flying_crouch(game);
 	fov_change(&game->player, game);
-	if (check_death(game) == true)
-		return ;
+	check_door(game);
 	if (game->player.has_moved == true)
 	{
 		ray_caster(game);
+		draw_sprites(game);
 		game->player.has_moved = false;
-		draw_sprites(game);
 	}
-	frame++;
-	if (frame == 5)
-	{
-		frame = 0;
-		adjust_textures(game);
-		ray_caster(game);
-		draw_sprites(game);
-	}
-	check_door(game);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game->mlx);
+	change_textures(game);
 }

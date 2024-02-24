@@ -15,9 +15,9 @@
 
 # include "cub3d.h"
 
-typedef struct s_game t_game;
+typedef struct s_game	t_game;
 
-typedef enum	e_sprt_type
+typedef enum e_sprt_type
 {
 	NOTHING = 0,
 	CHEERLEADER = 1,
@@ -26,14 +26,14 @@ typedef enum	e_sprt_type
 	FLYING_ENEMY = 8
 }	t_sprt_type;
 
-typedef struct	s_coords
+typedef struct s_coords
 {
 	int			x;
 	int			y;
 	t_sprt_type	type;
 }	t_coords;
 
-typedef struct	s_sprite
+typedef struct s_sprite
 {
 	double			x;
 	double			y;

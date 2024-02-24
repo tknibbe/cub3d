@@ -41,7 +41,8 @@ static bool	adjust_alpha_until_max(mlx_image_t *you_lost)
 
 static void	display_string(t_game *game)
 {
-	game->images.game_over = mlx_put_string(game->mlx, "lol you lose", HALF_WIDTH - 250, HALF_HEIGHT);
+	game->images.game_over = mlx_put_string(game->mlx, "lol you lose", \
+											HALF_WIDTH - 250, HALF_HEIGHT);
 	if (game->images.game_over == NULL)
 		ft_mlx_error_and_exit(game);
 	if (mlx_resize_image(game->images.game_over, 500, 200) == false)
@@ -78,7 +79,6 @@ static bool	colided_with_enemy(t_game *game)
 		fabs((double)map_y + 0.5 - game->player.pos.y) < 0.25 && \
 		identify_enemy(game, map_x, map_y) != (int)game->player.state)
 	{
-
 		display_death_screen(game);
 		game->player.is_dead = true;
 		return (true);

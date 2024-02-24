@@ -19,11 +19,11 @@
 # define MARGIN 40
 # define CUBE_SIDE 8
 # define PLAYER_SIZE 4
-# define MAX_MINIMAP_BLOCKS ((double)MAX_MINIMAP_PIXELS / CUBE_SIDE)
-# define MINIMAP_PIXEL_STEP ((double)1 / CUBE_SIDE)
+# define MAX_MINIMAP_BLOCKS 25.0
+# define MINIMAP_PIXEL_STEP 0.125
 
-typedef struct s_game t_game;
-typedef struct s_vector t_vector;
+typedef struct s_game	t_game;
+typedef struct s_vector	t_vector;
 
 typedef struct s_minimap
 {

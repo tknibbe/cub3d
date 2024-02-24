@@ -56,6 +56,10 @@ void	set_sprite_variables(t_game *game, t_sprite *spr)
 	spr->dim_proportion = (double)spr->tex->height / spr->sprite_dimension;
 	spr->sprite_x_on_screen = (int)(1.0 * HALF_WIDTH * \
 								(1 + spr->transform_x / spr->transform_y));
-	spr->transform_offset = (int)((spr->height_offset + game->wall_off) / spr->transform_y);
+//	spr->transform_offset = (int)((spr->height_offset + game->wall_off) / spr->transform_y);
+//	printf("%d ", spr->transform_offset);
+	spr->transform_offset = (int)(spr->height_offset / spr->transform_y) + (int)(game->wall_off / spr->transform_y);
+//	printf("%d\n", spr->transform_offset);
+
 	calculate_draw_start_and_end(spr, game);
 }
