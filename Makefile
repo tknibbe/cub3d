@@ -127,7 +127,7 @@ clean:
 
 fclean: clean
 	@echo "${RED}Removing ${NAME} and libft MLX42${END}"
-	@rm -rf $(LIBFT) $(NAME) $(MLX42_BUILD_DIR)
+	@rm -rf $(LIBFT) $(NAME) $(MLX42_BUILD_DIR) $(TEXTURES)
 
 d: #fclean
 	@$(MAKE) DEBUG=1 all
