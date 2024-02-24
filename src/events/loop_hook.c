@@ -32,17 +32,17 @@ static void	flying_crouch(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
 	{
-		game->wall_off = 300;
+		game->camera_height = 300;
 		game->player.state = FLYING;
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_CONTROL))
 	{
-		game->wall_off = -300;
+		game->camera_height = -300;
 		game->player.state = CROUCHING;
 	}
 	else
 	{
-		game->wall_off = 0;
+		game->camera_height = 0;
 		game->player.state = NORMAL;
 	}
 }

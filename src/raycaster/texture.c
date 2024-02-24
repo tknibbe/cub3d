@@ -13,24 +13,6 @@
 #include "cub3d.h"
 #include <math.h>
 
-void	buffer_to_img(int *buffer, mlx_image_t *img)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			mlx_put_pixel(img, x, y, buffer[x * HEIGHT + y]);
-			y++;
-		}
-		x++;
-	}
-}
-
 static void	draw_wall(t_ray ray, t_game *game, int x)
 {
 	if (ray.side == 0)
@@ -44,7 +26,9 @@ static void	draw_wall(t_ray ray, t_game *game, int x)
 	if (ray.side == 1 && ray.ray.y > 0)
 		ray.texx = ray.tex_width - ray.texx - 1;
 	ray.step = (double) ray.tex_height / ray.wall_height;
-	ray.texpos = (ray.wall_start - HALF_HEIGHT - (game->wall_off / ray.dist_to_wall) + ray.wall_height / 2) * ray.step;
+	ray.texpos = (ray.wall_start - HALF_HEIGHT \
+				- (game->camera_height / ray.dist_to_wall) \
+				+ (double)ray.wall_height / 2) * ray.step;
 	if (ray.texpos < 0)
 		ray.texpos = 0;
 	while (ray.y < ray.wall_end)
@@ -79,16 +63,25 @@ static void	set_texture_direction(t_game *game, t_ray *ray)
 		set_texture(ray, game->textures.south);
 }
 
+static void	set_wall_start_and_end(t_game *game, t_ray *ray_vars)
+{
+	ray_vars->wall_start = (int)(-1.0 * ray_vars->wall_height / 2) \
+						+ (int)HALF_HEIGHT \
+						+ (int)(game->camera_height / ray_vars->dist_to_wall);
+	if (ray_vars->wall_start < 0)
+		ray_vars->wall_start = 0;
+	ray_vars->wall_end = (int)(1.0 * ray_vars->wall_height / 2) \
+						+ (int)HALF_HEIGHT \
+						+ (int)(game->camera_height / ray_vars->dist_to_wall);
+	if (ray_vars->wall_end >= HEIGHT)
+		ray_vars->wall_end = HEIGHT - 1;
+}
+
 void	line_to_buffer(t_game *game, t_ray ray_vars, int x)
 {
 	ray_vars.y = 0;
 	ray_vars.wall_height = (int)(HEIGHT / ray_vars.dist_to_wall);
-	ray_vars.wall_start = -ray_vars.wall_height / 2 + HALF_HEIGHT + (game->wall_off / ray_vars.dist_to_wall);
-	if (ray_vars.wall_start < 0)
-		ray_vars.wall_start = 0;
-	ray_vars.wall_end = ray_vars.wall_height / 2 + HALF_HEIGHT + (game->wall_off / ray_vars.dist_to_wall);
-	if (ray_vars.wall_end >= HEIGHT)
-		ray_vars.wall_end = HEIGHT - 1;
+	set_wall_start_and_end(game, &ray_vars);
 	set_texture_direction(game, &ray_vars);
 	while (ray_vars.y < ray_vars.wall_start)
 	{

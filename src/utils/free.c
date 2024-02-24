@@ -13,20 +13,6 @@
 #include "cub3d.h"
 #include "libft.h"
 
-//these might not be neccesary
-
-//static void	safe_delete_image(t_game *game, mlx_image_t	*image)
-//{
-//	if (game->mlx && image)
-//		mlx_delete_image(game->mlx, image);
-//}
-//
-//static void	free_images(t_game *game, t_images images)
-//{
-//	safe_delete_image(game, images.fps);
-//	safe_delete_image(game, images.img);
-//}
-
 static void	safe_delete_texture(mlx_texture_t *texture)
 {
 	if (texture)
@@ -81,7 +67,6 @@ static void	free_textures(t_textures textures)
  */
 void	free_game_struct(t_game *game)
 {
-//	free_images(game, game->images);
 	free_textures(game->textures);
 	free_sprites(game->sprites, game->sprite_nr);
 	ft_free_array(game->map);

@@ -14,19 +14,13 @@
 #include "parsing.h"
 #include "libft.h"
 
-void	print_array(char **arr)
-{
-	for (int i = 0; arr[i]; i++)
-		printf("%s\n", arr[i]);
-}
-
 int	main(int argc, char **argv)
 {
 	t_game		game;
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
-	ft_memset(&game, 0, sizeof(game)); // weet nog niet of ik dit erin wil houden
+	ft_memset(&game, 0, sizeof(game));
 	if (get_input(&game, argv[1]))
 		return (EXIT_FAILURE);
 	initialise_game(&game, argv[1]);
@@ -40,4 +34,3 @@ int	main(int argc, char **argv)
 	free_game_struct(&game);
 	return (0);
 }
-

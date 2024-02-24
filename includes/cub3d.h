@@ -112,7 +112,7 @@ typedef struct s_game
 	int			sprite_nr;
 	double		*wall_distances;
 	int			*img_buffer;
-	int			wall_off;
+	int			camera_height;
 	t_textures	textures;
 	t_player	player;
 	t_images	images;
@@ -136,9 +136,7 @@ void	rotate(t_player *player, int rotation);
 void	setup_ray_vars(t_ray *ray_vars, t_player player, int screen_x);
 double	fov(double a, double b);
 void	line_to_buffer(t_game *game, t_ray ray_vars, int x);
-void	buffer_to_img(int *buffer, mlx_image_t *img);
 void	check_door(void *game);
-void	interact_door(t_game *game);
 void	fix_textures(t_game *game);
 bool	door_status(char **map, t_vector pos, char stat);
 void	close_door(char **map, t_vector pos);

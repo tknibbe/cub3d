@@ -21,9 +21,9 @@ static void	check_invalid_chars(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != FLOOR && line[i] != WALL && line[i] != 'N' && line[i] != 'S'\
-			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ' \
-			&& line[i] != DOOR_CLOSED && line[i] != ENEMY)
+		if (line[i] != FLOOR && line[i] != WALL && line[i] != 'N' \
+			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W' \
+			&& line[i] != ' ' && line[i] != DOOR_CLOSED && line[i] != ENEMY)
 			ft_error_and_exit("Error, invalid char found in map\n");
 		i++;
 	}

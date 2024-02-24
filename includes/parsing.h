@@ -19,7 +19,9 @@
 # define FLOOR			'0'
 # define WALL			'1'
 # define DOOR_CLOSED	'2'
-# define DOOR_OPEN		'3' //could change to '9' or something for map making logic. not allowed in map making and no user interaction
+//could change to '9' or something for map making logic.
+//not allowed in map making and no user interaction vvvv
+# define DOOR_OPEN		'3'
 # define ENEMY			'4'
 # define NO 0
 # define EA 1

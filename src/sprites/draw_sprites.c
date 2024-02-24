@@ -16,12 +16,20 @@
 
 // to do
 // add comments to stuff so things are more clear
-// look at stuff to maybe optimise, in textures as well, add the half heights and stuff
+// look at stuff to maybe optimise, in textures as well,
+// add the half heights and stuff
 // refactor files so its more cleaner
 // error checking
 // norm everything
 // textures into makefile
 // keep testing the segfault
+//		if (tex_y > (int)spr.tex->height || tex_x > (int)spr.tex->height \
+//			|| tex_x < 0 || tex_y < 0) {
+//			printf("%d %d\n", tex_x, tex_y);
+//			printf("%lf %lf\n", spr.x, spr.y);
+//			printf("%d\n", spr.type);
+//			printf("%lf %lf\n", game->player.pos.x, game->player.pos.y);
+//		}
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 {
 	int	temp_tex_y;
@@ -32,16 +40,9 @@ static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 	y = spr.draw_start_y;
 	temp_tex_y = y - spr.transform_offset - (int)HALF_HEIGHT \
 				+ spr.sprite_dimension_half;
-//	printf("%d %d %d\n", tex_x,  (int)(temp_tex_y * spr.dim_proportion), spr.draw_end_y);
 	while (y < spr.draw_end_y)
 	{
 		tex_y = (int)(temp_tex_y * spr.dim_proportion);
-		if (tex_y > (int)spr.tex->height || tex_x > (int)spr.tex->height || tex_x < 0 || tex_y < 0) {
-			printf("%d %d\n", tex_x, tex_y);
-			printf("%lf %lf\n", spr.x, spr.y);
-			printf("%d\n", spr.type);
-			printf("%lf %lf\n", game->player.pos.x, game->player.pos.y);
-		}
 		colour = ((int *)spr.tex->pixels)[spr.tex->width * tex_y + tex_x];
 		if (colour != (int)INVIS_COLOUR)
 			mlx_put_pixel(game->images.maze, x, y, colour);

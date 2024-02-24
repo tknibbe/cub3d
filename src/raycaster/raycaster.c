@@ -11,15 +11,32 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
+
+static void	buffer_to_img(int *buffer, mlx_image_t *img)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			mlx_put_pixel(img, x, y, buffer[x * HEIGHT + y]);
+			y++;
+		}
+		x++;
+	}
+}
 
 static void	dda(t_ray *ray_vars, t_game *game)
 {
-	int hit;
+	int	hit;
 
 	hit = 0;
 	ray_vars->door = 0;
-	while (hit == 0)
+	while (hit == 0 && ray_vars->door == 0)
 	{
 		if (ray_vars->side_dist.x < ray_vars->side_dist.y)
 		{
@@ -35,33 +52,28 @@ static void	dda(t_ray *ray_vars, t_game *game)
 		}
 		if (game->map[ray_vars->map_y][ray_vars->map_x] == '1')
 			hit = 1;
-		if (game->map[ray_vars->map_y][ray_vars->map_x] == '2') // door
-		{
+		if (game->map[ray_vars->map_y][ray_vars->map_x] == '2')
 			ray_vars->door = 1;
-			hit = 1;
-		}
 	}
 }
 
 void	ray_caster(t_game *game)
 {
 	int		screen_x;
-	t_ray	ray_vars;
+	t_ray	ray_var;
 
 	screen_x = 0;
 	while (screen_x < WIDTH)
 	{
-		setup_ray_vars(&ray_vars, game->player, screen_x);
-		dda(&ray_vars, game);
-		if (ray_vars.side == 0)
-			ray_vars.dist_to_wall = (ray_vars.side_dist.x - ray_vars.block_dist.x);
+		setup_ray_vars(&ray_var, game->player, screen_x);
+		dda(&ray_var, game);
+		if (ray_var.side == 0)
+			ray_var.dist_to_wall = ray_var.side_dist.x - ray_var.block_dist.x;
 		else
-			ray_vars.dist_to_wall = (ray_vars.side_dist.y - ray_vars.block_dist.y);
-		game->wall_distances[screen_x] = ray_vars.dist_to_wall;
-		// draw_line(ray_vars, game, screen_x);
-		line_to_buffer(game, ray_vars, screen_x);
+			ray_var.dist_to_wall = ray_var.side_dist.y - ray_var.block_dist.y;
+		game->wall_distances[screen_x] = ray_var.dist_to_wall;
+		line_to_buffer(game, ray_var, screen_x);
 		screen_x++;
 	}
 	buffer_to_img(game->img_buffer, game->images.maze);
-	// mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
 }

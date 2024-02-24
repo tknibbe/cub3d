@@ -24,32 +24,20 @@ void	ft_error_and_exit(char *error_str)
 }
 
 /**
- * Writes an error using mlx error function, stops the mlx instance\n
- * Does not exit nor free things\n
- * Use for mlx functions after the game has bene initialised
+ * Writes error according to the current errno
+ * prefixes it with cub3D
+ * then exits
  */
-//void	ft_mlx_error_after_init(t_game *game)
-//{
-//	const char	*error_string = mlx_strerror(mlx_errno);
-//
-//	write(2, error_string, ft_strlen(error_string));
-//	write(2, "\n", 1);
-//	free_game_struct(game);
-//	mlx_close_window(game->mlx);
-//	exit(EXIT_FAILURE);
-//}
-
-/**
- * Writes an error using mlx error function, frees stuff and exits \n
- * Use for mlx functions
- */
-
-void	ft_exit_with_perror()
+void	ft_exit_with_perror(void)
 {
 	perror("cub3D");
 	exit(EXIT_FAILURE);
 }
 
+/**
+ * Writes an error using mlx error function, frees stuff and exits \n
+ * Use for mlx functions
+ */
 void	ft_mlx_error_and_exit(t_game *game)
 {
 	const char	*error_string = mlx_strerror(mlx_errno);
@@ -59,7 +47,6 @@ void	ft_mlx_error_and_exit(t_game *game)
 	if (game->mlx)
 	{
 		mlx_close_window(game->mlx);
-//		mlx_terminate(game->mlx);
 	}
 	free_game_struct(game);
 	exit(EXIT_FAILURE);
