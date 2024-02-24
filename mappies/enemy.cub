@@ -1,7 +1,7 @@
-NO ./textures/tower.png
-SO ./textures/tymon.png
-WE ./textures/jan.png
-EA ./textures/elep.png
+NO ./textures/north.png
+SO ./textures/south.png
+WE ./textures/west.png
+EA ./textures/east.png
 
 F 0,0,0
 C 255,0,255

@@ -18,9 +18,7 @@
 // add comments to stuff so things are more clear
 // look at stuff to maybe optimise, in textures as well,
 // add the half heights and stuff
-// refactor files so its more cleaner
 // error checking
-// norm everything
 // textures into makefile
 // keep testing the segfault
 //		if (tex_y > (int)spr.tex->height || tex_x > (int)spr.tex->height \

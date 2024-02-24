@@ -1,7 +1,7 @@
-NO ./textures/jan.png
-SO ./textures/jan.png
-WE ./textures/jan.png
-EA ./textures/jan.png
+NO ./textures/north.png
+SO ./textures/south.png
+WE ./textures/west.png
+EA ./textures/east.png
 
 C 0,0,0
 F 255,255,255

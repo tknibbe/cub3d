@@ -1,7 +1,7 @@
-NO ./textures/roodmuurtje.png
-SO ./textures/groenmuurtje.png
-WE ./textures/blauwmuurtje.png
-EA ./textures/geelmuurtje.png
+NO ./textures/north.png
+SO ./textures/south.png
+WE ./textures/west.png
+EA ./textures/east.png
 
 F 0,0,0
 C 255,255,255
