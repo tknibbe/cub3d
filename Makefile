@@ -49,6 +49,7 @@ SRC_FILES =	main.c \
 OBJ_FILES = $(SRC_FILES:%.c=obj/%.o)
 OBJ_DIR =	obj obj/input_handling obj/utils obj/input_handling/get_map obj/input_handling/get_textures \
 			obj/events obj/raycaster obj/minimap obj/textures obj/init obj/sprites
+TEXTURES = textures
 
 # MLX variables
 
@@ -91,13 +92,15 @@ ifdef SUBMODULES
 endif
 
 
-
 all: $(NAME)
 
-$(NAME): $(SUBMODULES) $(MLX42_LIB) $(LIBFT) $(OBJ_FILES)
+$(NAME): $(SUBMODULES) $(TEXTURES) $(MLX42_LIB) $(LIBFT) $(OBJ_FILES)
 	@echo "${MAGENTA}Creating $@${END}"
 	@$(CC) $(INCLUDES) $(MLX_FLAGS) $(CFLAGS) -o $@ $(OBJ_FILES) $(LIBFT) $(MLX42_LIB)
 	@echo "${GREEN}Done!${END}"
+
+$(TEXTURES):
+	@git clone https://github.com/jmolenaa/textures.git
 
 $(SUBMODULES):
 	@git submodule init
