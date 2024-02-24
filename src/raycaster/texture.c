@@ -39,9 +39,9 @@ static void	draw_wall(t_ray ray, t_game *game, int x)
 		ray.wallx = game->player.pos.x + ray.dist_to_wall * ray.ray.x;
 	ray.wallx -= floor(ray.wallx);
 	ray.texx = (int)(ray.wallx * (double)ray.tex_width);
-	if (ray.side == 0 && ray.ray.x > 0)
+	if (ray.side == 0 && ray.ray.x < 0)
 		ray.texx = ray.tex_width - ray.texx - 1;
-	if (ray.side == 1 && ray.ray.y < 0)
+	if (ray.side == 1 && ray.ray.y > 0)
 		ray.texx = ray.tex_width - ray.texx - 1;
 	ray.step = (double) ray.tex_height / ray.wall_height;
 	ray.texpos = (ray.wall_start - HALF_HEIGHT - (game->wall_off / ray.dist_to_wall) + ray.wall_height / 2) * ray.step;
