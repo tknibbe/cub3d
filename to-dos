@@ -1,119 +1,17 @@
 
-parser
-	- moet .cub zijn
+check floor ceiling above textures
+only NO SO WE or EA without texture path
+wrong extension at end
+more than one path, something withspaces between texture path and NO ./path [random stuff]
+NOO
+EAA
+WEE
+SOU
+CC
+FF
+more than one F or C with the corresponding one as well
+check colours wiht spaces betwene numbers ergo C 2 55, 2      5, 0    0
+number bigger or smaller than 255 or 0
 
-	- map inlezen
-		Vraag is waar gaan we het inzetten, waarschijnlijk een dubelle array zou ik zeggen is het makkelijkst?, met nullen als space en 1 als walls
-		uitvogelen hoe wijd en hoog de grid is om goed te kunnen allocaten. met -1 voor plekken die onberijkbaar zijn
-		Player position ook, met orientatie
+newlines in map
 
-	- map elementen inlezen
-		textures inlezen, NO, SO, WE, EA, en dan de path
-		NO ./north_texture
-		
-		floor colour and ceiling colout F, C en dan RGB colour
-		F 220,100,0
-		C 220,200,200
-
-	- map rules
-		elementen kunnen gesplits zijn met whitespaces ertussen
-		map kan niet een whitespace ertussen hebben
-		elementen kunnen in elke volgorde zijn
-		alle info in de element kan spaces hebben ertussen, bv. F                                                         220,100,0
-		de map moet aan het einde zijn
-		de map moet closed zijn
-		elke element maar ene keer
-		in de map moet de player positie maar ene keer zijn
-		volgens mij hoeft de player niet overal te kunnen komen
-
-	-errors
-		meer van een type element
-		map niet aan het einde
-		iets wat niet een element of ene map is in de file
-		twee mappen
-		not een .cub extensie
-		een element met onjuiste naam, (geen NO, SO, WE, EA, F of C)
-		een onjuiste path naar texture
-		een onjuiste RGB code
-		een missing element
-		map heeft een character die niet behoord (0, 1, N, W, E, S, en ' ') spateis zijn alleen maar buiten de muren
-		map heeft meer player posities
-		map heeft geen geclosde muren
-
-	- initializer
-		initliased alles dat nodig is voor de map, dit gebeurd waarschinjlijk naturel tijdens het parsen, maar bijvoorbeeld
-		de width en height van de grid
-		positie van player op de grid
-		zijn orientatie
-		textures van muren en kleuren van top en onder
-		de map zelf naatuurlijk
-		enige andere dingen die we kunnen bedenken
-
-
-
-
-raycaster
-	Heb hier nog niet veel over gelezen dus geen flauw idee wat de modules hiervan zullen zijn ✅
-	fps counter ez
-	minimap ez
-	raycaster
-	portal
-	enenemenies
-
-
-
-interactive stuff
-	
-	- fps counter
-		is al redelijk in place, we moeten hem een keertje in een corner zetten en er een image van maken die goed verwijdert en weer neergezet word
-	
-	- rondkijken
-		word gedaan met rechter en linker pijltje
-
-	- lopen
-		WASD, verplaatsen van player positie
-
-	- sluiten
-		doen we met ESC, deze is waarschijnlijk redelijk simpel
-		en op kruisje klikken moet ook goed
-
-
-
-
-bonus dingentjes
-
-	- muis rondkijken
-
-	- deuren
-		moet toegevoegd worden aan parser
-		en aan interactive mode om te kunnen openen en dichtdoen
-
-	- collisions
-		dit voegen we volgens mij automatisch bij aangezien het wel handig is om segfaults te voorkomen enzo, moeten dit dan ook voor deuren doen
-
-	- animated sprite
-
-	- minimap
-		waarschijnlijk gewoon op basis van onze grid een soort texture aanamaken die geupdate word met movement
-
-
-extra zooi
-
-	- enemies
-	
-	- weapons
-
-	- andere dingen
-
-
-
--- set icon for our program (mlx_set_icon)
-
-what can go wrong in adding the textures?
-	file nonexistent
-	same direction twice
-	one not given
-	non-existing direction given
-	file not a png
-	rgb values out of bounds
-	--fix file extension texture files

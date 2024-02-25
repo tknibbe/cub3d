@@ -13,6 +13,7 @@
 #include "cub3d.h"
 #include "parsing.h"
 #include "libft.h"
+#include <errno.h>
 
 static void	check_invalid_chars(char *line)
 {
@@ -51,6 +52,8 @@ t_map	*put_in_linked_list(int fd)
 		else
 			free(line);
 	}
+	if (errno != 0)
+		ft_error_and_exit("Malloc failure\n");
 	return (map);
 }
 

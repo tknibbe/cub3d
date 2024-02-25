@@ -44,7 +44,7 @@ int	valid_file_name(char *file, char *extension)
 		write(STDERR_FILENO, "Error in the extension of your file\n", 37);
 		write(STDERR_FILENO, "looking for : ", 15);
 		write(STDERR_FILENO, extension, ext_len);
-		write(STDERR_FILENO, "\nyou privided : ", 17);
+		write(STDERR_FILENO, "\nyou provided : ", 17);
 		write(STDERR_FILENO, file, ft_strlen(file));
 		write(STDERR_FILENO, "\n", 1);
 		return (EXIT_FAILURE);
@@ -56,7 +56,6 @@ int	get_input(t_game *game, char *filename)
 {
 	int	fd;
 
-	ft_memset(game, 0, sizeof(game));
 	if (valid_file_name(filename, ".cub"))
 		ft_error_and_exit("Error, filename does not have the .cub extension\n");
 	fd = protected_open(filename);

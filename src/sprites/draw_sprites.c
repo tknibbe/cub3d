@@ -15,11 +15,17 @@
 #define INVIS_COLOUR 0xC929EBFF
 
 // to do
+// just read through all the code in general
+// keep an eye out for mallocs and double conversions
+// adjust a couple maps for the evaluation
 // add comments to stuff so things are more clear
 // look at stuff to maybe optimise, in textures as well,
-// add the half heights and stuff
+// adjust strdel to free the str in case of malloc failure
+// in get_colours, line 100 protect malloc from strdel
+// why two strdel
+// in get_map line 45 malloc protect
+// also line 49 with the listnew if malloc fails we have leaks, should just exit
 // error checking
-// textures into makefile
 // keep testing the segfault
 //		if (tex_y > (int)spr.tex->height || tex_x > (int)spr.tex->height \
 //			|| tex_x < 0 || tex_y < 0) {

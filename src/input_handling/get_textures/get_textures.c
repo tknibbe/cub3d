@@ -14,7 +14,7 @@
 #include "parsing.h"
 #include "libft.h"
 #include "MLX42.h"
-#include <unistd.h> //
+#include <errno.h>
 
 #define SETF 0
 #define SETC 1
@@ -101,12 +101,7 @@ void	get_textures(t_textures *textures, int fd)
 			textures_found++;
 		free(line);
 	}
-	printf("%d textures found\n", textures_found);
-	printf("north	%p\n", textures->north);
-	printf("east	%p\n", textures->east);
-	printf("south	%p\n", textures->south);
-	printf("west 	%p\n", textures->west);
-	printf("floor 	0x%X (%d)\n", textures->floor, textures->floor);
-	printf("ceiling 0x%X (%d)\n\n", textures->ceiling, textures->ceiling);
+	if (errno != 0)
+		ft_error_and_exit("Malloc failure\n");
 	not_all_textures_set(textures);
 }
