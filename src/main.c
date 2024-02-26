@@ -13,11 +13,13 @@
 #include "cub3d.h"
 #include "parsing.h"
 #include "libft.h"
+#include <errno.h>
 
 int	main(int argc, char **argv)
 {
 	t_game		game;
 
+	errno = 0;
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	ft_memset(&game, 0, sizeof(game));
