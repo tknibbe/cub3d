@@ -60,7 +60,10 @@ static void	display_death_screen(t_game *game)
 	else
 	{
 		game->images.game_over = mlx_texture_to_image(game->mlx, lost_texture);
-		mlx_image_to_window(game->mlx, game->images.game_over, 0, 0);
+		if (game->images.game_over == NULL)
+			ft_mlx_error_and_exit(game);
+		if (mlx_image_to_window(game->mlx, game->images.game_over, 0, 0 ) == -1)
+			ft_mlx_error_and_exit(game);
 	}
 	adjust_alpha_until_max(game->images.game_over);
 	if (lost_texture != NULL)

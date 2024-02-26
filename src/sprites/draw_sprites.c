@@ -19,7 +19,6 @@
 // keep an eye out for mallocs and double conversions
 // adjust a couple maps for the evaluation
 // add comments to stuff so things are more clear
-// look at stuff to maybe optimise, in textures as well,
 // adjust strdel to free the str in case of malloc failure
 // in get_colours, line 100 protect malloc from strdel
 // why two strdel

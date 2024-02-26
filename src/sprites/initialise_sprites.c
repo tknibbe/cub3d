@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <time.h>
 #include "libft.h"
 
 static int	count_nr_empty_spots(char **map)

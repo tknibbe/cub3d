@@ -53,5 +53,4 @@ void	initialise_player(t_game *game)
 	game->player.is_dead = false;
 	set_plane(&game->player);
 	game->player.fov = fov(game->player.plane.x, game->player.plane.y);
-	printf("%lf\n", game->player.fov);
 }

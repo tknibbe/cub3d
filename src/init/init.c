@@ -34,7 +34,10 @@ static void	initialise_images(t_game *game)
 	{
 		ft_mlx_error_and_exit(game);
 	}
-	mlx_image_to_window(game->mlx, game->images.maze, 0, 0);
+	if (mlx_image_to_window(game->mlx, game->images.maze, 0, 0) == -1)
+	{
+		ft_mlx_error_and_exit(game);
+	}
 	mlx_set_instance_depth(game->images.maze->instances, 1);
 }
 
@@ -75,6 +78,8 @@ void	initialise_game(t_game *game, char *title)
 {
 	game->wall_distances = ft_calloc(WIDTH, sizeof(double));
 	game->img_buffer = malloc(sizeof(uint32_t) * (HEIGHT * WIDTH));
+	if (game->wall_distances == NULL || game->img_buffer == NULL)
+		ft_error_and_exit("Malloc failure\n");
 	game->mlx = mlx_init(WIDTH, HEIGHT, title, true);
 	if (game->mlx == NULL)
 	{
