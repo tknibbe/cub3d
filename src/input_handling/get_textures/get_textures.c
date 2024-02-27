@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:33:50 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/27 17:46:21 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/27 18:05:41 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ static int	add_line(t_textures *text, char *line, int categorie)
 		ft_error_and_exit("Error, no texture location found\n");
 	if (valid_file_name(&text_fn[1][i], ".png"))
 		ft_error_and_exit("Wrong texture file extension (only .png)\n");
-	put_in_struct(text, &text_fn[1][i], categorie);
-	while (text_fn[i])
+	while (text_fn[i + 1])
 	{
-		free (text_fn[i]);
 		i++;
 	}
-	free(text_fn);
+	if (i != 1)
+		ft_error_and_exit("Error, too many texture arguments\n");
+	put_in_struct(text, &text_fn[1][0], categorie);
+	free_double_pointer(text_fn);
 	return (EXIT_SUCCESS);
 }
 

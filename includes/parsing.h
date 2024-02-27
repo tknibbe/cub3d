@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:17:53 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/15 17:08:34 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/27 18:05:27 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	get_textures(t_textures *textures, int fd);
 void	get_map(t_game *game, int fd);
 int		valid_file_name(char *file, char *extension);
 int		protected_open(char *file);
+void	free_double_pointer(char **ptr);
 
 t_map	*ft_lstnew_map(void *content);
 void	ft_mapadd_back(t_map **lst, t_map *new_node);

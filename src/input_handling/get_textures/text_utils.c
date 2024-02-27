@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:44:05 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/07 16:18:57 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/27 18:05:14 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,17 @@ void	check_double_texture(t_textures *text, int cat)
 		|| (cat == SO && text->south) \
 		|| (cat == WE && text->west))
 		ft_error_and_exit("Error, double texture found\n");
+}
+
+void	free_double_pointer(char **ptr)
+{
+	int	i;
+
+	i = 0;
+	while (ptr[i])
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
 }
