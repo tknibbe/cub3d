@@ -1,17 +1,22 @@
 
-check floor ceiling above textures
-only NO SO WE or EA without texture path
-wrong extension at end
 more than one path, something withspaces between texture path and NO ./path [random stuff]
+
 NOO
 EAA
 WEE
 SOU
-CC
-FF
-more than one F or C with the corresponding one as well
 check colours wiht spaces betwene numbers ergo C 2 55, 2      5, 0    0
-number bigger or smaller than 255 or 0
 
 newlines in map
 
+
+newlines in map are working
+
+NO ./textures/north.png asd
+^^^^ also works is wrong?
+
+NOO ./textures/west.png
+EAA ./textures/west.png
+WEE ./textures/west.png
+SOU ./textures/west.png
+^^ all these work, should adjust strncmp since it only checks for the first two characters being correct

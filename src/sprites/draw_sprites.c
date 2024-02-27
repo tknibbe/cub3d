@@ -16,7 +16,6 @@
 
 // to do
 // just read through all the code in general
-// keep an eye out for mallocs and double conversions
 // adjust a couple maps for the evaluation
 // add comments to stuff so things are more clear
 // adjust strdel to free the str in case of malloc failure
@@ -24,15 +23,7 @@
 // why two strdel
 // in get_map line 45 malloc protect
 // also line 49 with the listnew if malloc fails we have leaks, should just exit
-// error checking
 // keep testing the segfault
-//		if (tex_y > (int)spr.tex->height || tex_x > (int)spr.tex->height \
-//			|| tex_x < 0 || tex_y < 0) {
-//			printf("%d %d\n", tex_x, tex_y);
-//			printf("%lf %lf\n", spr.x, spr.y);
-//			printf("%d\n", spr.type);
-//			printf("%lf %lf\n", game->player.pos.x, game->player.pos.y);
-//		}
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 {
 	int	temp_tex_y;
