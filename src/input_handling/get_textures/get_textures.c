@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:33:50 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/07 16:20:40 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/27 17:46:21 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ static int	valid_and_add_line(t_textures *text, char *line)
 		return (EXIT_FAILURE);
 	while (ft_isspace(line[i]))
 		i++;
-	if (!ft_strncmp(line, "NO", 2))
+	if (!ft_strncmp(line, "NO ", 3))
 		return (add_line(text, line, NO));
-	else if (!ft_strncmp(line, "EA", 2))
+	else if (!ft_strncmp(line, "EA ", 3))
 		return (add_line(text, line, EA));
-	else if (!ft_strncmp(line, "SO", 2))
+	else if (!ft_strncmp(line, "SO ", 3))
 		return (add_line(text, line, SO));
-	else if (!ft_strncmp(line, "WE", 2))
+	else if (!ft_strncmp(line, "WE ", 3))
 		return (add_line(text, line, WE));
 	else if (!check_f_and_c(text, line))
 		return (EXIT_SUCCESS);
