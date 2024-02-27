@@ -6,7 +6,7 @@
 /*   By: tknibbe <tknibbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:13:50 by tknibbe           #+#    #+#             */
-/*   Updated: 2024/02/07 16:21:22 by tknibbe          ###   ########.fr       */
+/*   Updated: 2024/02/27 17:53:58 by tknibbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,7 @@ int	calculate_rgb(char **nums)
 	i = 0;
 	while (nums[i])
 	{
-		nums[i] = ft_strdel(nums[i], " ");
 		valid_rgb_value(nums[i]);
-		nums[i] = ft_strdel(nums[i], " ");
 		num = ft_atoi(nums[i]);
 		if (num > 255 || num < 0)
 			break ;
