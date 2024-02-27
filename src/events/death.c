@@ -62,7 +62,7 @@ static void	display_death_screen(t_game *game)
 		game->images.game_over = mlx_texture_to_image(game->mlx, lost_texture);
 		if (game->images.game_over == NULL)
 			ft_mlx_error_and_exit(game);
-		if (mlx_image_to_window(game->mlx, game->images.game_over, 0, 0 ) == -1)
+		if (mlx_image_to_window(game->mlx, game->images.game_over, 0, 0) == -1)
 			ft_mlx_error_and_exit(game);
 	}
 	adjust_alpha_until_max(game->images.game_over);
@@ -72,8 +72,8 @@ static void	display_death_screen(t_game *game)
 
 static bool	colided_with_enemy(t_game *game)
 {
-	int				map_x;
-	int				map_y;
+	int	map_x;
+	int	map_y;
 
 	map_x = (int)game->player.pos.x;
 	map_y = (int)game->player.pos.y;
