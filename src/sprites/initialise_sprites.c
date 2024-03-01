@@ -35,7 +35,7 @@ static int	count_nr_empty_spots(char **map)
 	return (empty_spots);
 }
 
-// fills our empty spot array with the coordinates of eveyr possible
+// fills our empty spot array with the coordinates of every possible
 // empty spot
 static void	fill_spots(t_coords *empty_spots, char **map)
 {
@@ -65,6 +65,8 @@ static void	fill_spots(t_coords *empty_spots, char **map)
 // counts amount of empty spots, makes an array of the empty spots coordinates
 // then randomises a given amount of spots to fill with sprite types
 // then adds cheerleaders and lamps base don the randomised values
+// then adds enemies
+// at the end it sorts the sprites
 void	initialise_sprites(t_game *game)
 {
 	int			nr_empty_spots;

@@ -12,6 +12,15 @@
 
 #include "cub3d.h"
 
+// first count the start of the player draw
+// player is 4 pixels, 1 pixel is 0.125 in coordinates
+// so we want 0.25 on each side of the player, so player start is
+// his position minus 0.25
+// we then see where we actually want to draw te player on the map
+// by substracting from the player the start of the minimap, f.e.
+// player pos is x = 2.5, minimap starts at coordinate 0
+// player_start = 2.25, and the starting coord is also 2.25
+// we then divide by 0.125 to translate coordinates to pixels
 static double	get_start_pixel(double axis_pos, double axis_minimap_start)
 {
 	double	player_start;

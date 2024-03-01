@@ -26,6 +26,11 @@ int	identify_enemy(t_game *game, int x, int y)
 	return (NOTHING);
 }
 
+// calculates distances of every sprite form the player
+// pretty much pitagoras, only we don't take the root
+// taking the root is an expensive operation and we're only
+// using the distances for comparisons so there is no point in
+// rooting them all
 void	calc_dist(t_vector player_pos, t_sprite *sprites, int sprite_nr)
 {
 	int		i;

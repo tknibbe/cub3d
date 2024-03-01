@@ -45,6 +45,10 @@ static void	calculate_draw_start_and_end(t_sprite *sprite, t_game *game)
 		sprite->draw_end_x = WIDTH - 1;
 }
 
+// sprite_dimension_half and dim_proportion are calculated once here
+// then later used to calculate other variables
+// calculating them here avoid recalculations for every loop
+// across the x and y axis
 void	set_sprite_variables(t_game *game, t_sprite *spr)
 {
 	if (spr->tex->height != spr->tex->width)

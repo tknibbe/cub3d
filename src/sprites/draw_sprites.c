@@ -15,13 +15,7 @@
 #define INVIS_COLOUR 0xC929EBFF
 
 // to do
-// just read through all the code in general
-// adjust a couple maps for the evaluation
 // add comments to stuff so things are more clear
-// adjust strdel to free the str in case of malloc failure
-// in get_colours, line 100 protect malloc from strdel
-// why two strdel
-// in get_map line 45 malloc protect
 // also line 49 with the listnew if malloc fails we have leaks, should just exit
 // keep testing the segfault
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
