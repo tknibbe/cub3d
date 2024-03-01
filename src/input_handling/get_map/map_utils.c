@@ -18,7 +18,7 @@ t_map	*ft_lstnew_map(void *content)
 
 	ptr = (t_map *)malloc(sizeof(t_map));
 	if (ptr == (NULL))
-		return (NULL);
+		ft_error_and_exit("Malloc failure\n");
 	ptr->line = content;
 	ptr->next = (NULL);
 	return (ptr);
