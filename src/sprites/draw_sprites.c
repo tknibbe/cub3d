@@ -14,10 +14,6 @@
 
 #define INVIS_COLOUR 0xC929EBFF
 
-// to do
-// add comments to stuff so things are more clear
-// also line 49 with the listnew if malloc fails we have leaks, should just exit
-// keep testing the segfault
 static void	draw_sprite_stripe(t_sprite spr, int tex_x, int x, t_game *game)
 {
 	int	temp_tex_y;
